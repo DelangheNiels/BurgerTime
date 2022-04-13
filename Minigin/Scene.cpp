@@ -3,6 +3,9 @@
 #include "GameObject.h"
 #include "RenderComponent.h"
 #include "TextComponent.h"
+#include "GroundCheckComponent.h"
+#include "PlatformComponent.h"
+#include "PeterPeperComponent.h"
 
 using namespace dae;
 
@@ -23,6 +26,8 @@ void Scene::Update(float deltaTime)
 	{
 		object.get()->Update(deltaTime);
 	}
+
+	HandleCollisions();
 }
 
 void Scene::Render() const
@@ -32,6 +37,29 @@ void Scene::Render() const
 		auto renderComp = object.get()->GetComponent<RenderComponent>();
 		renderComp->Render();
 		
+	}
+}
+
+void dae::Scene::HandleCollisions()
+{
+	for (const auto& object : m_Objects)
+	{
+		auto groundComponent = object.get()->GetComponent<GroundCheckComponent>();
+		if (groundComponent != nullptr)
+		{
+			for (const auto& object2 : m_Objects)
+			{
+				if (object2.get()->GetComponent<PlatformComponent>() != nullptr)
+				{
+					if (groundComponent->CheckOnGround(object2.get()))
+					{
+						object.get()->GetComponent<PeterPeperComponent>()->SetOnGround(true);
+					}
+				}
+			}
+			
+		}
+
 	}
 }
 

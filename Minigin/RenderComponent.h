@@ -12,6 +12,9 @@ namespace dae
 		void Render() const;
 		void SetTexture(const std::shared_ptr<Texture2D>& texture);
 
+		int GetWidth() const;
+		int GetHeight() const;
+
 		explicit RenderComponent(GameObject* gameObject, std::shared_ptr<Texture2D> texture);
 		virtual ~RenderComponent() = default;
 		RenderComponent(const RenderComponent & other) = delete;
@@ -21,6 +24,8 @@ namespace dae
 
 	private:
 		std::shared_ptr<Texture2D> m_Texture{};
+		int m_Width;
+		int m_Height;
 	};
 }
 

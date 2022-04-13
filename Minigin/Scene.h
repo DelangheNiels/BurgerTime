@@ -27,6 +27,8 @@ namespace dae
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};
 
 		static unsigned int m_IdCounter; 
+
+		void HandleCollisions();
 	};
 
 }
