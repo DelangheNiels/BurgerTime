@@ -63,6 +63,12 @@ void dae::PeterPeperComponent::RemovePlayerObserver(PlayerHealthDisplayComponent
 	}
 }
 
+void dae::PeterPeperComponent::SetOnGround(bool onGround)
+{
+	m_OnGround = onGround;
+}
+
+
 dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health)
 	:Component(gameObject), m_Health(health)
 {
@@ -75,22 +81,31 @@ dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health
 void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 {
 	auto pos = m_pGameObject->GetTransform().GetPosition();
-	if (m_MoveLeft)
+	if (m_OnGround)
 	{
-		pos.x -= m_MovementSpeed * deltaTime;
-		std::cout << pos.x << " " << pos.y << "\n";
-		m_pGameObject->SetPosition(pos.x, pos.y);
-		std::cout << m_pGameObject->GetTransform().GetPosition().x << " | " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+		
+		if (m_MoveLeft)
+		{
+			pos.x -= m_MovementSpeed * deltaTime;
+			m_pGameObject->SetPosition(pos.x, pos.y);
+		}
+
+		if (m_MoveRight)
+		{
+			pos.x += deltaTime * m_MovementSpeed;
+			m_pGameObject->SetPosition(pos.x, pos.y);
+		}
+
+
+
+		m_MoveLeft = false;
+		m_MoveRight = false;
 	}
 
-	if (m_MoveRight)
+	else
 	{
-		pos.x += deltaTime * m_MovementSpeed;
+		pos.y += deltaTime * 9.81f;
 		m_pGameObject->SetPosition(pos.x, pos.y);
 	}
-
 	
-
-	m_MoveLeft = false;
-	m_MoveRight = false;
 }

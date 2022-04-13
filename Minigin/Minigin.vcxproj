@@ -215,6 +215,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject3D.h" />
+    <ClInclude Include="GroundCheckComponent.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_opengl2.h" />
@@ -228,6 +229,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="PeterPeperComponent.h" />
+    <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="PlayerHealthDisplayComponent.h" />
     <ClInclude Include="PlayerObserver.h" />
     <ClInclude Include="PointsComponent.h" />
@@ -251,6 +253,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GroundCheckComponent.cpp" />
     <ClCompile Include="imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -310,6 +313,7 @@ xcopy $(SolutionDir)3rdParty\steamworks\redistributable_bin\win64\*.dll $(Output
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="PeterPeperComponent.cpp" />
+    <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
     <ClCompile Include="PlayerObserver.cpp" />
     <ClCompile Include="PointsComponent.cpp" />
