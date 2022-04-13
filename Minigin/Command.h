@@ -13,12 +13,15 @@ public:
 
 	bool GetCanBeExecutedOnButtonDown() const;
 	bool GetCanBeExecutedOnButtonUp() const;
+	bool GetCanBeExecutedOnButtonHold() const;
 
 	void SetCanBeExecutedOnButtonDown(bool execute);
 	void SetCanBeExecutedOnButtonUp(bool execute);
+	void SetCanBeExecutedOnButtonHold(bool execute);
 
 protected:
 	GameObject* m_pGameObject;
+	bool m_CanExecuteOnButtonHold = false;
 
 private:
 	bool m_CanExecuteOnButtonDown = true;

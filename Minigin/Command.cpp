@@ -35,6 +35,11 @@ bool Command::GetCanBeExecutedOnButtonUp() const
 	return m_CanExecuteOnButtonUp;
 }
 
+bool Command::GetCanBeExecutedOnButtonHold() const
+{
+	return m_CanExecuteOnButtonHold;
+}
+
 void Command::SetCanBeExecutedOnButtonDown(bool execute)
 {
 	m_CanExecuteOnButtonDown = execute;
@@ -43,6 +48,11 @@ void Command::SetCanBeExecutedOnButtonDown(bool execute)
 void Command::SetCanBeExecutedOnButtonUp(bool execute)
 {
 	m_CanExecuteOnButtonUp = execute;
+}
+
+void Command::SetCanBeExecutedOnButtonHold(bool execute)
+{
+	m_CanExecuteOnButtonHold = execute;
 }
 
 
@@ -60,6 +70,7 @@ bool PointsCommand::Execute()
 MoveLeftCommand::MoveLeftCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
+	m_CanExecuteOnButtonHold = true;
 }
 
 bool MoveLeftCommand::Execute()
@@ -71,6 +82,7 @@ bool MoveLeftCommand::Execute()
 MoveRightCommand::MoveRightCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
+	m_CanExecuteOnButtonHold = true;
 }
 
 bool MoveRightCommand::Execute()

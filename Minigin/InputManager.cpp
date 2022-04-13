@@ -38,7 +38,20 @@ bool InputManager::ProcessInput()
 	{
 		for (std::map<ControllerButton, std::pair<std::unique_ptr<Command>,int>>::iterator iter = m_ControllerCommandsMap.begin(); iter != m_ControllerCommandsMap.end(); ++iter)
 		{
-			if ((IsPressed(iter->first, m_Controllers[i]) && (IsDownThisFrame(iter->first, m_Controllers[i]))))
+
+			if (IsPressed(iter->first, m_Controllers[i]))
+			{
+				if (iter->second.first.get()->GetCanBeExecutedOnButtonHold())
+				{
+					if (i == unsigned(iter->second.second))
+					{
+						return iter->second.first.get()->Execute();
+					}
+
+				}
+			}
+
+			if (IsDownThisFrame(iter->first, m_Controllers[i]))
 			{
 				if (iter->second.first.get()->GetCanBeExecutedOnButtonDown())
 				{
