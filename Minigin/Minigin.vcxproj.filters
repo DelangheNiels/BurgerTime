@@ -25,6 +25,12 @@
     <Filter Include="AchievementSystem">
       <UniqueIdentifier>{03bf2f1f-b1a6-45c6-998d-3783effcfa50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SDL2_Mixer">
+      <UniqueIdentifier>{c30eae67-019b-4205-b04d-a2fe844f6c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SoundManager">
+      <UniqueIdentifier>{35e317f0-d636-4b53-87e2-c9060980787c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -138,6 +144,12 @@
     <ClInclude Include="GroundCheckComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="SDL2_Mixer.h">
+      <Filter>SDL2_Mixer</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioClip.h">
+      <Filter>SoundManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -241,6 +253,12 @@
     </ClCompile>
     <ClCompile Include="GroundCheckComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SDL2_Mixer.cpp">
+      <Filter>SDL2_Mixer</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioClip.cpp">
+      <Filter>SoundManager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,6 +16,7 @@
 #include "Command.h"
 #include "GroundCheckComponent.h"
 #include "PlatformComponent.h"
+#include "AudioClip.h"
 //#include <steam_api.h>
 //#include "PointsAchievementObserver.h"
 
@@ -68,33 +69,6 @@ void dae::Minigin::Initialize()
 void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
-	//background
-	/*auto screenGameObject = std::make_shared<GameObject>();
-	auto  pBackgroundTexture = ResourceManager::GetInstance().LoadTexture("background.jpg");
-	screenGameObject.get()->AddComponent(std::make_shared<RenderComponent>(screenGameObject.get(), pBackgroundTexture));
-	scene.Add(screenGameObject);*/
-
-	////logo
-	//auto logoGameObject = std::make_shared<GameObject>();
-	//logoGameObject.get()->AddComponent(std::make_shared<RenderComponent>(logoGameObject.get(), ResourceManager::GetInstance().LoadTexture("logo.png")));
-	//logoGameObject.get()->SetPosition(216, 180);
-	//scene.Add(logoGameObject);
-
-	////title
-	//auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	//auto titleGameObject = std::make_shared<GameObject>();
-	//auto titleRenderComp = std::make_shared<RenderComponent>(titleGameObject.get(), nullptr);
-	//titleGameObject.get()->AddComponent(titleRenderComp);
-	//titleGameObject.get()->AddComponent(std::make_shared<TextComponent>(titleGameObject.get(), "Programming 4 Assignment", font, titleRenderComp));
-	//titleGameObject.get()->SetPosition(80, 20);
-	//scene.Add(titleGameObject);
-
-	////Level background
-	//auto screenGameObject = std::make_shared<GameObject>();
-	//auto  pBackgroundTexture = ResourceManager::GetInstance().LoadTexture("Level.png");
-	//screenGameObject.get()->AddComponent(std::make_shared<RenderComponent>(screenGameObject.get(), pBackgroundTexture));
-	//scene.Add(screenGameObject);
 
 	CreateLevel(scene);
 
@@ -234,6 +208,7 @@ void dae::Minigin::Cleanup()
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
+	Mix_CloseAudio();
 	SDL_Quit();
 }
 
@@ -255,6 +230,16 @@ void dae::Minigin::Run()
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		float lag = 0.0f;
+
+		//audio test
+		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, MIX_CHANNELS);
+
+		AudioClip clip = AudioClip(ResourceManager::GetInstance().LoadSound("bell.wav"));
+		clip.Load();
+		clip.Play();
+
+		//end audio test
+
 		while (doContinue)
 		{
 
