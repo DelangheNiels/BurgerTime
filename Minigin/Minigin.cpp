@@ -17,6 +17,7 @@
 #include "GroundCheckComponent.h"
 #include "PlatformComponent.h"
 #include "AudioClip.h"
+#include "SDL_mixer.h"
 //#include <steam_api.h>
 //#include "PointsAchievementObserver.h"
 
