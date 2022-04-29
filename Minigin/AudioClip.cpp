@@ -4,7 +4,6 @@
 AudioClip::AudioClip(const std::string& path)
 	:m_Path(path)
 {
-	m_pChunk = new Mix_Chunk();
 }
 
 AudioClip::~AudioClip()
