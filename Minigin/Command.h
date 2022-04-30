@@ -70,3 +70,10 @@ public:
 	bool Execute() override;
 };
 
+class MoveUpCommand final : public Command
+{
+public:
+	MoveUpCommand(GameObject* gameObject);
+	bool Execute() override;
+};
+

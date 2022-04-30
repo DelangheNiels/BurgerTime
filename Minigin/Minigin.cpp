@@ -16,10 +16,8 @@
 #include "Command.h"
 #include "GroundCheckComponent.h"
 #include "PlatformComponent.h"
-#include "AudioClip.h"
-#include "SDL_mixer.h"
-//#include <steam_api.h>
-//#include "PointsAchievementObserver.h"
+#include "ServiceLocator.h"
+
 
 
 using namespace std;
@@ -60,6 +58,8 @@ void dae::Minigin::Initialize()
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
 	Renderer::GetInstance().Init(m_Window);
+
+	ServiceLocator::RegisterSoundService(new SoundManager());
 
 	
 }
@@ -188,6 +188,7 @@ void dae::Minigin::LoadGame() const
 	InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonB, pointsDisplayPlayerOneGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject.get(), 0);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject.get(), 0);
 	//player2 inputs
 	InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonX, peterPeperGameObject2.get(), 1);
 	InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonY, pointsDisplayPlayer2GameObject.get(), 1);
@@ -197,6 +198,8 @@ void dae::Minigin::LoadGame() const
 	std::cout << "Player1:" << "\n";
 	std::cout << "Damage: A" << "\n";
 	std::cout << "Points: B" << "\n";
+	std::cout << "Horizontal Movement: left/right D-Pad" << "\n";
+	std::cout << "Play sound: D-Pad up" << "\n";
 	std::cout << "======================" << "\n";
 	std::cout << "Player2:" << "\n";
 	std::cout << "Damage: X" << "\n";
@@ -207,9 +210,9 @@ void dae::Minigin::LoadGame() const
 void dae::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
+	ServiceLocator::RegisterSoundService(nullptr);
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
-	Mix_CloseAudio();
 	SDL_Quit();
 }
 
@@ -231,15 +234,6 @@ void dae::Minigin::Run()
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		float lag = 0.0f;
-
-		//audio test
-		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, MIX_CHANNELS);
-
-		AudioClip clip = AudioClip(ResourceManager::GetInstance().LoadSound("bell.wav"));
-		clip.Load();
-		clip.Play();
-
-		//end audio test
 
 		while (doContinue)
 		{

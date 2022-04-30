@@ -15,6 +15,7 @@ public:
 
 	~AudioClipImpl()
 	{
+		std::cout << "delete in clip" << "\n";
 		if (m_pChunk)
 			Mix_FreeChunk(m_pChunk);
 	}
@@ -42,6 +43,7 @@ public:
 			return false;
 
 		int channel = Mix_PlayChannel(-1, m_pChunk, 0);
+		std::cout << "play sound" << "\n";
 		return channel == -1 ? false : true;
 	}
 

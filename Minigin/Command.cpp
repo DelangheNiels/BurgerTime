@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "Command.h"
 #include <iostream>
+#include "ServiceLocator.h"
 
 
 HitCommand::HitCommand(GameObject* gameObject)
@@ -88,5 +89,16 @@ MoveRightCommand::MoveRightCommand(GameObject* gameObject)
 bool MoveRightCommand::Execute()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveRight();
+	return true;
+}
+
+MoveUpCommand::MoveUpCommand(GameObject* gameObject)
+	:Command(gameObject)
+{
+}
+
+bool MoveUpCommand::Execute()
+{
+	ServiceLocator::GetSoundService().QueueAudioClip("../Data/bell.wav");
 	return true;
 }
