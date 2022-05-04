@@ -1,6 +1,6 @@
 #pragma once
 #include "PlayerObserver.h"
-#include "PeterPeperComponent.h"
+#include "../BurgerTime/PeterPeperComponent.h"
 #include "TextComponent.h"
 #include <memory.h>
 namespace dae

@@ -170,11 +170,27 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="GroundCheckComponent.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PeterPeperComponent.cpp" />
+    <ClCompile Include="PlatformComponent.cpp" />
+    <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
+    <ClCompile Include="PlayerObserver.cpp" />
+    <ClCompile Include="PointsComponent.cpp" />
+    <ClCompile Include="PointsDisplayComponent.cpp" />
+    <ClCompile Include="PointsObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimeGame.h" />
     <ClInclude Include="BurgerTimePCH.h" />
+    <ClInclude Include="GroundCheckComponent.h" />
+    <ClInclude Include="PeterPeperComponent.h" />
+    <ClInclude Include="PlatformComponent.h" />
+    <ClInclude Include="PlayerHealthDisplayComponent.h" />
+    <ClInclude Include="PlayerObserver.h" />
+    <ClInclude Include="PointsComponent.h" />
+    <ClInclude Include="PointsDisplayComponent.h" />
+    <ClInclude Include="PointsObserver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

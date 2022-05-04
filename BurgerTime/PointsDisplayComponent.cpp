@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "BurgerTimePCH.h"
 #include "PointsDisplayComponent.h"
 
 dae::PointsDisplayComponent::PointsDisplayComponent(GameObject* gameObject, std::shared_ptr<TextComponent> textComponent)

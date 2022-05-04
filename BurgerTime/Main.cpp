@@ -6,27 +6,14 @@
 #endif
 #endif
 
-#include "Minigin/Minigin.h"
 #include "BurgerTimeGame.h"
-//#include <steam_api.h>
+
 
 int main(int, char* []) {
 
-	//steam
-	/*if (!SteamAPI_Init())
-	{
-		std::cerr << "Fatal Error - Steam must be running to play this game (SteamAPI_Init() failed)." << std::endl;
-		return 1;
-	}
-	else
-		std::cout << "Successfully initialized steam." << std::endl;*/
-
-	//dae::Minigin engine;
-	//engine.Run();
 
 	BurgerTimeGame burgerTimeGame;
 	burgerTimeGame.Run();
 
-	//SteamAPI_Shutdown();
 	return 0;
 }

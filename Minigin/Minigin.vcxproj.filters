@@ -19,9 +19,6 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{bfaa865d-db47-49b1-ba09-cd68f5ff2948}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Observers">
-      <UniqueIdentifier>{1af432c1-22cf-4c52-94cf-714b32c45991}</UniqueIdentifier>
-    </Filter>
     <Filter Include="AchievementSystem">
       <UniqueIdentifier>{03bf2f1f-b1a6-45c6-998d-3783effcfa50}</UniqueIdentifier>
     </Filter>
@@ -114,35 +111,11 @@
     <ClInclude Include="GameObject3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PeterPeperComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerObserver.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="XBox360Controller.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerHealthDisplayComponent.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
-    <ClInclude Include="PointsObserver.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
-    <ClInclude Include="PointsDisplayComponent.h">
-      <Filter>Observers</Filter>
-    </ClInclude>
-    <ClInclude Include="PointsComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatformComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundCheckComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="AudioClip.h">
       <Filter>SoundManager</Filter>
@@ -221,35 +194,11 @@
     <ClCompile Include="imgui_plot.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="PeterPeperComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerObserver.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
     <ClCompile Include="Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XBox360Controller.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerHealthDisplayComponent.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
-    <ClCompile Include="PointsObserver.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
-    <ClCompile Include="PointsComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PointsDisplayComponent.cpp">
-      <Filter>Observers</Filter>
-    </ClCompile>
-    <ClCompile Include="PlatformComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundCheckComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="AudioClip.cpp">
       <Filter>SoundManager</Filter>

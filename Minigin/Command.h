@@ -1,6 +1,6 @@
 #pragma once
-#include "PeterPeperComponent.h"
-#include "PointsComponent.h"
+#include "../BurgerTime/PeterPeperComponent.h"
+#include "../BurgerTime/PointsComponent.h"
 #include "GameObject.h"
 using namespace dae;
 

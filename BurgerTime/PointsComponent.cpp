@@ -1,4 +1,4 @@
-#include "MiniginPCH.h"
+#include "BurgerTimePCH.h"
 #include "PointsComponent.h"
 
 dae::PointsComponent::PointsComponent(GameObject* gameObject, int points /*PointsAchievementObserver* pPointsAchievementObserver*/)

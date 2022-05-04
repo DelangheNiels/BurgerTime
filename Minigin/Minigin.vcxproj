@@ -228,7 +228,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
     <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObject3D.h" />
-    <ClInclude Include="GroundCheckComponent.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imgui.h" />
     <ClInclude Include="imgui_impl_opengl2.h" />
@@ -241,13 +240,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="PeterPeperComponent.h" />
-    <ClInclude Include="PlatformComponent.h" />
-    <ClInclude Include="PlayerHealthDisplayComponent.h" />
-    <ClInclude Include="PlayerObserver.h" />
-    <ClInclude Include="PointsComponent.h" />
-    <ClInclude Include="PointsDisplayComponent.h" />
-    <ClInclude Include="PointsObserver.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
@@ -269,7 +261,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GroundCheckComponent.cpp" />
     <ClCompile Include="imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -327,13 +318,6 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="PeterPeperComponent.cpp" />
-    <ClCompile Include="PlatformComponent.cpp" />
-    <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
-    <ClCompile Include="PlayerObserver.cpp" />
-    <ClCompile Include="PointsComponent.cpp" />
-    <ClCompile Include="PointsDisplayComponent.cpp" />
-    <ClCompile Include="PointsObserver.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />

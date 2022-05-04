@@ -3,9 +3,9 @@
 #include "GameObject.h"
 #include "RenderComponent.h"
 #include "TextComponent.h"
-#include "GroundCheckComponent.h"
-#include "PlatformComponent.h"
-#include "PeterPeperComponent.h"
+#include "../BurgerTime/GroundCheckComponent.h"
+#include "../BurgerTime/PlatformComponent.h"
+#include "../BurgerTime/PeterPeperComponent.h"
 
 using namespace dae;
 

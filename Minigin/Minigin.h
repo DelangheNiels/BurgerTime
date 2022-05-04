@@ -16,9 +16,5 @@ namespace dae
 		float m_FixedTimeStep = 0.2f;
 		SDL_Window* m_Window{};
 		//AchievementSystem m_AchievementSystem = AchievementSystem();
-
-		void CreateLevel(Scene& scene) const;
-		void CreatePlatform(Scene& scene, float x, float y, std::string texture) const;
-		void CreateLadder(Scene& scene, float x, float y, std::string texture) const;
 	};
 }
