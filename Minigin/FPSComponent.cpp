@@ -8,6 +8,7 @@ dae::FPSComponent::FPSComponent(GameObject* gameObject,const std::shared_ptr<Tex
     
 }
 
+
 void dae::FPSComponent::Update(float deltaTime)
 {
 

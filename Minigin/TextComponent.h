@@ -22,6 +22,7 @@ namespace dae
 		TextComponent(TextComponent&& other) = delete;
 		TextComponent& operator=(const TextComponent& other) = delete;
 		TextComponent& operator=(TextComponent&& other) = delete;
+
 	private:
 		bool m_NeedsUpdate;
 		std::string m_Text;

@@ -34,13 +34,13 @@ void dae::RenderComponent::SetTexture(const std::shared_ptr<Texture2D>& texture)
 	m_Texture = texture;
 }
 
-int dae::RenderComponent::GetWidth() const
+float dae::RenderComponent::GetWidth() const
 {
-	return m_Width;
+	return float(m_Width);
 }
 
-int dae::RenderComponent::GetHeight() const
+float dae::RenderComponent::GetHeight() const
 {
-	return m_Height;
+	return float(m_Height);
 }
 

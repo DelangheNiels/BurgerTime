@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include "Renderer.h"
 #include <algorithm>
+#include "..\BurgerTime\PeterPeperComponent.h"
 
 dae::GameObject::~GameObject()
 {
@@ -83,6 +84,24 @@ void dae::GameObject::AddChild(GameObject* gameObject)
 
 	gameObject->SetParent(this);
 	m_Children.push_back(gameObject);
+}
+
+void dae::GameObject::OnCollision(GameObject* pOther)
+{
+	for (auto& component : m_Components)
+	{
+		component.get()->OnCollision(pOther->GetTag());
+	}
+}
+
+void dae::GameObject::SetTag(const std::string& tag)
+{
+	m_Tag = tag;
+}
+
+std::string dae::GameObject::GetTag() const
+{
+	return m_Tag;
 }
 
 void dae::GameObject::SetPosition(float x, float y)

@@ -6,10 +6,12 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
+
+#include "Command.h"
+
 #include "RenderComponent.h"
 #include "TextComponent.h"
 #include "FPSComponent.h"
-#include "Command.h"
 
 #include "ServiceLocator.h"
 

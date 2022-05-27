@@ -39,6 +39,11 @@ namespace dae
 		void RemoveChild(int index);
 		void AddChild(GameObject* gameObject);
 
+		void OnCollision(GameObject* pOther);
+
+		void SetTag(const std::string& tag);
+		std::string GetTag() const;
+
 	private:
 		Transform m_Transform{};
 		std::vector <std::shared_ptr<Component>> m_Components{};
@@ -46,6 +51,8 @@ namespace dae
 		GameObject* m_pParent{ nullptr };
 		
 		std::vector<GameObject* > m_Children{};
+
+		std::string m_Tag;
 
 	};
 

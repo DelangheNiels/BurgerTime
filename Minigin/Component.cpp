@@ -7,6 +7,11 @@ dae::Component::Component(GameObject* gameObject)
 {
 }
 
+void dae::Component::OnCollision(const std::string&)
+{
+}
+
+
 dae::GameObject* dae::Component::GetGameObject() const
 {
 	return m_pGameObject;

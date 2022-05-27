@@ -6,6 +6,9 @@
 #include "Renderer.h"
 #include "ResourceManager.h"
 #include "GameObject.h"
+#include "Command.h"
+#include "ServiceLocator.h"
+
 #include "RenderComponent.h"
 #include "TextComponent.h"
 #include "FPSComponent.h"
@@ -13,10 +16,8 @@
 #include "PlayerHealthDisplayComponent.h"
 #include "PointsComponent.h"
 #include "PointsDisplayComponent.h"
-#include "Command.h"
-#include "GroundCheckComponent.h"
-#include "PlatformComponent.h"
-#include "ServiceLocator.h"
+#include"CollisionComponent.h"
+
 
 void BurgerTimeGame::LoadGame() const
 {
@@ -39,12 +40,14 @@ void BurgerTimeGame::LoadGame() const
 
 	//PeterPeper GameObject
 	auto peterPeperGameObject = std::make_shared<GameObject>();
+	peterPeperGameObject.get()->SetTag("Player");
 	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3);
 	auto spriteRenderComp = std::make_shared<RenderComponent>(peterPeperGameObject.get(), ResourceManager::GetInstance().LoadTexture("PlayerIdle.png"));
-	auto groundCheckComponent = std::make_shared<GroundCheckComponent>(peterPeperGameObject.get());
+	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight()};
+	auto collisionComponent = std::make_shared<CollisionComponent>(peterPeperGameObject.get(), collisionBox);
 	peterPeperGameObject.get()->AddComponent(playerOne);
 	peterPeperGameObject.get()->AddComponent(spriteRenderComp);
-	peterPeperGameObject.get()->AddComponent(groundCheckComponent);
+	peterPeperGameObject.get()->AddComponent(collisionComponent);
 	peterPeperGameObject.get()->SetPosition(375, 545);
 	scene.Add(peterPeperGameObject);
 
@@ -319,9 +322,12 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y, std::string texture) const
 {
 	auto platformObject = std::make_shared<GameObject>();
+	platformObject.get()->SetTag("Platform");
 	auto pPlatformTexture = ResourceManager::GetInstance().LoadTexture(texture);
-	platformObject.get()->AddComponent(std::make_shared<RenderComponent>(platformObject.get(), pPlatformTexture));
-	platformObject.get()->AddComponent(std::make_unique<PlatformComponent>(platformObject.get()));
+	auto spriteRenderComp = std::make_shared<RenderComponent>(platformObject.get(), pPlatformTexture);
+	platformObject.get()->AddComponent(spriteRenderComp);
+	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
+	platformObject.get()->AddComponent(std::make_unique<CollisionComponent>(platformObject.get(), collisionBox));
 	platformObject.get()->SetPosition(x, y);
 	scene.Add(platformObject);
 }
@@ -329,9 +335,9 @@ void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y, std::string 
 void BurgerTimeGame::CreateLadder(Scene& scene, float x, float y, std::string texture) const
 {
 	auto ladderObject = std::make_shared<GameObject>();
+	ladderObject.get()->SetTag("Ladder");
 	auto pLadderTexture = ResourceManager::GetInstance().LoadTexture(texture);
 	ladderObject.get()->AddComponent(std::make_shared<RenderComponent>(ladderObject.get(), pLadderTexture));
-	ladderObject.get()->AddComponent(std::make_unique<PlatformComponent>(ladderObject.get()));
 	ladderObject.get()->SetPosition(x, y);
 	scene.Add(ladderObject);
 }

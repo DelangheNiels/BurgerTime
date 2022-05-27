@@ -222,6 +222,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AudioClip.h" />
+    <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Font.h" />
@@ -256,6 +257,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioClip.cpp" />
+    <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Font.cpp" />

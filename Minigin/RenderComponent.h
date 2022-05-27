@@ -12,8 +12,8 @@ namespace dae
 		void Render() const;
 		void SetTexture(const std::shared_ptr<Texture2D>& texture);
 
-		int GetWidth() const;
-		int GetHeight() const;
+		float GetWidth() const;
+		float GetHeight() const;
 
 		explicit RenderComponent(GameObject* gameObject, std::shared_ptr<Texture2D> texture);
 		virtual ~RenderComponent() = default;

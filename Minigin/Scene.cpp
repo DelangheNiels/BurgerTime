@@ -3,9 +3,7 @@
 #include "GameObject.h"
 #include "RenderComponent.h"
 #include "TextComponent.h"
-#include "../BurgerTime/GroundCheckComponent.h"
-#include "../BurgerTime/PlatformComponent.h"
-#include "../BurgerTime/PeterPeperComponent.h"
+#include "CollisionComponent.h"
 
 using namespace dae;
 
@@ -26,7 +24,10 @@ void Scene::Update(float deltaTime)
 	{
 		object.get()->Update(deltaTime);
 	}
+}
 
+void dae::Scene::FixedUpdate(float)
+{
 	HandleCollisions();
 }
 
@@ -42,24 +43,26 @@ void Scene::Render() const
 
 void dae::Scene::HandleCollisions()
 {
-	for (const auto& object : m_Objects)
+	std::vector<CollisionComponent*> collisionComponents;
+	for (const auto& gameObject : m_Objects)
 	{
-		auto groundComponent = object.get()->GetComponent<GroundCheckComponent>();
-		if (groundComponent != nullptr)
+		auto collisionComp = gameObject.get()->GetComponent<CollisionComponent>();
+		if (collisionComp)
 		{
-			for (const auto& object2 : m_Objects)
-			{
-				if (object2.get()->GetComponent<PlatformComponent>() != nullptr)
-				{
-					if (groundComponent->CheckOnGround(object2.get()))
-					{
-						object.get()->GetComponent<PeterPeperComponent>()->SetOnGround(true);
-					}
-				}
-			}
-			
+			collisionComponents.push_back(collisionComp);
 		}
+	}
 
+	for (size_t i=0; i< collisionComponents.size(); ++i)
+	{
+		for (size_t j = 0; j < collisionComponents.size(); ++j)
+		{
+			if (collisionComponents[i] != collisionComponents[j])
+			{
+				collisionComponents[i]->CheckCollision(collisionComponents[j]->GetBoundingBox(), collisionComponents[j]->GetGameObject());
+
+			}
+		}
 	}
 }
 

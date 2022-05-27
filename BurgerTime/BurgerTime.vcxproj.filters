@@ -33,13 +33,7 @@
     <ClCompile Include="PointsComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="PlatformComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="PeterPeperComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundCheckComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PlayerHealthDisplayComponent.cpp">
@@ -62,13 +56,7 @@
     <ClInclude Include="BurgerTimeGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GroundCheckComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="PeterPeperComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatformComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="PointsComponent.h">

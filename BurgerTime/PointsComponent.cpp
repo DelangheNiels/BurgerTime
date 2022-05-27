@@ -42,3 +42,4 @@ void dae::PointsComponent::RemovePointsObserver(PointsObserver* pointsObserver)
         m_PointsObservers.erase(it);
     }
 }
+

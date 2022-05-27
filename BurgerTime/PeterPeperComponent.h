@@ -29,6 +29,8 @@ namespace dae
 		PeterPeperComponent& operator=(const PeterPeperComponent& other) = default;
 		PeterPeperComponent& operator=(PeterPeperComponent&& other) = default;
 
+		void OnCollision(const std::string& tag) override;
+
 	private:
 		int m_Health;
 		std::vector<PlayerHealthDisplayComponent*> m_Observers{};

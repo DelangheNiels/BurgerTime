@@ -10,6 +10,7 @@ dae::TextComponent::TextComponent(GameObject* gameObject,const std::string& text
 	: Component(gameObject), m_NeedsUpdate(true), m_Text(text), m_Font(font), m_Texture(nullptr),m_pRenderComponent(renderComponent), m_Color(color)
 { }
 
+
 void dae::TextComponent::Update(float )
 {
 	if (m_NeedsUpdate)

@@ -78,6 +78,14 @@ dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health
 	}
 }
 
+void dae::PeterPeperComponent::OnCollision(const std::string& tag)
+{
+	if (tag == "Platform")
+	{
+		m_OnGround = true;
+	}
+}
+
 void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 {
 	auto pos = m_pGameObject->GetTransform().GetPosition();
