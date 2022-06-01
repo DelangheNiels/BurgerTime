@@ -26,6 +26,7 @@ namespace dae
 
 	private:
 		BoundingBox m_BoundingBox;
+		std::vector<GameObject*> m_CollidingObjects{};
 
 	};
 }

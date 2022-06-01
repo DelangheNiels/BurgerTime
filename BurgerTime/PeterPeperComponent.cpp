@@ -1,6 +1,7 @@
 #include "BurgerTimePCH.h"
 #include "PeterPeperComponent.h"
 #include "PlayerHealthDisplayComponent.h"
+#include "CollisionComponent.h"
 
 void dae::PeterPeperComponent::IsDamaged()
 {
@@ -25,9 +26,14 @@ void dae::PeterPeperComponent::IsDamaged()
 	
 }
 
-void dae::PeterPeperComponent::Update(float deltaTime)
+void dae::PeterPeperComponent::Update(float)
 {
-	UpdatePosition(deltaTime);
+	//UpdatePosition(deltaTime);
+}
+
+void dae::PeterPeperComponent::FixedUpdate(float fixedTime)
+{
+	UpdatePosition(fixedTime);
 }
 
 int dae::PeterPeperComponent::GetLives() const
@@ -43,6 +49,18 @@ void dae::PeterPeperComponent::MoveLeft()
 void dae::PeterPeperComponent::MoveRight()
 {
 	m_MoveRight = true;
+}
+
+void dae::PeterPeperComponent::MoveUp()
+{
+	if(m_CanMoveUp)
+		m_MoveUp = true;
+}
+
+void dae::PeterPeperComponent::MoveDown()
+{
+	if(m_CanMoveDown)
+		m_MoveDown = true;
 }
 
 void dae::PeterPeperComponent::AddPlayerObserver(PlayerHealthDisplayComponent* observer)
@@ -78,11 +96,42 @@ dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health
 	}
 }
 
-void dae::PeterPeperComponent::OnCollision(const std::string& tag)
+void dae::PeterPeperComponent::OnCollision(GameObject* object)
 {
+	const std::string tag = object->GetTag();
+
 	if (tag == "Platform")
 	{
 		m_OnGround = true;
+	}
+
+	if (tag.find("Ladder") != std::string ::npos )
+	{
+		m_CanMoveDown = true;
+		m_OnLadder = true;
+		m_CanMoveUp = true;
+	}
+
+	if (tag == "TopBorder")
+	{
+		m_CanMoveUp = false;
+		m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y + 1.1f);
+	}
+}
+
+void dae::PeterPeperComponent::OnEndCollision(GameObject* object)
+{
+	const std::string tag = object->GetTag();
+
+	/*if (tag == "Platform")
+	{
+		
+		m_OnGround = false;
+	}*/
+
+	if (tag == "LadderUp")
+	{
+		m_CanMoveUp = false;
 	}
 }
 
@@ -104,16 +153,35 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 			m_pGameObject->SetPosition(pos.x, pos.y);
 		}
 
-
-
 		m_MoveLeft = false;
 		m_MoveRight = false;
 	}
 
-	else
+	if (m_OnLadder)
 	{
-		pos.y += deltaTime * 9.81f;
-		m_pGameObject->SetPosition(pos.x, pos.y);
+		if (m_MoveDown)
+		{
+			pos.y += m_MovementSpeed * deltaTime;
+			m_pGameObject->SetPosition(pos.x, pos.y);
+		}
+
+		if (m_MoveUp)
+		{
+			pos.y -= m_MovementSpeed * deltaTime;
+			m_pGameObject->SetPosition(pos.x, pos.y);
+		}
+
+		m_MoveDown = false;
+		m_MoveUp = false;
 	}
+
+	/*if(!m_OnGround && !m_OnLadder)
+	{
+		pos.y += deltaTime * 98.1f;
+		m_pGameObject->SetPosition(pos.x, pos.y);
+	}*/
+
+	//m_OnGround = false;
+	//m_OnLadder = false;
 	
 }

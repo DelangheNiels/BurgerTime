@@ -7,10 +7,18 @@ dae::Component::Component(GameObject* gameObject)
 {
 }
 
-void dae::Component::OnCollision(const std::string&)
+void dae::Component::OnCollision(GameObject*)
 {
 }
 
+void dae::Component::OnEndCollision(GameObject*)
+{
+}
+
+
+void dae::Component::FixedUpdate(float)
+{
+}
 
 dae::GameObject* dae::Component::GetGameObject() const
 {

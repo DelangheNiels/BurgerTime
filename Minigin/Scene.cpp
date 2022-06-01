@@ -26,9 +26,14 @@ void Scene::Update(float deltaTime)
 	}
 }
 
-void dae::Scene::FixedUpdate(float)
+void dae::Scene::FixedUpdate(float fixedTime)
 {
 	HandleCollisions();
+
+	for (auto& object : m_Objects)
+	{
+		object.get()->FixedUpdate(fixedTime);
+	}
 }
 
 void Scene::Render() const

@@ -22,12 +22,21 @@ void dae::CollisionComponent::CheckCollision(const BoundingBox& boundingBox, Gam
 	float otherYmin = pOther->GetTransform().GetPosition().y;
 	float otherYmax = otherYmin + boundingBox.height;
 
-	if (myXmin < otherXmax && otherXmin < myXmax
-		&& myYmin < otherYmax && otherYmin < myYmax)
+	bool isColliding = (myXmin < otherXmax&& otherXmin < myXmax&& myYmin < otherYmax&& otherYmin < myYmax);
+	bool alreadyColliding = std::find(m_CollidingObjects.begin(), m_CollidingObjects.end(), pOther) != m_CollidingObjects.end();
+
+	if (isColliding)
 	{
 		m_pGameObject->OnCollision(pOther);
+		if(!alreadyColliding)
+			m_CollidingObjects.push_back(pOther);
 	}
 
+	if (!isColliding && alreadyColliding && m_CollidingObjects.size() > 0)
+	{
+		m_pGameObject->OnEndCollision(pOther);
+		m_CollidingObjects.erase(std::find(m_CollidingObjects.begin(), m_CollidingObjects.end(), pOther));
+	}
 }
 
 dae::BoundingBox dae::CollisionComponent::GetBoundingBox() const

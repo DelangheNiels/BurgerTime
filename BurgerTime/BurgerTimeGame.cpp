@@ -48,7 +48,8 @@ void BurgerTimeGame::LoadGame() const
 	peterPeperGameObject.get()->AddComponent(playerOne);
 	peterPeperGameObject.get()->AddComponent(spriteRenderComp);
 	peterPeperGameObject.get()->AddComponent(collisionComponent);
-	peterPeperGameObject.get()->SetPosition(375, 545);
+	peterPeperGameObject.get()->SetPosition(55, 61);
+	//peterPeperGameObject.get()->SetPosition(375, 545);
 	scene.Add(peterPeperGameObject);
 
 	//player One lives display
@@ -132,6 +133,7 @@ void BurgerTimeGame::LoadGame() const
 	InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject.get(), 0);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject.get(), 0);
 	//player2 inputs
 	InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonX, peterPeperGameObject2.get(), 1);
 	InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonY, pointsDisplayPlayer2GameObject.get(), 1);
@@ -152,71 +154,71 @@ void BurgerTimeGame::LoadGame() const
 
 void BurgerTimeGame::CreateLevel(Scene& scene) const
 {
-	CreateLadder(scene, 55, 90, "Ladder.png");
-	CreateLadder(scene, 55, 145, "Ladder.png");
-	CreateLadder(scene, 55, 310, "Ladder.png");
+	CreateLadder(scene, 55, 90, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 55, 145, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 55, 310, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 55, 365, "Ladder.png");
-	CreateLadder(scene, 55, 420, "Ladder.png");
-	CreateLadder(scene, 55, 475, "Ladder.png");
-	CreateLadder(scene, 55, 530, "Ladder.png");
+	CreateLadder(scene, 55, 420, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 55, 475, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 55, 530, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 135, 200, "Ladder.png");
-	CreateLadder(scene, 135, 255, "Ladder.png");
-	CreateLadder(scene, 135, 310, "Ladder.png");
+	CreateLadder(scene, 135, 200, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 135, 255, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 135, 310, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 135, 365, "Ladder.png");
-	CreateLadder(scene, 135, 420, "Ladder.png");
+	CreateLadder(scene, 135, 420, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 215, 90, "Ladder.png");
-	CreateLadder(scene, 215, 145, "Ladder.png");
+	CreateLadder(scene, 215, 90, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 215, 145, "Ladder.png", "LadderUp");
 	CreateLadder(scene, 215, 200, "Ladder.png");
 	CreateLadder(scene, 215, 255, "Ladder.png");
 	CreateLadder(scene, 215, 310, "Ladder.png");
-	CreateLadder(scene, 215, 365, "Ladder.png");
-	CreateLadder(scene, 215, 420, "Ladder.png");
-	CreateLadder(scene, 215, 475, "Ladder.png");
-	CreateLadder(scene, 215, 530, "Ladder.png");
+	CreateLadder(scene, 215, 365, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 215, 420, "Ladder.png","LadderUp");
+	CreateLadder(scene, 215, 475, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 215, 530, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 295, 90, "Ladder.png");
+	CreateLadder(scene, 295, 90, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 295, 145, "Ladder.png");
-	CreateLadder(scene, 295, 200, "Ladder.png");
+	CreateLadder(scene, 295, 200, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 375, 90, "Ladder.png");
-	CreateLadder(scene, 375, 145, "Ladder.png");
+	CreateLadder(scene, 375, 90, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 375, 145, "Ladder.png", "LadderUp");
 	CreateLadder(scene, 375, 200, "Ladder.png");
-	CreateLadder(scene, 375, 255, "Ladder.png");
-	CreateLadder(scene, 375, 310, "Ladder.png");
-	CreateLadder(scene, 375, 365, "Ladder.png");
-	CreateLadder(scene, 375, 420, "Ladder.png");
-	CreateLadder(scene, 375, 475, "Ladder.png");
-	CreateLadder(scene, 375, 530, "Ladder.png");
+	CreateLadder(scene, 375, 255, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 375, 310, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 375, 365, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 375, 420, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 375, 475, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 375, 530, "Ladder.png","LadderUp");
 	//
-	CreateLadder(scene, 455, 200, "Ladder.png");
+	CreateLadder(scene, 455, 200, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 455, 255, "Ladder.png");
-	CreateLadder(scene, 455, 310, "Ladder.png");
+	CreateLadder(scene, 455, 310, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 535, 90, "Ladder.png");
-	CreateLadder(scene, 535, 145, "Ladder.png");
-	CreateLadder(scene, 535, 200, "Ladder.png");
-	CreateLadder(scene, 535, 255, "Ladder.png");
+	CreateLadder(scene, 535, 90,  "Ladder.png", "LadderDown");
+	CreateLadder(scene, 535, 145, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 535, 200, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 535, 255, "Ladder.png", "LadderUp");
 	CreateLadder(scene, 535, 310, "Ladder.png");
 	CreateLadder(scene, 535, 365, "Ladder.png");
 	CreateLadder(scene, 535, 420, "Ladder.png");
-	CreateLadder(scene, 535, 475, "Ladder.png");
-	CreateLadder(scene, 535, 530, "Ladder.png");
+	CreateLadder(scene, 535, 475, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 535, 530, "Ladder.png","LadderUp");
 	//
-	CreateLadder(scene, 615, 310, "Ladder.png");
-	CreateLadder(scene, 615, 365, "Ladder.png");
-	CreateLadder(scene, 615, 420, "Ladder.png");
+	CreateLadder(scene, 615, 310, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 615, 365, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 615, 420, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 615, 475, "Ladder.png");
-	CreateLadder(scene, 615, 530, "Ladder.png");
+	CreateLadder(scene, 615, 530, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 695, 90, "Ladder.png");
-	CreateLadder(scene, 695, 145, "Ladder.png");
-	CreateLadder(scene, 695, 200, "Ladder.png");
-	CreateLadder(scene, 695, 255, "Ladder.png");
-	CreateLadder(scene, 695, 420, "Ladder.png");
+	CreateLadder(scene, 695, 90, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 695, 145, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 695, 200, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 695, 255, "Ladder.png", "LadderUp");
+	CreateLadder(scene, 695, 420, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 695, 475, "Ladder.png");
-	CreateLadder(scene, 695, 530, "Ladder.png");
+	CreateLadder(scene, 695, 530, "Ladder.png", "LadderUp");
 	//
 
 
@@ -317,9 +319,13 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	CreatePlatform(scene, 615, 585, "BluePlatform.png");
 	CreatePlatform(scene, 655, 585, "BluePlatform.png");
 	CreatePlatform(scene, 695, 585, "LightBluePlatform.png");
+
+
+	//Borders
+	CreateBorder(scene, 55, 62, 651.5f, "TopBorder");
 }
 
-void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y, std::string texture) const
+void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y,const std::string& texture) const
 {
 	auto platformObject = std::make_shared<GameObject>();
 	platformObject.get()->SetTag("Platform");
@@ -332,12 +338,26 @@ void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y, std::string 
 	scene.Add(platformObject);
 }
 
-void BurgerTimeGame::CreateLadder(Scene& scene, float x, float y, std::string texture) const
+void BurgerTimeGame::CreateLadder(Scene& scene, float x, float y, const std::string& texture, const std::string& tag) const
 {
 	auto ladderObject = std::make_shared<GameObject>();
-	ladderObject.get()->SetTag("Ladder");
+	ladderObject.get()->SetTag(tag);
 	auto pLadderTexture = ResourceManager::GetInstance().LoadTexture(texture);
-	ladderObject.get()->AddComponent(std::make_shared<RenderComponent>(ladderObject.get(), pLadderTexture));
+	auto spriteRenderComp = std::make_shared<RenderComponent>(ladderObject.get(), pLadderTexture);
+	ladderObject.get()->AddComponent(spriteRenderComp);
+	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
+	ladderObject.get()->AddComponent(std::make_unique<CollisionComponent>(ladderObject.get(), collisionBox));
 	ladderObject.get()->SetPosition(x, y);
 	scene.Add(ladderObject);
+}
+
+void BurgerTimeGame::CreateBorder(dae::Scene& scene, float x, float y, float width, const std::string& tag) const
+{
+	auto border = std::make_shared<GameObject>();
+	border.get()->SetTag(tag);
+	BoundingBox collisionBox{ width, 1.0f };
+	border.get()->AddComponent(std::make_shared<RenderComponent>(border.get(), nullptr));
+	border.get()->AddComponent(std::make_unique<CollisionComponent>(border.get(), collisionBox));
+	border.get()->SetPosition(x, y);
+	scene.Add(border);
 }

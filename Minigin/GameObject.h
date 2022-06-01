@@ -17,6 +17,7 @@ namespace dae
 
 		Transform GetTransform() const;
 		void Update(float deltaTime);
+		void FixedUpdate(float fixedTime);
 
 		GameObject() = default;
 		~GameObject();
@@ -40,6 +41,7 @@ namespace dae
 		void AddChild(GameObject* gameObject);
 
 		void OnCollision(GameObject* pOther);
+		void OnEndCollision(GameObject* pOther);
 
 		void SetTag(const std::string& tag);
 		std::string GetTag() const;

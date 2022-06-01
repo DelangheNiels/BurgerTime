@@ -95,10 +95,24 @@ bool MoveRightCommand::Execute()
 MoveUpCommand::MoveUpCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
+	m_CanExecuteOnButtonHold = true;
 }
 
 bool MoveUpCommand::Execute()
 {
-	ServiceLocator::GetSoundService().QueueAudioClip("../Data/bell.wav");
+	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveUp();
+	//ServiceLocator::GetSoundService().QueueAudioClip("../Data/bell.wav");
+	return true;
+}
+
+MoveDownCommand::MoveDownCommand(GameObject* gameObject)
+	:Command(gameObject)
+{
+	m_CanExecuteOnButtonHold = true;
+}
+
+bool MoveDownCommand::Execute()
+{
+	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveDown();
 	return true;
 }

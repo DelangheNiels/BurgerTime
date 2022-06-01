@@ -77,3 +77,10 @@ public:
 	bool Execute() override;
 };
 
+class MoveDownCommand final : public Command
+{
+public:
+	MoveDownCommand(GameObject* gameObject);
+	bool Execute() override;
+};
+

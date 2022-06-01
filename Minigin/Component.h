@@ -8,6 +8,7 @@ namespace dae
 	{
 	public:
 		virtual void Update( float deltaTime) = 0;
+		virtual void FixedUpdate(float fixedTime);
 
 		GameObject* GetGameObject() const;
 
@@ -18,7 +19,8 @@ namespace dae
 		Component& operator=(const Component & other) = delete;
 		Component& operator=(Component && other) = delete;
 
-		virtual void OnCollision(const std::string& tag);
+		virtual void OnCollision(GameObject* gameObject);
+		virtual void OnEndCollision(GameObject* gameObject);
 
 	protected:
 		GameObject* m_pGameObject{};
