@@ -66,7 +66,7 @@ void dae::Minigin::Initialize()
 void dae::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
-	ServiceLocator::RegisterSoundService(nullptr);
+	ServiceLocator::ShutDown();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();

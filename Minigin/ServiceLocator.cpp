@@ -26,3 +26,9 @@ void ServiceLocator::RegisterSoundService(SoundService* soundService)
 	m_SoundServiceInstance = soundService == nullptr ? &m_Default : soundService;
 }
 
+void ServiceLocator::ShutDown()
+{
+	delete m_SoundServiceInstance;
+	m_SoundServiceInstance = nullptr;
+}
+

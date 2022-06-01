@@ -4,15 +4,17 @@ class ServiceLocator final
 {
 public:
 
-	ServiceLocator() = default;
+	ServiceLocator() = delete;
 	~ServiceLocator();
-	ServiceLocator(const ServiceLocator& other) = default;
-	ServiceLocator(ServiceLocator && other) = default;
-	ServiceLocator& operator=(const ServiceLocator & other) = default;
-	ServiceLocator& operator=(ServiceLocator && other) = default;
+	ServiceLocator(const ServiceLocator& other) = delete;
+	ServiceLocator(ServiceLocator && other) = delete;
+	ServiceLocator& operator=(const ServiceLocator & other) = delete;
+	ServiceLocator& operator=(ServiceLocator && other) = delete;
 
 	static SoundService& GetSoundService();
 	static void RegisterSoundService(SoundService* soundService);
+
+	static void ShutDown();
 
 private:
 	static SoundService* m_SoundServiceInstance;
