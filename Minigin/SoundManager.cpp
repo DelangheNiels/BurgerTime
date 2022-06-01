@@ -15,21 +15,27 @@ private:
 	std::mutex mutex;
 	std::thread queueThread;
 	bool m_Continue = true;
+	std::condition_variable m_WaitingCondition;
 
 	void LoopOverQueue()
 	{
 		while (m_Continue)
 		{
+			std::unique_lock lk{ mutex };
+			m_WaitingCondition.wait(lk, [&]{ return !m_AudioQueue.empty() || !m_Continue;});
+
 			if (m_AudioQueue.size() > 0)
 			{
-				mutex.lock();
 				
-				m_AudioQueue.front()->Load();
-				m_AudioQueue.front()->Play();
-				
+				AudioClip* clip = m_AudioQueue.front();
 				m_ClipsToDelete.emplace_back(m_AudioQueue.front());
 				m_AudioQueue.pop();
-				mutex.unlock();
+
+				lk.unlock();
+				
+				std::cout << m_AudioQueue.size() << "\n";
+				clip->Load();
+				clip->Play();
 				
 			}
 			
@@ -49,6 +55,7 @@ public:
 	{
 		std::cout << "delete in manager" << "\n";
 		m_Continue = false;
+		m_WaitingCondition.notify_all();
 		queueThread.join();
 		for (size_t i = 0; i < m_ClipsToDelete.size(); i++)
 		{
@@ -60,7 +67,10 @@ public:
 
 	void QueueAudioClip(const std::string& path)
 	{
+		mutex.lock();
 		m_AudioQueue.emplace(new AudioClip(path));
+		mutex.unlock();
+		m_WaitingCondition.notify_all();
 	}
 
 
