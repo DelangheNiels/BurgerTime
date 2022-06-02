@@ -33,7 +33,7 @@ void dae::PeterPeperComponent::IsDamaged()
 
 void dae::PeterPeperComponent::Update(float deltaTime)
 {
-	//std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
 	SetIdle();
 	UpdateAnimation(deltaTime);
 }
@@ -50,14 +50,21 @@ int dae::PeterPeperComponent::GetLives() const
 
 void dae::PeterPeperComponent::MoveLeft()
 {
-	m_MoveLeft = true;
-	SwitchAnimation(PlayerStates::WalkingLeft);
+	if (m_OnGround)
+	{
+		m_MoveLeft = true;
+		SwitchAnimation(PlayerStates::WalkingLeft);
+	}
+
 }
 
 void dae::PeterPeperComponent::MoveRight()
 {
-	m_MoveRight = true;
-	SwitchAnimation(PlayerStates::WalkingRight);
+	if (m_OnGround)
+	{
+		m_MoveRight = true;
+		SwitchAnimation(PlayerStates::WalkingRight);
+	}
 }
 
 void dae::PeterPeperComponent::MoveUp()
@@ -139,16 +146,13 @@ void dae::PeterPeperComponent::OnCollision(GameObject* object)
 {
 	const std::string tag = object->GetTag();
 
-	if (tag == "Platform")
-	{
-		m_OnGround = true;
-	}
-
 	if (tag.find("Ladder") != std::string ::npos )
 	{
 		m_CanMoveDown = true;
 		m_OnLadder = true;
 		m_CanMoveUp = true;
+		//m_OnGround = false;
+		
 	}
 
 	if (tag == "TopBorder")
@@ -163,7 +167,7 @@ void dae::PeterPeperComponent::OnCollision(GameObject* object)
 	{
 		m_CanMoveDown = false;
 		m_OnGround = true;
-		m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y - (m_pGameObject->GetComponent<CollisionComponent>()->GetBoundingBox().height + 1.1f));
+		m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y - (m_pGameObject->GetComponent<CollisionComponent>()->GetBoundingBox().height)-1.5f);
 	}
 }
 
@@ -171,15 +175,16 @@ void dae::PeterPeperComponent::OnEndCollision(GameObject* object)
 {
 	const std::string tag = object->GetTag();
 
-	if (tag == "Platform")
-	{
-		
-		m_OnGround = false;
-	}
-
 	if (tag == "LadderUp")
 	{
 		m_CanMoveUp = false;
+		m_OnGround = true;
+	}
+
+	if (tag == "LadderDown")
+	{
+		m_CanMoveDown = false;
+		m_OnGround = true;
 	}
 }
 
@@ -188,7 +193,6 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 	auto pos = m_pGameObject->GetTransform().GetPosition();
 	if (m_OnGround)
 	{
-		
 		if (m_MoveLeft)
 		{
 			pos.x -= m_MovementSpeed * deltaTime;
@@ -218,14 +222,7 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 		}
 	}
 
-	/*if(!m_OnGround && !m_OnLadder)
-	{
-		pos.y += deltaTime * 98.1f;
-		m_pGameObject->SetPosition(pos.x, pos.y);
-	}*/
-
-	//m_OnGround = false;
-	//m_OnLadder = false;
+	m_OnLadder = false;
 	
 }
 
