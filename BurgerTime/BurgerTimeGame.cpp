@@ -361,6 +361,31 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	//
 	CreateBorder(scene, 55, 62, 651.5f, "TopBorder");
 
+	CreateBorder(scene, 55,  170.8f, 75, "TopBorder");
+	CreateBorder(scene, 190, 170.8f, 15, "TopBorder");
+	CreateBorder(scene, 425, 170.8f, 25, "TopBorder");
+	CreateBorder(scene, 500, 170.8f, 25, "TopBorder");
+	CreateBorder(scene, 580, 170.8f, 105, "TopBorder");
+
+	CreateBorder(scene, 256, 257, 110, "TopBorder");
+
+	CreateBorder(scene, 100, 314, 25, "TopBorder");
+	CreateBorder(scene, 190, 314, 15, "TopBorder");
+	CreateBorder(scene, 500, 314, 25, "TopBorder");
+	CreateBorder(scene, 580, 314, 25, "TopBorder");
+	CreateBorder(scene, 670, 314, 60, "TopBorder");
+
+	CreateBorder(scene, 270, 368, 82, "TopBorder");
+	CreateBorder(scene, 425, 368, 97, "TopBorder");
+
+	CreateBorder(scene, 580, 422, 15, "TopBorder");
+	CreateBorder(scene, 670, 422, 23, "TopBorder");
+
+	CreateBorder(scene, 99, 478, 23, "TopBorder");
+	CreateBorder(scene, 190, 478, 23, "TopBorder");
+	CreateBorder(scene, 260, 478, 103, "TopBorder");
+	CreateBorder(scene, 425, 478, 100, "TopBorder");
+
 }
 
 void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y,const std::string& texture) const
@@ -394,7 +419,6 @@ void BurgerTimeGame::CreateBorder(dae::Scene& scene, float x, float y, float wid
 	auto border = std::make_shared<GameObject>();
 	border.get()->SetTag(tag);
 	BoundingBox collisionBox{ width, 1.0f };
-	border.get()->AddComponent(std::make_shared<RenderComponent>(border.get(), nullptr));
 	border.get()->AddComponent(std::make_unique<CollisionComponent>(border.get(), collisionBox));
 	border.get()->SetPosition(x, y);
 	scene.Add(border);

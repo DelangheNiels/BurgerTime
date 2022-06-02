@@ -41,7 +41,8 @@ void Scene::Render() const
 	for (const auto& object : m_Objects)
 	{
 		auto renderComp = object.get()->GetComponent<RenderComponent>();
-		renderComp->Render();
+		if(renderComp)
+			renderComp->Render();
 		
 	}
 }
