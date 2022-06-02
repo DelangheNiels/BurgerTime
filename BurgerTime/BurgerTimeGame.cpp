@@ -322,7 +322,45 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 
 
 	//Borders
+	CreateBorder(scene, 97,  92.5f, 104, "BottomBorder");
+	CreateBorder(scene, 100, 92.5f,  25, "BottomBorder");
+	CreateBorder(scene, 190, 92.5f,  15, "BottomBorder");
+	CreateBorder(scene, 256, 92.5f, 110, "BottomBorder");
+	CreateBorder(scene, 425, 92.5f, 95, "BottomBorder");
+	CreateBorder(scene, 500, 92.5f,  15, "BottomBorder");
+	CreateBorder(scene, 580, 92.5f,  105, "BottomBorder");
+
+
+	CreateBorder(scene, 55,  202, 75, "BottomBorder");
+	CreateBorder(scene, 190, 202, 15, "BottomBorder");
+	CreateBorder(scene, 425, 202, 25, "BottomBorder");
+	CreateBorder(scene, 500, 202, 25, "BottomBorder");
+	CreateBorder(scene, 580, 202, 105,"BottomBorder");
+
+	CreateBorder(scene, 256, 257, 110,"BottomBorder");
+
+	CreateBorder(scene, 100, 314, 25, "BottomBorder");
+	CreateBorder(scene, 190, 314, 15, "BottomBorder");
+	CreateBorder(scene, 500, 314, 25, "BottomBorder");
+	CreateBorder(scene, 580, 314, 25, "BottomBorder");
+	CreateBorder(scene, 670, 314, 60, "BottomBorder");
+
+	CreateBorder(scene, 270, 368, 82, "BottomBorder");
+	CreateBorder(scene, 425, 368, 97, "BottomBorder");
+
+	CreateBorder(scene, 580, 422, 15, "BottomBorder");
+	CreateBorder(scene, 670, 422, 23, "BottomBorder");
+
+	CreateBorder(scene, 99,  478, 23, "BottomBorder");
+	CreateBorder(scene, 190, 478, 23, "BottomBorder");
+	CreateBorder(scene, 260, 478, 103, "BottomBorder");
+	CreateBorder(scene, 425, 478, 100, "BottomBorder");
+
+	CreateBorder(scene, 55, 588, 667, "BottomBorder");
+
+	//
 	CreateBorder(scene, 55, 62, 651.5f, "TopBorder");
+
 }
 
 void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y,const std::string& texture) const
@@ -332,8 +370,8 @@ void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y,const std::st
 	auto pPlatformTexture = ResourceManager::GetInstance().LoadTexture(texture);
 	auto spriteRenderComp = std::make_shared<RenderComponent>(platformObject.get(), pPlatformTexture);
 	platformObject.get()->AddComponent(spriteRenderComp);
-	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
-	platformObject.get()->AddComponent(std::make_unique<CollisionComponent>(platformObject.get(), collisionBox));
+	//BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
+	//platformObject.get()->AddComponent(std::make_unique<CollisionComponent>(platformObject.get(), collisionBox));
 	platformObject.get()->SetPosition(x, y);
 	scene.Add(platformObject);
 }

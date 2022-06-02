@@ -28,7 +28,7 @@ void dae::PeterPeperComponent::IsDamaged()
 
 void dae::PeterPeperComponent::Update(float)
 {
-	//UpdatePosition(deltaTime);
+	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
 }
 
 void dae::PeterPeperComponent::FixedUpdate(float fixedTime)
@@ -115,7 +115,16 @@ void dae::PeterPeperComponent::OnCollision(GameObject* object)
 	if (tag == "TopBorder")
 	{
 		m_CanMoveUp = false;
-		m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y + 1.1f);
+		m_OnGround = true;
+		if(!m_OnLadder)
+			m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y + 1.1f);
+	}
+
+	if (tag == "BottomBorder")
+	{
+		m_CanMoveDown = false;
+		m_OnGround = true;
+		m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, object->GetTransform().GetPosition().y - (m_pGameObject->GetComponent<CollisionComponent>()->GetBoundingBox().height + 1.1f));
 	}
 }
 
@@ -123,11 +132,11 @@ void dae::PeterPeperComponent::OnEndCollision(GameObject* object)
 {
 	const std::string tag = object->GetTag();
 
-	/*if (tag == "Platform")
+	if (tag == "Platform")
 	{
 		
 		m_OnGround = false;
-	}*/
+	}
 
 	if (tag == "LadderUp")
 	{
