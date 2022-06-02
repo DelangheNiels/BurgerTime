@@ -15,6 +15,8 @@ namespace dae
 		float GetWidth() const;
 		float GetHeight() const;
 
+		void SetSrcRect(const SDL_Rect& srcRect);
+
 		explicit RenderComponent(GameObject* gameObject, std::shared_ptr<Texture2D> texture);
 		virtual ~RenderComponent() = default;
 		RenderComponent(const RenderComponent & other) = delete;
@@ -26,6 +28,8 @@ namespace dae
 		std::shared_ptr<Texture2D> m_Texture{};
 		int m_Width;
 		int m_Height;
+
+		SDL_Rect m_SrcRect;
 	};
 }
 

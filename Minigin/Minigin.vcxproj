@@ -221,6 +221,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSpriteComponent.h" />
     <ClInclude Include="AudioClip.h" />
     <ClInclude Include="CollisionComponent.h" />
     <ClInclude Include="Command.h" />
@@ -256,6 +257,7 @@ xcopy $(SolutionDir)3rdParty\SDL2_mixer\$(PlatformTarget)\*.dll $(OutputPath) /R
     <ClInclude Include="XBox360Controller.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSpriteComponent.cpp" />
     <ClCompile Include="AudioClip.cpp" />
     <ClCompile Include="CollisionComponent.cpp" />
     <ClCompile Include="Command.cpp" />

@@ -11,19 +11,7 @@ namespace dae
 	{
 		SDL_Renderer* m_Renderer{};
 		SDL_Window* m_Window{};
-		SDL_Color m_clearColor{};	
-
-		void ShowExercise1();
-		void ShowPlotEx1();
-		void CalculatePlotEx1(int samples);
-
-		void ShowExercise2();
-		void ShowPlotGameObj();
-		void CalculatePlotGameObj(int samples);
-		void ShowPlotGameObjAlt();
-		void ShowPlotCombined();
-		void CalculatePlotGameObjAlt(int samples);
-
+		SDL_Color m_clearColor{};
 
 		static const size_t m_BufSize = 11;
 		float m_Ydata[m_BufSize];
@@ -43,6 +31,7 @@ namespace dae
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
 		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
+		void RenderTexture(const Texture2D& texture,const SDL_Rect& srcRect, float x, float y) const;
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 

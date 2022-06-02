@@ -1,7 +1,12 @@
 #include "BurgerTimePCH.h"
+
 #include "PeterPeperComponent.h"
 #include "PlayerHealthDisplayComponent.h"
 #include "CollisionComponent.h"
+#include "AnimatedSpriteComponent.h"
+#include "RenderComponent.h"
+
+#include "ResourceManager.h"
 
 void dae::PeterPeperComponent::IsDamaged()
 {
@@ -26,9 +31,11 @@ void dae::PeterPeperComponent::IsDamaged()
 	
 }
 
-void dae::PeterPeperComponent::Update(float)
+void dae::PeterPeperComponent::Update(float deltaTime)
 {
-	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+	//std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+	//SetIdle();
+	UpdateAnimation(deltaTime);
 }
 
 void dae::PeterPeperComponent::FixedUpdate(float fixedTime)
@@ -44,23 +51,32 @@ int dae::PeterPeperComponent::GetLives() const
 void dae::PeterPeperComponent::MoveLeft()
 {
 	m_MoveLeft = true;
+	SwitchAnimation(PlayerStates::WalkingLeft);
 }
 
 void dae::PeterPeperComponent::MoveRight()
 {
 	m_MoveRight = true;
+	SwitchAnimation(PlayerStates::WalkingRight);
 }
 
 void dae::PeterPeperComponent::MoveUp()
 {
-	if(m_CanMoveUp)
+	if (m_CanMoveUp)
+	{
 		m_MoveUp = true;
+		SwitchAnimation(PlayerStates::ClimbingUp);
+	}
+		
 }
 
 void dae::PeterPeperComponent::MoveDown()
 {
-	if(m_CanMoveDown)
+	if (m_CanMoveDown)
+	{
 		m_MoveDown = true;
+		SwitchAnimation(PlayerStates::ClimbingDown);
+	}
 }
 
 void dae::PeterPeperComponent::AddPlayerObserver(PlayerHealthDisplayComponent* observer)
@@ -87,13 +103,16 @@ void dae::PeterPeperComponent::SetOnGround(bool onGround)
 }
 
 
-dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health)
-	:Component(gameObject), m_Health(health)
+dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health, RenderComponent* renderComp, std::map<PlayerStates, AnimatedSpriteComponent*> animations)
+	:Component(gameObject), m_Health(health), m_Animations(animations), m_pRenderComponent(renderComp)
 {
 	if (m_Health <= 0)
 	{
 		m_Health = 1;
 	}
+
+	m_CurrentState = PlayerStates::Idle;
+	m_pCurrentAnimation = m_Animations.find(m_CurrentState)->second;
 }
 
 void dae::PeterPeperComponent::OnCollision(GameObject* object)
@@ -162,8 +181,8 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 			m_pGameObject->SetPosition(pos.x, pos.y);
 		}
 
-		m_MoveLeft = false;
-		m_MoveRight = false;
+		//m_MoveLeft = false;
+		//m_MoveRight = false;
 	}
 
 	if (m_OnLadder)
@@ -180,8 +199,8 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 			m_pGameObject->SetPosition(pos.x, pos.y);
 		}
 
-		m_MoveDown = false;
-		m_MoveUp = false;
+		//m_MoveDown = false;
+		//m_MoveUp = false;
 	}
 
 	/*if(!m_OnGround && !m_OnLadder)
@@ -193,4 +212,31 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 	//m_OnGround = false;
 	//m_OnLadder = false;
 	
+}
+
+void dae::PeterPeperComponent::UpdateAnimation(float deltaTime)
+{
+	m_pCurrentAnimation->Update(deltaTime);
+}
+
+void dae::PeterPeperComponent::SetIdle()
+{
+	if (!m_MoveDown && !m_MoveLeft && !m_MoveUp && !m_MoveRight)
+	{
+		SwitchAnimation(PlayerStates::Idle);
+	}
+}
+
+void dae::PeterPeperComponent::SwitchAnimation(PlayerStates state)
+{
+	if (state != m_CurrentState)
+	{
+		m_CurrentState = state;
+
+		m_pCurrentAnimation->Reset();
+		m_pCurrentAnimation = m_Animations.find(m_CurrentState)->second;
+		m_pCurrentAnimation->Activate();
+		m_pRenderComponent->SetTexture(ResourceManager::GetInstance().LoadTexture(m_pCurrentAnimation->GetSpriteSheet()));
+
+	}
 }

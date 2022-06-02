@@ -2,9 +2,20 @@
 #include "Component.h"
 #include "PlayerHealthDisplayComponent.h"
 
+#include <vector>
+#include <map>
+
 namespace dae
 {
 	class PlayerHealthDisplayComponent;
+	class AnimatedSpriteComponent;
+	class RenderComponent;
+
+	enum class PlayerStates
+	{
+		Idle, WalkingLeft, WalkingRight, ClimbingUp, ClimbingDown, Dying
+	};
+
 	class PeterPeperComponent final : public Component
 	{
 	public:
@@ -25,7 +36,7 @@ namespace dae
 
 		void SetOnGround(bool onGround);
 
-		explicit PeterPeperComponent(GameObject* gameObject, int health);
+		explicit PeterPeperComponent(GameObject* gameObject, int health,RenderComponent* renderComp ,std::map<PlayerStates, AnimatedSpriteComponent*> animations);
 		virtual ~PeterPeperComponent() = default;
 		PeterPeperComponent(const PeterPeperComponent& other) = default;
 		PeterPeperComponent(PeterPeperComponent&& other) = default;
@@ -51,7 +62,18 @@ namespace dae
 
 		float m_MovementSpeed{ 80.0f };
 
+		std::map<PlayerStates, AnimatedSpriteComponent*> m_Animations;
+		
+		PlayerStates m_CurrentState;
+		AnimatedSpriteComponent* m_pCurrentAnimation;
+		RenderComponent* m_pRenderComponent;
+
 		void UpdatePosition(float deltaTime);
+		void UpdateAnimation(float deltaTime);
+
+		void SetIdle();
+
+		void SwitchAnimation(PlayerStates state);
 	};
 
 }

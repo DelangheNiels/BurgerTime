@@ -50,3 +50,11 @@ std::string dae::ResourceManager::LoadSound(const std::string& file) const
 	const auto fullPath = m_DataPath + file;
 	return fullPath;
 }
+
+std::string dae::ResourceManager::LoadSpriteSheet(const std::string& file) const
+{
+
+	return m_DataPath + file;
+}
+
+
