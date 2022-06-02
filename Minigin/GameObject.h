@@ -14,8 +14,10 @@ namespace dae
 	public:
 
 		void SetPosition(float x, float y);
+		void SetRelativePosition(float x, float y);
 
 		Transform GetTransform() const;
+		Transform GetLocalTransfrom() const;
 		void Update(float deltaTime);
 		void FixedUpdate(float fixedTime);
 
@@ -37,7 +39,7 @@ namespace dae
 
 		size_t GetChildCount() const;
 		GameObject* GetChildAt(int index) const;
-		void RemoveChild(int index);
+		void RemoveChild(GameObject* gameObject);
 		void AddChild(GameObject* gameObject);
 
 		void OnCollision(GameObject* pOther);
@@ -48,6 +50,7 @@ namespace dae
 
 	private:
 		Transform m_Transform{};
+		Transform m_LocalTransform{};
 		std::vector <std::shared_ptr<Component>> m_Components{};
 
 		GameObject* m_pParent{ nullptr };

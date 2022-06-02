@@ -185,7 +185,7 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	CreateLadder(scene, 55, 475, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 55, 530, "Ladder.png", "LadderUp");
 	//
-	CreateLadder(scene, 135, 200, "Ladder.png", "LadderDown");
+	CreateLadder(scene, 135, 198, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 135, 255, "Ladder.png", "LadderUp");
 	CreateLadder(scene, 135, 310, "Ladder.png", "LadderDown");
 	CreateLadder(scene, 135, 365, "Ladder.png");
@@ -263,8 +263,8 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	CreatePlatform(scene, 655, 90, "BluePlatform.png");
 	CreatePlatform(scene, 695, 90, "LightBluePlatform.png");
 	//
-	CreatePlatform(scene, 55, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 95, 200, "BluePlatform.png");
+	CreatePlatform(scene, 55,  200, "LightBluePlatform.png");
+	CreatePlatform(scene, 95,  200, "BluePlatform.png");
 	CreatePlatform(scene, 135, 200, "BluePlatform.png");
 	CreatePlatform(scene, 175, 200, "BluePlatform.png");
 	CreatePlatform(scene, 215, 200, "LightBluePlatform.png");
@@ -348,7 +348,8 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	CreateBorder(scene, 97,  92.5f, 104, "BottomBorder");
 	CreateBorder(scene, 100, 92.5f,  25, "BottomBorder");
 	CreateBorder(scene, 190, 92.5f,  15, "BottomBorder");
-	CreateBorder(scene, 256, 92.5f, 110, "BottomBorder");
+	CreateBorder(scene, 256, 92.5f, 24, "BottomBorder");
+	CreateBorder(scene, 340, 92.5f, 18, "BottomBorder");
 	CreateBorder(scene, 425, 92.5f, 95, "BottomBorder");
 	CreateBorder(scene, 500, 92.5f,  15, "BottomBorder");
 	CreateBorder(scene, 580, 92.5f,  105, "BottomBorder");
@@ -362,11 +363,11 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 
 	CreateBorder(scene, 256, 257, 110,"BottomBorder");
 
-	CreateBorder(scene, 100, 314, 25, "BottomBorder");
-	CreateBorder(scene, 190, 314, 15, "BottomBorder");
-	CreateBorder(scene, 500, 314, 25, "BottomBorder");
-	CreateBorder(scene, 580, 314, 25, "BottomBorder");
-	CreateBorder(scene, 670, 314, 60, "BottomBorder");
+	CreateBorder(scene, 100, 315, 25, "BottomBorder");
+	CreateBorder(scene, 190, 315, 15, "BottomBorder");
+	CreateBorder(scene, 500, 315, 25, "BottomBorder");
+	CreateBorder(scene, 580, 315, 25, "BottomBorder");
+	CreateBorder(scene, 670, 315, 60, "BottomBorder");
 
 	CreateBorder(scene, 270, 368, 82, "BottomBorder");
 	CreateBorder(scene, 425, 368, 97, "BottomBorder");
@@ -374,40 +375,19 @@ void BurgerTimeGame::CreateLevel(Scene& scene) const
 	CreateBorder(scene, 580, 422, 15, "BottomBorder");
 	CreateBorder(scene, 670, 422, 23, "BottomBorder");
 
-	CreateBorder(scene, 99,  478, 23, "BottomBorder");
-	CreateBorder(scene, 190, 478, 23, "BottomBorder");
-	CreateBorder(scene, 260, 478, 103, "BottomBorder");
-	CreateBorder(scene, 425, 478, 100, "BottomBorder");
+	CreateBorder(scene, 99,  475, 46, "BottomBorder");
+	CreateBorder(scene, 190, 475, 23, "BottomBorder");
+	CreateBorder(scene, 260, 475, 103, "BottomBorder");
+	CreateBorder(scene, 425, 475, 100, "BottomBorder");
 
 	CreateBorder(scene, 55, 588, 667, "BottomBorder");
 
 	//
 	CreateBorder(scene, 55, 62, 651.5f, "TopBorder");
+	CreateBorder(scene, 125, 168, 42, "TopBorder");
+	CreateBorder(scene, 605, 281, 42, "TopBorder");
 
-	CreateBorder(scene, 55,  170.8f, 75, "TopBorder");
-	CreateBorder(scene, 190, 170.8f, 15, "TopBorder");
-	CreateBorder(scene, 425, 170.8f, 25, "TopBorder");
-	CreateBorder(scene, 500, 170.8f, 25, "TopBorder");
-	CreateBorder(scene, 580, 170.8f, 105, "TopBorder");
-
-	CreateBorder(scene, 256, 257, 110, "TopBorder");
-
-	CreateBorder(scene, 100, 314, 25, "TopBorder");
-	CreateBorder(scene, 190, 314, 15, "TopBorder");
-	CreateBorder(scene, 500, 314, 25, "TopBorder");
-	CreateBorder(scene, 580, 314, 25, "TopBorder");
-	CreateBorder(scene, 670, 314, 60, "TopBorder");
-
-	CreateBorder(scene, 270, 368, 82, "TopBorder");
-	CreateBorder(scene, 425, 368, 97, "TopBorder");
-
-	CreateBorder(scene, 580, 422, 15, "TopBorder");
-	CreateBorder(scene, 670, 422, 23, "TopBorder");
-
-	CreateBorder(scene, 99, 478, 23, "TopBorder");
-	CreateBorder(scene, 190, 478, 23, "TopBorder");
-	CreateBorder(scene, 260, 478, 103, "TopBorder");
-	CreateBorder(scene, 425, 478, 100, "TopBorder");
+	
 
 }
 
