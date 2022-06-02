@@ -31,6 +31,11 @@ namespace dae
 		void MoveUp();
 		void MoveDown();
 
+		void StopMoveLeft();
+		void StopMoveRight();
+		void StopMoveUp();
+		void StopMoveDown();
+
 		void AddPlayerObserver(PlayerHealthDisplayComponent* observer);
 		void RemovePlayerObserver(PlayerHealthDisplayComponent* observer);
 

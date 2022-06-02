@@ -79,6 +79,26 @@ void dae::PeterPeperComponent::MoveDown()
 	}
 }
 
+void dae::PeterPeperComponent::StopMoveLeft()
+{
+	m_MoveLeft = false;
+}
+
+void dae::PeterPeperComponent::StopMoveRight()
+{
+	m_MoveRight = false;
+}
+
+void dae::PeterPeperComponent::StopMoveUp()
+{
+	m_MoveUp = false;
+}
+
+void dae::PeterPeperComponent::StopMoveDown()
+{
+	m_MoveDown = false;
+}
+
 void dae::PeterPeperComponent::AddPlayerObserver(PlayerHealthDisplayComponent* observer)
 {
 	if (std::find(m_Observers.begin(), m_Observers.end(), observer) == m_Observers.end())

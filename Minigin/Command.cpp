@@ -9,16 +9,20 @@ HitCommand::HitCommand(GameObject* gameObject)
 {
 }
 
-bool HitCommand::Execute()
+bool HitCommand::ExecuteOnHold()
+{
+	return true;
+}
+
+bool HitCommand::ExecuteOnDown()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->IsDamaged();
 	return true;
 }
 
-bool QuitCommand::Execute()
+bool HitCommand::ExecuteOnUp()
 {
-	std::cout << "Quit" << "\n";
-	return false;
+	return true;
 }
 
 Command::Command(GameObject* gameObject)
@@ -62,7 +66,17 @@ PointsCommand::PointsCommand(GameObject* gameObject)
 {
 }
 
-bool PointsCommand::Execute()
+bool PointsCommand::ExecuteOnHold()
+{
+	return true;
+}
+
+bool PointsCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool PointsCommand::ExecuteOnUp()
 {
 	m_pGameObject->GetComponent<PointsComponent>()->IncreasePoints();
 	return true;
@@ -72,11 +86,23 @@ MoveLeftCommand::MoveLeftCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
 	m_CanExecuteOnButtonHold = true;
+	m_CanExecuteOnButtonUp = true;
 }
 
-bool MoveLeftCommand::Execute()
+bool MoveLeftCommand::ExecuteOnHold()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveLeft();
+	return true;
+}
+
+bool MoveLeftCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool MoveLeftCommand::ExecuteOnUp()
+{
+	m_pGameObject->GetComponent<PeterPeperComponent>()->StopMoveLeft();
 	return true;
 }
 
@@ -84,11 +110,23 @@ MoveRightCommand::MoveRightCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
 	m_CanExecuteOnButtonHold = true;
+	m_CanExecuteOnButtonUp = true;
 }
 
-bool MoveRightCommand::Execute()
+bool MoveRightCommand::ExecuteOnHold()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveRight();
+	return true;
+}
+
+bool MoveRightCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool MoveRightCommand::ExecuteOnUp()
+{
+	m_pGameObject->GetComponent<PeterPeperComponent>()->StopMoveRight();
 	return true;
 }
 
@@ -96,23 +134,66 @@ MoveUpCommand::MoveUpCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
 	m_CanExecuteOnButtonHold = true;
+	m_CanExecuteOnButtonUp = true;
 }
 
-bool MoveUpCommand::Execute()
+bool MoveUpCommand::ExecuteOnHold()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveUp();
 	//ServiceLocator::GetSoundService().QueueAudioClip("../Data/bell.wav");
 	return true;
 }
 
+bool MoveUpCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool MoveUpCommand::ExecuteOnUp()
+{
+	m_pGameObject->GetComponent<PeterPeperComponent>()->StopMoveUp();
+	//ServiceLocator::GetSoundService().QueueAudioClip("../Data/bell.wav");
+	return true;
+}
+
+
 MoveDownCommand::MoveDownCommand(GameObject* gameObject)
 	:Command(gameObject)
 {
 	m_CanExecuteOnButtonHold = true;
+	m_CanExecuteOnButtonUp = true;
 }
 
-bool MoveDownCommand::Execute()
+bool MoveDownCommand::ExecuteOnHold()
 {
 	m_pGameObject->GetComponent<PeterPeperComponent>()->MoveDown();
 	return true;
+}
+
+bool MoveDownCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool MoveDownCommand::ExecuteOnUp()
+{
+	m_pGameObject->GetComponent<PeterPeperComponent>()->StopMoveDown();
+	return true;
+}
+
+
+bool QuitCommand::ExecuteOnHold()
+{
+	return false;
+}
+
+bool QuitCommand::ExecuteOnDown()
+{
+	std::cout << "Quit" << "\n";
+	return false;
+}
+
+bool QuitCommand::ExecuteOnUp()
+{
+	return false;
 }
