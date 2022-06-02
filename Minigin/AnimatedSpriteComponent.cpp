@@ -13,7 +13,7 @@ dae::AnimatedSpriteComponent::AnimatedSpriteComponent(GameObject* gameObject, Re
 
 void dae::AnimatedSpriteComponent::Update(float deltaTime)
 {
-	if (m_AmountOfAnimations > 1 && m_isActive)
+	if (m_isActive)
 	{
 		m_ChangeImageTimer += deltaTime;
 
@@ -41,7 +41,7 @@ void dae::AnimatedSpriteComponent::Update(float deltaTime)
 void dae::AnimatedSpriteComponent::Reset()
 {
 	m_CurrentSpriteIndex = 0;
-	m_ChangeImageTimer = 0.0f;
+	m_ChangeImageTimer = m_ChangeImageTime;
 	m_isActive = false;
 }
 

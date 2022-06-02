@@ -70,7 +70,6 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						std::cout << "t" << "\n";
 						return iter->second.first.get()->ExecuteOnUp();
 					}
 				}

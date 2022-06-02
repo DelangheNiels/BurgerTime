@@ -27,7 +27,7 @@ namespace dae
 		int m_AmountOfAnimations;
 		RenderComponent* m_pRenderComponent;
 		float m_ChangeImageTime = 0.4f;
-		float m_ChangeImageTimer = 0.0f;
+		float m_ChangeImageTimer = m_ChangeImageTime;
 		int m_CurrentSpriteIndex = 1;
 		float m_SrRectWidth, m_SrcRectHeight;
 

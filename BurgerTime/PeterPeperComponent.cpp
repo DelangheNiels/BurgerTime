@@ -34,7 +34,7 @@ void dae::PeterPeperComponent::IsDamaged()
 void dae::PeterPeperComponent::Update(float deltaTime)
 {
 	//std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
-	//SetIdle();
+	SetIdle();
 	UpdateAnimation(deltaTime);
 }
 
@@ -201,8 +201,6 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 			m_pGameObject->SetPosition(pos.x, pos.y);
 		}
 
-		//m_MoveLeft = false;
-		//m_MoveRight = false;
 	}
 
 	if (m_OnLadder)
@@ -218,9 +216,6 @@ void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 			pos.y -= m_MovementSpeed * deltaTime;
 			m_pGameObject->SetPosition(pos.x, pos.y);
 		}
-
-		//m_MoveDown = false;
-		//m_MoveUp = false;
 	}
 
 	/*if(!m_OnGround && !m_OnLadder)
