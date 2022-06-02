@@ -26,24 +26,25 @@ std::shared_ptr<dae::Component> dae::GameObject::GetComponentAtindex(int index)
 
 void dae::GameObject::SetParent(GameObject* parent)
 {
-	if (this != parent)
+	if (parent)
 	{
-		if (this->Getparent() != nullptr)
+		if (this != parent)
 		{
-			//remove this child from old parent
-			auto it = std::find(m_pParent->m_Children.begin(), m_pParent->m_Children.end(), this);
-			if (it != m_pParent->m_Children.end())
+			if (this->Getparent() != nullptr)
 			{
-				int index =int( it - m_pParent->m_Children.begin());
-				m_pParent->RemoveChild(index);
+				m_pParent->RemoveChild(this);
 			}
 
+			m_pParent = parent;
+			parent->AddChild(this);
 		}
+	}
 
-		m_pParent = parent;
-		parent->AddChild(this);
+	else
+	{
+		m_pParent->RemoveChild(this);
 
-		//set transform relative to the parent
+		m_pParent = nullptr;
 	}
 	
 }
@@ -63,27 +64,38 @@ dae::GameObject* dae::GameObject::GetChildAt(int index) const
 	return m_Children.at(index);
 }
 
-void dae::GameObject::RemoveChild(int index)
+void dae::GameObject::RemoveChild(GameObject* gameObject)
 {
+	auto it = std::find(m_Children.begin(), m_Children.end(), gameObject);
+	int index = int(it - m_Children.begin());
 
-	m_Children.at(index)->SetParent(nullptr);
-	m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), m_Children.at(index)), m_Children.end());
+	auto child = m_Children.at(index);
+	child->SetParent(nullptr);
+	m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child), m_Children.end());
+	
+	//reset relative position to world position
+	child->SetRelativePosition(child->GetTransform().GetPosition().x, child->GetTransform().GetPosition().y);
 
-	//update location, rotation and scale
 }
 
 void dae::GameObject::AddChild(GameObject* gameObject)
 {
-	if (gameObject->Getparent() != nullptr)
+	if (gameObject && gameObject != this)
 	{
-		//remove child from parent
-		
+		if (gameObject->Getparent() != nullptr)
+		{
+			gameObject->Getparent()->RemoveChild(gameObject);
+
+		}
+
+		//set transform relative to the parent
+
+		gameObject->SetParent(this);
+		m_Children.push_back(gameObject);
+		auto relativePos = gameObject->GetTransform().GetPosition() - GetTransform().GetPosition();
+		gameObject->SetRelativePosition(relativePos.x, relativePos.y);
 	}
-
-	//set transform relative to the parent
-
-	gameObject->SetParent(this);
-	m_Children.push_back(gameObject);
+	
 }
 
 void dae::GameObject::OnCollision(GameObject* pOther)
@@ -114,12 +126,31 @@ std::string dae::GameObject::GetTag() const
 
 void dae::GameObject::SetPosition(float x, float y)
 {
+	auto oldPos = m_Transform.GetPosition();
 	m_Transform.SetPosition(x, y, 0.0f);
+
+	auto difference = m_Transform.GetPosition() - oldPos;
+
+	for (size_t i = 0; i < m_Children.size(); i++)
+	{
+		auto newPos = m_Children[i]->GetTransform().GetPosition() + difference;
+		m_Children[i]->SetPosition(newPos.x, newPos.y);
+	}
+}
+
+void dae::GameObject::SetRelativePosition(float x, float y)
+{
+	m_LocalTransform.SetPosition(x, y, 1);
 }
 
 dae::Transform dae::GameObject::GetTransform() const
 {
 	return m_Transform;
+}
+
+dae::Transform dae::GameObject::GetLocalTransfrom() const
+{
+	return m_LocalTransform;
 }
 
 void dae::GameObject::Update(float deltaTime)
