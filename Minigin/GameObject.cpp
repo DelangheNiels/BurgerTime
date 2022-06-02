@@ -147,8 +147,3 @@ void dae::GameObject::FixedUpdate(float fixedTime)
 		m_Children[i]->FixedUpdate(fixedTime);
 	}
 }
-
-//add and remove child is not needed, can do everything in setParent
-// make them private ad use them in set parent to get the same result
-//add bool to setParent to keep worldposition or not
-//have 2 positions, local and world position, no parent -> world space = local space
