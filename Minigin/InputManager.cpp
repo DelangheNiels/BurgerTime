@@ -66,7 +66,7 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						return iter->second.first.get()->ExecuteOnHold();
+						iter->second.first.get()->ExecuteOnHold();
 					}
 
 				}
@@ -78,7 +78,7 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						return iter->second.first.get()->ExecuteOnDown();
+						iter->second.first.get()->ExecuteOnDown();
 					}
 					
 				}
@@ -91,7 +91,7 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						return iter->second.first.get()->ExecuteOnUp();
+						iter->second.first.get()->ExecuteOnUp();
 					}
 				}
 			}
