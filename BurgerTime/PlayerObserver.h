@@ -11,9 +11,6 @@ namespace dae
 		virtual void IsDead() = 0;
 		virtual void TookDamage() = 0;
 
-
-		//health display component erft over van playerObserver
-		//display heeft speler, dan kan hij zich adden/removen van de player
 	};
 }
 

@@ -33,7 +33,7 @@ void dae::PeterPeperComponent::IsDamaged()
 
 void dae::PeterPeperComponent::Update(float deltaTime)
 {
-	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+	//std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
 	SetIdle();
 	UpdateAnimation(deltaTime);
 }

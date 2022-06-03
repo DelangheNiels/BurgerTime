@@ -54,6 +54,12 @@
     <ClCompile Include="LevelLoader.cpp">
       <Filter>FileReading</Filter>
     </ClCompile>
+    <ClCompile Include="BurgerPartComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BurgerComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -82,6 +88,12 @@
     </ClInclude>
     <ClInclude Include="LevelLoader.h">
       <Filter>FileReading</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerPartComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="BurgerComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
