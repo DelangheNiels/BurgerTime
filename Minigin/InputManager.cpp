@@ -33,6 +33,27 @@ bool InputManager::ProcessInput()
 	{
 		m_Controllers[i]->Update();
 	}
+
+	for (std::map<KeyboardButton, std::unique_ptr<Command>>::iterator iter = m_KeyboardCommandsMap.begin(); iter != m_KeyboardCommandsMap.end(); ++iter)
+	{
+		
+		if (IsPressed(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonHold())
+		{
+			iter->second.get()->ExecuteOnHold();
+		}
+
+		if (IsUpThisFrame(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonUp())
+		{
+			iter->second.get()->ExecuteOnUp();
+		}
+
+		if (IsDownThisFrame(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonDown())
+		{
+			iter->second.get()->ExecuteOnDown();
+		}
+	}
+
+	m_pKeyboard->Update();
 	
 	for (size_t i = 0; i < m_Controllers.size(); i++)
 	{
@@ -86,14 +107,29 @@ bool InputManager::IsPressed(ControllerButton button, XBox360Controller* control
 	return controller->IsPressed(static_cast<unsigned int>(button));
 }
 
+bool InputManager::IsPressed(KeyboardButton button) const
+{
+	return m_pKeyboard.get()->IsPressed(static_cast<unsigned int>(button));
+}
+
 bool InputManager::IsDownThisFrame(ControllerButton button, XBox360Controller* controller) const
 {
 	return controller->IsDown(static_cast<unsigned int>(button));
 }
 
+bool InputManager::IsDownThisFrame(KeyboardButton button) const
+{
+	return m_pKeyboard.get()->IsDowThisFrame(static_cast<unsigned int>(button));
+}
+
 bool InputManager::IsUpThisFrame(ControllerButton button, XBox360Controller* controller) const
 {
 	return controller->IsUp(static_cast<unsigned int>(button));
+}
+
+bool InputManager::IsUpThisFrame(KeyboardButton button)
+{
+	return m_pKeyboard.get()->IsUpThisFrame(static_cast<unsigned int>(button));
 }
 
 void InputManager::AddController(XBox360Controller* controller)

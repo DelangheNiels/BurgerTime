@@ -4,6 +4,7 @@
 #include "Command.h"
 #include <map>
 #include "XBox360Controller.h"
+#include "Keyboard.h"
 
 
 	enum class ControllerButton
@@ -27,14 +28,18 @@
 	class InputManager final : public dae::Singleton<InputManager>
 	{
 	public:
-		
+	
 		~InputManager();
 
 		bool ProcessInput();
 		bool IsPressed(ControllerButton button, XBox360Controller* controller) const;
+		bool IsPressed(KeyboardButton button) const;
 
 		bool IsDownThisFrame(ControllerButton button, XBox360Controller* controller) const;
+		bool IsDownThisFrame(KeyboardButton button)const;
+
 		bool IsUpThisFrame(ControllerButton button, XBox360Controller* controller) const;
+		bool IsUpThisFrame(KeyboardButton button);
 
 		void AddController(XBox360Controller* controller);
 
@@ -50,6 +55,15 @@
 
 		void RemoveControllerBinding(ControllerButton button, int controllerIndex);
 
+		template<class MyCommand>
+		void AddKeyboardBinding(KeyboardButton button, GameObject* gameObject)
+		{
+			if (std::is_base_of<Command, MyCommand>())
+			{
+				m_KeyboardCommandsMap.insert(std::pair<KeyboardButton, std::unique_ptr<Command>>(button, std::make_unique<MyCommand>(gameObject)));
+			}
+		}
+
 	private:
 
 		//using ControllerCommandMap = std::map<ControllerButton, std::unique_ptr<Command>>;
@@ -57,6 +71,9 @@
 		ControllerCommandMap m_ControllerCommandsMap{};
 
 		std::vector<XBox360Controller* >m_Controllers{};
+
+		std::unique_ptr<Keyboard> m_pKeyboard = std::make_unique<Keyboard>();
+		std::map<KeyboardButton, std::unique_ptr<Command>> m_KeyboardCommandsMap{};
 		
 		
 	};
