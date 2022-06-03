@@ -1,6 +1,8 @@
 #include "BurgerTimePCH.h"
 #include "BurgerTimeGame.h"
 
+#include "LevelLoader.h"
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -20,11 +22,16 @@
 #include "AnimatedSpriteComponent.h"
 
 
+
+
 void BurgerTimeGame::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	CreateLevel(scene);
+	//Load level
+	LevelLoader loader = LevelLoader("Level.txt");
+	loader.LoadLevel(scene);
+	//CreateLevel(scene);
 
 	//fps counter
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 18);
@@ -173,256 +180,4 @@ void BurgerTimeGame::LoadGame() const
 	std::cout << "Damage: X" << "\n";
 	std::cout << "Points: Y" << "\n";
 	std::cout << "======================" << "\n";
-}
-
-void BurgerTimeGame::CreateLevel(Scene& scene) const
-{
-	CreateLadder(scene, 55, 90, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 55, 145, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 55, 310, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 55, 365, "Ladder.png");
-	CreateLadder(scene, 55, 420, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 55, 475, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 55, 530, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 135, 198, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 135, 255, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 135, 310, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 135, 365, "Ladder.png");
-	CreateLadder(scene, 135, 420, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 215, 90, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 215, 145, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 215, 200, "Ladder.png");
-	CreateLadder(scene, 215, 255, "Ladder.png");
-	CreateLadder(scene, 215, 310, "Ladder.png");
-	CreateLadder(scene, 215, 365, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 215, 420, "Ladder.png","LadderUp");
-	CreateLadder(scene, 215, 475, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 215, 530, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 295, 90, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 295, 145, "Ladder.png");
-	CreateLadder(scene, 295, 200, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 375, 90, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 375, 145, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 375, 200, "Ladder.png");
-	CreateLadder(scene, 375, 255, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 375, 310, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 375, 365, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 375, 420, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 375, 475, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 375, 530, "Ladder.png","LadderUp");
-	//
-	CreateLadder(scene, 455, 200, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 455, 255, "Ladder.png");
-	CreateLadder(scene, 455, 310, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 535, 90,  "Ladder.png", "LadderDown");
-	CreateLadder(scene, 535, 145, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 535, 200, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 535, 255, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 535, 310, "Ladder.png");
-	CreateLadder(scene, 535, 365, "Ladder.png");
-	CreateLadder(scene, 535, 420, "Ladder.png");
-	CreateLadder(scene, 535, 475, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 535, 530, "Ladder.png","LadderUp");
-	//
-	CreateLadder(scene, 615, 310, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 615, 365, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 615, 420, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 615, 475, "Ladder.png");
-	CreateLadder(scene, 615, 530, "Ladder.png", "LadderUp");
-	//
-	CreateLadder(scene, 695, 90, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 695, 145, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 695, 200, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 695, 255, "Ladder.png", "LadderUp");
-	CreateLadder(scene, 695, 420, "Ladder.png", "LadderDown");
-	CreateLadder(scene, 695, 475, "Ladder.png");
-	CreateLadder(scene, 695, 530, "Ladder.png", "LadderUp");
-	//
-
-
-	CreatePlatform(scene, 55, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 95, 90, "BluePlatform.png");
-	CreatePlatform(scene, 135, 90, "BluePlatform.png");
-	CreatePlatform(scene, 175, 90, "BluePlatform.png");
-	CreatePlatform(scene, 215, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 255, 90, "BluePlatform.png");
-	CreatePlatform(scene, 295, 90, "BluePlatform.png");
-	CreatePlatform(scene, 335, 90, "BluePlatform.png");
-	CreatePlatform(scene, 375, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 415, 90, "BluePlatform.png");
-	CreatePlatform(scene, 455, 90, "BluePlatform.png");
-	CreatePlatform(scene, 495, 90, "BluePlatform.png");
-	CreatePlatform(scene, 535, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 575, 90, "BluePlatform.png");
-	CreatePlatform(scene, 615, 90, "BluePlatform.png");
-	CreatePlatform(scene, 655, 90, "BluePlatform.png");
-	CreatePlatform(scene, 695, 90, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 55,  200, "LightBluePlatform.png");
-	CreatePlatform(scene, 95,  200, "BluePlatform.png");
-	CreatePlatform(scene, 135, 200, "BluePlatform.png");
-	CreatePlatform(scene, 175, 200, "BluePlatform.png");
-	CreatePlatform(scene, 215, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 375, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 415, 200, "BluePlatform.png");
-	CreatePlatform(scene, 455, 200, "BluePlatform.png");
-	CreatePlatform(scene, 495, 200, "BluePlatform.png");
-	CreatePlatform(scene, 535, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 575, 200, "BluePlatform.png");
-	CreatePlatform(scene, 615, 200, "BluePlatform.png");
-	CreatePlatform(scene, 655, 200, "BluePlatform.png");
-	CreatePlatform(scene, 695, 200, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 215, 255, "LightBluePlatform.png");
-	CreatePlatform(scene, 255, 255, "BluePlatform.png");
-	CreatePlatform(scene, 295, 255, "BluePlatform.png");
-	CreatePlatform(scene, 335, 255, "BluePlatform.png");
-	CreatePlatform(scene, 375, 255, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 55, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 95, 310, "BluePlatform.png");
-	CreatePlatform(scene, 135, 310, "BluePlatform.png");
-	CreatePlatform(scene, 175, 310, "BluePlatform.png");
-	CreatePlatform(scene, 215, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 535, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 575, 310, "BluePlatform.png");
-	CreatePlatform(scene, 615, 310, "BluePlatform.png");
-	CreatePlatform(scene, 655, 310, "BluePlatform.png");
-	CreatePlatform(scene, 695, 310, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 215, 365, "LightBluePlatform.png");
-	CreatePlatform(scene, 255, 365, "BluePlatform.png");
-	CreatePlatform(scene, 295, 365, "BluePlatform.png");
-	CreatePlatform(scene, 335, 365, "BluePlatform.png");
-	CreatePlatform(scene, 375, 365, "LightBluePlatform.png");
-	CreatePlatform(scene, 415, 365, "BluePlatform.png");
-	CreatePlatform(scene, 455, 365, "BluePlatform.png");
-	CreatePlatform(scene, 495, 365, "BluePlatform.png");
-	CreatePlatform(scene, 535, 365, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 535, 420, "LightBluePlatform.png");
-	CreatePlatform(scene, 575, 420, "BluePlatform.png");
-	CreatePlatform(scene, 615, 420, "BluePlatform.png");
-	CreatePlatform(scene, 655, 420, "BluePlatform.png");
-	CreatePlatform(scene, 695, 420, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 55, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 95, 475, "BluePlatform.png");
-	CreatePlatform(scene, 135, 475, "BluePlatform.png");
-	CreatePlatform(scene, 175, 475, "BluePlatform.png");
-	CreatePlatform(scene, 215, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 255, 475, "BluePlatform.png");
-	CreatePlatform(scene, 295, 475, "BluePlatform.png");
-	CreatePlatform(scene, 335, 475, "BluePlatform.png");
-	CreatePlatform(scene, 375, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 415, 475, "BluePlatform.png");
-	CreatePlatform(scene, 455, 475, "BluePlatform.png");
-	CreatePlatform(scene, 495, 475, "BluePlatform.png");
-	CreatePlatform(scene, 535, 475, "LightBluePlatform.png");
-	//
-	CreatePlatform(scene, 55, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 95, 585, "BluePlatform.png");
-	CreatePlatform(scene, 135, 585, "BluePlatform.png");
-	CreatePlatform(scene, 175, 585, "BluePlatform.png");
-	CreatePlatform(scene, 215, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 255, 585, "BluePlatform.png");
-	CreatePlatform(scene, 295, 585, "BluePlatform.png");
-	CreatePlatform(scene, 335, 585, "BluePlatform.png");
-	CreatePlatform(scene, 375, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 415, 585, "BluePlatform.png");
-	CreatePlatform(scene, 455, 585, "BluePlatform.png");
-	CreatePlatform(scene, 495, 585, "BluePlatform.png");
-	CreatePlatform(scene, 535, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 575, 585, "BluePlatform.png");
-	CreatePlatform(scene, 615, 585, "BluePlatform.png");
-	CreatePlatform(scene, 655, 585, "BluePlatform.png");
-	CreatePlatform(scene, 695, 585, "LightBluePlatform.png");
-
-
-	//Borders
-	CreateBorder(scene, 97,  92.5f, 104, "BottomBorder");
-	CreateBorder(scene, 100, 92.5f,  25, "BottomBorder");
-	CreateBorder(scene, 190, 92.5f,  15, "BottomBorder");
-	CreateBorder(scene, 256, 92.5f, 24, "BottomBorder");
-	CreateBorder(scene, 340, 92.5f, 18, "BottomBorder");
-	CreateBorder(scene, 425, 92.5f, 95, "BottomBorder");
-	CreateBorder(scene, 500, 92.5f,  15, "BottomBorder");
-	CreateBorder(scene, 580, 92.5f,  105, "BottomBorder");
-
-
-	CreateBorder(scene, 55,  202, 75, "BottomBorder");
-	CreateBorder(scene, 190, 202, 15, "BottomBorder");
-	CreateBorder(scene, 425, 202, 25, "BottomBorder");
-	CreateBorder(scene, 500, 202, 25, "BottomBorder");
-	CreateBorder(scene, 580, 202, 105,"BottomBorder");
-
-	CreateBorder(scene, 256, 257, 110,"BottomBorder");
-
-	CreateBorder(scene, 100, 315, 25, "BottomBorder");
-	CreateBorder(scene, 190, 315, 15, "BottomBorder");
-	CreateBorder(scene, 500, 315, 25, "BottomBorder");
-	CreateBorder(scene, 580, 315, 25, "BottomBorder");
-	CreateBorder(scene, 670, 315, 60, "BottomBorder");
-
-	CreateBorder(scene, 270, 368, 82, "BottomBorder");
-	CreateBorder(scene, 425, 368, 97, "BottomBorder");
-
-	CreateBorder(scene, 580, 422, 15, "BottomBorder");
-	CreateBorder(scene, 670, 422, 23, "BottomBorder");
-
-	CreateBorder(scene, 99,  475, 46, "BottomBorder");
-	CreateBorder(scene, 190, 475, 23, "BottomBorder");
-	CreateBorder(scene, 260, 475, 103, "BottomBorder");
-	CreateBorder(scene, 425, 475, 100, "BottomBorder");
-
-	CreateBorder(scene, 55, 588, 667, "BottomBorder");
-
-	//
-	CreateBorder(scene, 55, 62, 651.5f, "TopBorder");
-	CreateBorder(scene, 125, 168, 42, "TopBorder");
-	CreateBorder(scene, 605, 281, 42, "TopBorder");
-
-	
-
-}
-
-void BurgerTimeGame::CreatePlatform(Scene& scene, float x, float y,const std::string& texture) const
-{
-	auto platformObject = std::make_shared<GameObject>();
-	platformObject.get()->SetTag("Platform");
-	auto pPlatformTexture = ResourceManager::GetInstance().LoadTexture(texture);
-	auto spriteRenderComp = std::make_shared<RenderComponent>(platformObject.get(), pPlatformTexture);
-	platformObject.get()->AddComponent(spriteRenderComp);
-	//BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
-	//platformObject.get()->AddComponent(std::make_unique<CollisionComponent>(platformObject.get(), collisionBox));
-	platformObject.get()->SetPosition(x, y);
-	scene.Add(platformObject);
-}
-
-void BurgerTimeGame::CreateLadder(Scene& scene, float x, float y, const std::string& texture, const std::string& tag) const
-{
-	auto ladderObject = std::make_shared<GameObject>();
-	ladderObject.get()->SetTag(tag);
-	auto pLadderTexture = ResourceManager::GetInstance().LoadTexture(texture);
-	auto spriteRenderComp = std::make_shared<RenderComponent>(ladderObject.get(), pLadderTexture);
-	ladderObject.get()->AddComponent(spriteRenderComp);
-	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
-	ladderObject.get()->AddComponent(std::make_unique<CollisionComponent>(ladderObject.get(), collisionBox));
-	ladderObject.get()->SetPosition(x, y);
-	scene.Add(ladderObject);
-}
-
-void BurgerTimeGame::CreateBorder(dae::Scene& scene, float x, float y, float width, const std::string& tag) const
-{
-	auto border = std::make_shared<GameObject>();
-	border.get()->SetTag(tag);
-	BoundingBox collisionBox{ width, 1.0f };
-	border.get()->AddComponent(std::make_unique<CollisionComponent>(border.get(), collisionBox));
-	border.get()->SetPosition(x, y);
-	scene.Add(border);
 }

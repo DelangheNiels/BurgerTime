@@ -19,6 +19,9 @@
     <Filter Include="Observers">
       <UniqueIdentifier>{28ace387-314b-4929-898f-66071f270b9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FileReading">
+      <UniqueIdentifier>{e8035d6f-6bf5-46b6-8c14-f035be8ed29a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="PointsObserver.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>FileReading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -73,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="PlayerHealthDisplayComponent.h">
       <Filter>Observers</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>FileReading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

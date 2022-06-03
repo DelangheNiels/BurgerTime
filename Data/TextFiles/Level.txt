@@ -1,0 +1,205 @@
+L 55 90 Ladder.png LadderDown
+L 55 145 Ladder.png LadderUp
+L 55 310 Ladder.png LadderDown
+L 55 365 Ladder.png Ladder
+L 55 420 Ladder.png LadderUp
+L 55 475 Ladder.png LadderDown
+L 55 530 Ladder.png LadderUp
+#
+L 135 198 Ladder.png LadderDown
+L 135 255 Ladder.png LadderUp
+L 135 310 Ladder.png LadderDown
+L 135 365 Ladder.png Ladder
+L 135 420 Ladder.png LadderUp
+#
+L 215 90 Ladder.png LadderDown
+L 215 145 Ladder.png LadderUp
+L 215 200 Ladder.png Ladder
+L 215 255 Ladder.png Ladder
+L 215 310 Ladder.png Ladder
+L 215 365 Ladder.png LadderDown
+L 215 420 Ladder.png LadderUp
+L 215 475 Ladder.png LadderDown
+L 215 530 Ladder.png LadderUp
+#
+L 295 90 Ladder.png LadderDown
+L 295 145 Ladder.png Ladder
+L 295 200 Ladder.png LadderUp
+#
+L 375 90 Ladder.png LadderDown
+L 375 145 Ladder.png LadderUp
+L 375 200 Ladder.png Ladder
+L 375 255 Ladder.png LadderDown
+L 375 310 Ladder.png LadderUp
+L 375 365 Ladder.png LadderDown
+L 375 420 Ladder.png LadderUp
+L 375 475 Ladder.png LadderDown
+L 375 530 Ladder.png LadderUp
+#
+L 455 200 Ladder.png LadderDown
+L 455 255 Ladder.png Ladder
+L 455 310 Ladder.png LadderUp
+#
+L 535 90 Ladder.png LadderDown
+L 535 145 Ladder.png LadderUp
+L 535 200 Ladder.png LadderDown
+L 535 255 Ladder.png LadderUp
+L 535 310 Ladder.png Ladder
+L 535 365 Ladder.png Ladder
+L 535 420 Ladder.png Ladder
+L 535 475 Ladder.png LadderDown
+L 535 530 Ladder.png LadderUp
+#
+L 615 310 Ladder.png LadderDown
+L 615 365 Ladder.png LadderUp
+L 615 420 Ladder.png LadderDown
+L 615 475 Ladder.png Ladder
+L 615 530 Ladder.png LadderUp
+#
+L 695 90 Ladder.png LadderDown
+L 695 145 Ladder.png LadderUp
+L 695 200 Ladder.png LadderDown
+L 695 255 Ladder.png LadderUp
+L 695 420 Ladder.png LadderDown
+L 695 475 Ladder.png Ladder
+L 695 530 Ladder.png LadderUp
+#
+P 55 90 LightBluePlatform.png
+P 95 90 BluePlatform.png
+P 135 90 BluePlatform.png
+P 175 90 BluePlatform.png
+P 215 90 LightBluePlatform.png
+P 255 90 BluePlatform.png
+P 295 90 BluePlatform.png
+P 335 90 BluePlatform.png
+P 375 90 LightBluePlatform.png
+P 415 90 BluePlatform.png
+P 455 90 BluePlatform.png
+P 495 90 BluePlatform.png
+P 535 90 LightBluePlatform.png
+P 575 90 BluePlatform.png
+P 615 90 BluePlatform.png
+P 655 90 BluePlatform.png
+P 695 90 LightBluePlatform.png
+#
+P 55 200 LightBluePlatform.png
+P 95 200 BluePlatform.png
+P 135 200 BluePlatform.png
+P 175 200 BluePlatform.png
+P 215 200 LightBluePlatform.png
+P 375 200 LightBluePlatform.png
+P 415 200 BluePlatform.png
+P 455 200 BluePlatform.png
+P 495 200 BluePlatform.png
+P 535 200 LightBluePlatform.png
+P 575 200 BluePlatform.png
+P 615 200 BluePlatform.png
+P 655 200 BluePlatform.png
+P 695 200 LightBluePlatform.png
+#
+P 215 255 LightBluePlatform.png
+P 255 255 BluePlatform.png
+P 295 255 BluePlatform.png
+P 335 255 BluePlatform.png
+P 375 255 LightBluePlatform.png
+#
+P 55 310 LightBluePlatform.png
+P 95 310 BluePlatform.png
+P 135 310 BluePlatform.png
+P 175 310 BluePlatform.png
+P 215 310 LightBluePlatform.png
+P 535 310 LightBluePlatform.png
+P 575 310 BluePlatform.png
+P 615 310 BluePlatform.png
+P 655 310 BluePlatform.png
+P 695 310 LightBluePlatform.png
+#
+P 215 365 LightBluePlatform.png
+P 255 365 BluePlatform.png
+P 295 365 BluePlatform.png
+P 335 365 BluePlatform.png
+P 375 365 LightBluePlatform.png
+P 415 365 BluePlatform.png
+P 455 365 BluePlatform.png
+P 495 365 BluePlatform.png
+P 535 365 LightBluePlatform.png
+#
+P 535 420 LightBluePlatform.png
+P 575 420 BluePlatform.png
+P 615 420 BluePlatform.png
+P 655 420 BluePlatform.png
+P 695 420 LightBluePlatform.png
+#
+P 55 475 LightBluePlatform.png
+P 95 475 BluePlatform.png
+P 135 475 BluePlatform.png
+P 175 475 BluePlatform.png
+P 215 475 LightBluePlatform.png
+P 255 475 BluePlatform.png
+P 295 475 BluePlatform.png
+P 335 475 BluePlatform.png
+P 375 475 LightBluePlatform.png
+P 415 475 BluePlatform.png
+P 455 475 BluePlatform.png
+P 495 475 BluePlatform.png
+P 535 475 LightBluePlatform.png
+#
+P 55 585 LightBluePlatform.png
+P 95 585 BluePlatform.png
+P 135 585 BluePlatform.png
+P 175 585 BluePlatform.png
+P 215 585 LightBluePlatform.png
+P 255 585 BluePlatform.png
+P 295 585 BluePlatform.png
+P 335 585 BluePlatform.png
+P 375 585 LightBluePlatform.png
+P 415 585 BluePlatform.png
+P 455 585 BluePlatform.png
+P 495 585 BluePlatform.png
+P 535 585 LightBluePlatform.png
+P 575 585 BluePlatform.png
+P 615 585 BluePlatform.png
+P 655 585 BluePlatform.png
+P 695 585 LightBluePlatform.png
+#
+B 97  92.5 104 BottomBorder
+B 100 92.5 25 BottomBorder
+B 190 92.5 15 BottomBorder
+B 256 92.5 24 BottomBorder
+B 340 92.5 18 BottomBorder
+B 425 92.5 95 BottomBorder
+B 500 92.5 15 BottomBorder
+B 580 92.5 105 BottomBorder
+#
+B 55 202 75 BottomBorder
+B 190 202 15 BottomBorder
+B 425 202 25 BottomBorder
+B 500 202 25 BottomBorder
+B 580 202 105 BottomBorder
+#
+B 256 257 110 BottomBorder
+#
+B 100 315 25 BottomBorder
+B 190 315 15 BottomBorder
+B 500 315 25 BottomBorder
+B 580 315 25 BottomBorder
+B 670 315 60 BottomBorder
+#
+B 270 368 82 BottomBorder
+B 425 368 97 BottomBorder
+#
+B 580 422 15 BottomBorder
+B 670 422 23 BottomBorder
+#
+B 99 475 46 BottomBorder
+B 190 475 23 BottomBorder
+B 260 475 103 BottomBorder
+B 425 475 100 BottomBorder
+#
+B 55 588 667 BottomBorder
+#
+B 55 62 651.5 TopBorder
+B 125 168 42 TopBorder
+B 605 281 42 TopBorder
+
+
