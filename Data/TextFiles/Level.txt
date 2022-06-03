@@ -201,5 +201,7 @@ B 55 588 667 BottomBorder
 B 55 62 651.5 TopBorder
 B 125 168 42 TopBorder
 B 605 281 42 TopBorder
+B 55 279 40 TopBorder
+B 680 389 40 TopBorder
 
 
