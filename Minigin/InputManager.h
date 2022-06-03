@@ -67,7 +67,7 @@
 	private:
 
 		//using ControllerCommandMap = std::map<ControllerButton, std::unique_ptr<Command>>;
-		using ControllerCommandMap = std::map<ControllerButton, std::pair<std::unique_ptr<Command>,int>>;
+		using ControllerCommandMap = std::multimap<ControllerButton, std::pair<std::unique_ptr<Command>,int>>;
 		ControllerCommandMap m_ControllerCommandsMap{};
 
 		std::vector<XBox360Controller* >m_Controllers{};

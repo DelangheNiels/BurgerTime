@@ -57,7 +57,7 @@ bool InputManager::ProcessInput()
 	
 	for (size_t i = 0; i < m_Controllers.size(); i++)
 	{
-		for (std::map<ControllerButton, std::pair<std::unique_ptr<Command>,int>>::iterator iter = m_ControllerCommandsMap.begin(); iter != m_ControllerCommandsMap.end(); ++iter)
+		for (std::multimap<ControllerButton, std::pair<std::unique_ptr<Command>,int>>::iterator iter = m_ControllerCommandsMap.begin(); iter != m_ControllerCommandsMap.end(); ++iter)
 		{
 
 			if (IsPressed(iter->first, m_Controllers[i]))

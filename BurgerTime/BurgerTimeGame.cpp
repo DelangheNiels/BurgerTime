@@ -50,11 +50,11 @@ void BurgerTimeGame::LoadGame() const
 	auto peterPeperGameObject = std::make_shared<GameObject>();
 	peterPeperGameObject.get()->SetTag("Player");
 
-	auto spriteRenderComp = std::make_shared<RenderComponent>(peterPeperGameObject.get(), ResourceManager::GetInstance().LoadTexture("PlayerIdle.png"));
+	auto spriteRenderComp = std::make_shared<RenderComponent>(peterPeperGameObject.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/PlayerSprites/PlayerIdle.png"));
 	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
 	auto collisionComponent = std::make_shared<CollisionComponent>(peterPeperGameObject.get(), collisionBox);
 
-	auto idleAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("PlayerIdle.png"));
+	auto idleAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerIdle.png"));
 	auto walkLeftAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingLeft.png"));
 	auto walkRightAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingRight.png"));
 	auto walkUpAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingUp.png"));
@@ -113,44 +113,72 @@ void BurgerTimeGame::LoadGame() const
 	pointsDisplayPlayerOneGameObject.get()->SetPosition(225, 10);
 	scene.Add(pointsDisplayPlayerOneGameObject);
 
-	////Player2
-	//auto peterPeperGameObject2 = std::make_shared<GameObject>();
-	//auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3);
-	//auto spriteRenderComp2 = std::make_shared<RenderComponent>(peterPeperGameObject2.get(), nullptr);
-	//peterPeperGameObject2.get()->AddComponent(player2);
-	//peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
-	//scene.Add(peterPeperGameObject2);
 
-	////player 2 lives display
-	//auto player2HealthDisplayObject = std::make_shared<GameObject>();
+	/////////////////////////////////////////////////////////////////////////
+	// 
+	// 
+	//Player2
+	auto peterPeperGameObject2 = std::make_shared<GameObject>();
+	peterPeperGameObject2.get()->SetTag("Player");
+	auto spriteRenderComp2 = std::make_shared<RenderComponent>(peterPeperGameObject2.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/PlayerSprites/Player2Idle.png"));
+	BoundingBox collisionBox2{ spriteRenderComp2.get()->GetWidth(), spriteRenderComp2.get()->GetHeight() };
+	auto collisionComponent2 = std::make_shared<CollisionComponent>(peterPeperGameObject2.get(), collisionBox2);
 
-	//const SDL_Color colorP2 = { 0,255,0 };
-	//auto renderCompHealthP2 = std::make_shared<RenderComponent>(player2HealthDisplayObject.get(), nullptr);
-	//auto textCompHealthP2 = std::make_shared<TextComponent>(player2HealthDisplayObject.get(), "", font, renderCompHealthP2, colorP2);
+	auto idleAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2Idle.png"));
+	auto walkLeftAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingLeft.png"));
+	auto walkRightAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingRight.png"));
+	auto walkUpAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingUp.png"));
+	auto walkDownAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingDown.png"));
+	std::map<PlayerStates, AnimatedSpriteComponent*> animations2;
 
-	//auto player2HealthDisplayComponent = std::make_shared<PlayerHealthDisplayComponent>(player2HealthDisplayObject.get(), player2.get(), textCompHealthP2);
+	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Idle, idleAnimation2.get()));
+	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::WalkingLeft, walkLeftAnimation2.get()));
+	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::WalkingRight, walkRightAnimation2.get()));
+	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingUp, walkUpAnimation2.get()));
+	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation2.get()));
 
-	//player2HealthDisplayObject.get()->AddComponent(player2HealthDisplayComponent);
-	//player2HealthDisplayObject.get()->AddComponent(renderCompHealthP2);
-	//player2HealthDisplayObject.get()->AddComponent(textCompHealthP2);
-	//player2HealthDisplayObject.get()->SetPosition(550, 10);
-	//scene.Add(player2HealthDisplayObject);
+	auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2);
+	peterPeperGameObject2.get()->AddComponent(player2);
+	peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
+	peterPeperGameObject2.get()->AddComponent(collisionComponent2);
+	peterPeperGameObject2.get()->AddComponent(idleAnimation2);
+	peterPeperGameObject2.get()->AddComponent(walkLeftAnimation2);
+	peterPeperGameObject2.get()->AddComponent(walkRightAnimation2);
+	peterPeperGameObject2.get()->AddComponent(walkUpAnimation2);
+	peterPeperGameObject2.get()->AddComponent(walkDownAnimation2);
+	scene.Add(peterPeperGameObject2);
+	peterPeperGameObject2.get()->SetPosition(95, 61);
 
-	////points display player 2
-	//auto pointsDisplayPlayer2GameObject = std::make_shared<GameObject>();
-	//auto renderCompPointsP2 = std::make_shared<RenderComponent>(pointsDisplayPlayer2GameObject.get(), nullptr);
-	//auto textCompPointsP2 = std::make_shared<TextComponent>(pointsDisplayPlayer2GameObject.get(), "", font, renderCompPointsP2, colorP2);
+	//player 2 lives display
+	auto player2HealthDisplayObject = std::make_shared<GameObject>();
 
-	//auto pointsComponent2 = std::make_shared<PointsComponent>(pointsDisplayPlayer2GameObject.get(), 50 /*pointsAchievementObserver.get()*/);
-	//auto pointsDisplayComponent2 = std::make_shared<PointsDisplayComponent>(pointsDisplayPlayer2GameObject.get(), textCompPointsP2);
-	//pointsComponent2.get()->AddPointsObserver(pointsDisplayComponent2.get());
+	const SDL_Color colorP2 = { 0,255,0 };
+	auto renderCompHealthP2 = std::make_shared<RenderComponent>(player2HealthDisplayObject.get(), nullptr);
+	auto textCompHealthP2 = std::make_shared<TextComponent>(player2HealthDisplayObject.get(), "", font, renderCompHealthP2, colorP2);
 
-	//pointsDisplayPlayer2GameObject.get()->AddComponent(renderCompPointsP2);
-	//pointsDisplayPlayer2GameObject.get()->AddComponent(textCompPointsP2);
-	//pointsDisplayPlayer2GameObject.get()->AddComponent(pointsComponent2);
-	//pointsDisplayPlayer2GameObject.get()->AddComponent(pointsDisplayComponent2);
-	//pointsDisplayPlayer2GameObject.get()->SetPosition(625, 10);
-	//scene.Add(pointsDisplayPlayer2GameObject);
+	auto player2HealthDisplayComponent = std::make_shared<PlayerHealthDisplayComponent>(player2HealthDisplayObject.get(), player2.get(), textCompHealthP2);
+
+	player2HealthDisplayObject.get()->AddComponent(player2HealthDisplayComponent);
+	player2HealthDisplayObject.get()->AddComponent(renderCompHealthP2);
+	player2HealthDisplayObject.get()->AddComponent(textCompHealthP2);
+	player2HealthDisplayObject.get()->SetPosition(550, 10);
+	scene.Add(player2HealthDisplayObject);
+
+	//points display player 2
+	auto pointsDisplayPlayer2GameObject = std::make_shared<GameObject>();
+	auto renderCompPointsP2 = std::make_shared<RenderComponent>(pointsDisplayPlayer2GameObject.get(), nullptr);
+	auto textCompPointsP2 = std::make_shared<TextComponent>(pointsDisplayPlayer2GameObject.get(), "", font, renderCompPointsP2, colorP2);
+
+	auto pointsComponent2 = std::make_shared<PointsComponent>(pointsDisplayPlayer2GameObject.get(), 50 /*pointsAchievementObserver.get()*/);
+	auto pointsDisplayComponent2 = std::make_shared<PointsDisplayComponent>(pointsDisplayPlayer2GameObject.get(), textCompPointsP2);
+	pointsComponent2.get()->AddPointsObserver(pointsDisplayComponent2.get());
+
+	pointsDisplayPlayer2GameObject.get()->AddComponent(renderCompPointsP2);
+	pointsDisplayPlayer2GameObject.get()->AddComponent(textCompPointsP2);
+	pointsDisplayPlayer2GameObject.get()->AddComponent(pointsComponent2);
+	pointsDisplayPlayer2GameObject.get()->AddComponent(pointsDisplayComponent2);
+	pointsDisplayPlayer2GameObject.get()->SetPosition(625, 10);
+	scene.Add(pointsDisplayPlayer2GameObject);
 
 
 
@@ -166,8 +194,12 @@ void BurgerTimeGame::LoadGame() const
 	InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddKeyboardBinding<HitCommand>(KeyboardButton::Q, peterPeperGameObject.get());
 	////player2 inputs
-	//InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonX, peterPeperGameObject2.get(), 1);
-	//InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonY, pointsDisplayPlayer2GameObject.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject2.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonB, pointsDisplayPlayer2GameObject.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject2.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject2.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject2.get(), 1);
+	InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject2.get(), 1);
 
 	std::cout << "Used controlls:" << "\n";
 	std::cout << "======================" << "\n";
