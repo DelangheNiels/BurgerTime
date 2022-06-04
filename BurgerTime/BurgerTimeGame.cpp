@@ -56,11 +56,11 @@ void BurgerTimeGame::LoadGame() const
 	BoundingBox collisionBox{ spriteRenderComp.get()->GetWidth(), spriteRenderComp.get()->GetHeight() };
 	auto collisionComponent = std::make_shared<CollisionComponent>(peterPeperGameObject.get(), collisionBox);
 
-	auto idleAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerIdle.png"));
-	auto walkLeftAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingLeft.png"));
-	auto walkRightAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingRight.png"));
-	auto walkUpAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingUp.png"));
-	auto walkDownAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/PlayerWalkingDown.png"));
+	auto idleAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerIdle.png"));
+	auto walkLeftAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingLeft.png"));
+	auto walkRightAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingRight.png"));
+	auto walkUpAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingUp.png"));
+	auto walkDownAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingDown.png"));
 	std::map<PlayerStates, AnimatedSpriteComponent*> animations;
 	
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Idle, idleAnimation.get()));
@@ -131,11 +131,11 @@ void BurgerTimeGame::LoadGame() const
 		BoundingBox collisionBox2{ spriteRenderComp2.get()->GetWidth(), spriteRenderComp2.get()->GetHeight() };
 		auto collisionComponent2 = std::make_shared<CollisionComponent>(peterPeperGameObject2.get(), collisionBox2);
 
-		auto idleAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2Idle.png"));
-		auto walkLeftAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingLeft.png"));
-		auto walkRightAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingRight.png"));
-		auto walkUpAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingUp.png"));
-		auto walkDownAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("SpriteSheets/PlayerSprites/Player2WalkingDown.png"));
+		auto idleAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 1, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/Player2Idle.png"));
+		auto walkLeftAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/Player2WalkingLeft.png"));
+		auto walkRightAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/Player2WalkingRight.png"));
+		auto walkUpAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/Player2WalkingUp.png"));
+		auto walkDownAnimation2 = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject2.get(), spriteRenderComp2.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/Player2WalkingDown.png"));
 		std::map<PlayerStates, AnimatedSpriteComponent*> animations2;
 
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Idle, idleAnimation2.get()));

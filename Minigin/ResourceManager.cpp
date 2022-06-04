@@ -54,7 +54,7 @@ std::string dae::ResourceManager::LoadSound(const std::string& file) const
 std::string dae::ResourceManager::LoadSpriteSheet(const std::string& file) const
 {
 
-	return m_DataPath + file;
+	return m_DataPath + "SpriteSheets/" + file;
 }
 
 
