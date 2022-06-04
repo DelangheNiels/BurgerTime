@@ -72,7 +72,7 @@ void BurgerTimeGame::LoadGame() const
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation.get()));
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, dyingAnimation.get()));
 
-	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375, 545);
+	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 545.0f);
 
 	peterPeperGameObject.get()->AddComponent(playerOne);
 	peterPeperGameObject.get()->AddComponent(spriteRenderComp);
@@ -148,7 +148,7 @@ void BurgerTimeGame::LoadGame() const
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingUp, walkUpAnimation2.get()));
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation2.get()));
 
-		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 415, 545);
+		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 415.0f, 545.0f);
 		peterPeperGameObject2.get()->AddComponent(player2);
 		peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
 		peterPeperGameObject2.get()->AddComponent(collisionComponent2);
@@ -250,14 +250,16 @@ void BurgerTimeGame::LoadGame() const
 	auto hotdogWalkRight = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingRight.png"));
 	auto hotdogWalkUp = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingUp.png"));
 	auto hotdogWalkDown = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingDown.png"));
+	auto hotdogDead = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 4, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/Dying.png"));
 	std::map<EnemyState, AnimatedSpriteComponent*> hotdogAnimations;
 
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingLeft, hotdogWalkLeft.get()));
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingRight, hotdogWalkRight.get()));
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingUp, hotdogWalkUp.get()));
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingDown, hotdogWalkDown.get()));
+	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::Dying, hotdogDead.get()));
 
-	auto hotdogComp = std::make_shared<MrHotdogComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations);
+	auto hotdogComp = std::make_shared<MrHotdogComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations, 115.0f, 555.0f);
 	hotdog.get()->AddComponent(hotdogComp);
 	hotdog.get()->AddComponent(hotdogSpriteRenderComp);
 	hotdog.get()->AddComponent(hotdogCollisionComponent);
@@ -265,9 +267,8 @@ void BurgerTimeGame::LoadGame() const
 	hotdog.get()->AddComponent(hotdogWalkDown);
 	hotdog.get()->AddComponent(hotdogWalkRight);
 	hotdog.get()->AddComponent(hotdogWalkUp);
+	hotdog.get()->AddComponent(hotdogDead);
 	scene.Add(hotdog);
-	hotdog.get()->SetPosition(115, 555);
-
 
 
 

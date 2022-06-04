@@ -171,7 +171,6 @@ void dae::PeterPeperComponent::OnCollision(GameObject* object)
 		m_CanMoveDown = true;
 		m_OnLadder = true;
 		m_CanMoveUp = true;
-		//m_OnGround = false;
 		
 	}
 
