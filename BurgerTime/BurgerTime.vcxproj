@@ -180,6 +180,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="PeperComponent.cpp" />
     <ClCompile Include="PeterPeperComponent.cpp" />
     <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="LevelLoader.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PeperComponent.h" />
     <ClInclude Include="PeterPeperComponent.h" />
     <ClInclude Include="PlayerHealthDisplayComponent.h" />

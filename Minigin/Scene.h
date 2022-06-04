@@ -15,6 +15,10 @@ namespace dae
 		void FixedUpdate(float fixedTime);
 		void Render() const;
 
+		void SetActive();
+		void SetInActive();
+		bool GetIsActive();
+
 		explicit Scene(const std::string& name);
 		~Scene();
 		Scene(const Scene& other) = delete;
@@ -26,6 +30,7 @@ namespace dae
 
 	private: 
 		
+		bool m_IsActive{};
 
 		std::string m_Name;
 		std::vector < std::shared_ptr<GameObject>> m_Objects{};

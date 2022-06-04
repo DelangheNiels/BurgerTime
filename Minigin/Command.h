@@ -101,3 +101,12 @@ public:
 	bool ExecuteOnUp() override;
 };
 
+class NextSceneCommand final : public Command
+{
+public:
+	NextSceneCommand(GameObject* gameObject);
+	bool ExecuteOnHold() override;
+	bool ExecuteOnDown() override;
+	bool ExecuteOnUp() override;
+};
+

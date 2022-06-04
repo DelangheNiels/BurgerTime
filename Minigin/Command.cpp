@@ -3,6 +3,8 @@
 #include <iostream>
 #include "ServiceLocator.h"
 
+#include "SceneManager.h"
+
 
 HitCommand::HitCommand(GameObject* gameObject)
 	:Command(gameObject)
@@ -196,4 +198,26 @@ bool QuitCommand::ExecuteOnDown()
 bool QuitCommand::ExecuteOnUp()
 {
 	return false;
+}
+
+NextSceneCommand::NextSceneCommand(GameObject* gameObject)
+	:Command(gameObject)
+{
+	m_CanExecuteOnButtonUp = true;
+}
+
+bool NextSceneCommand::ExecuteOnHold()
+{
+	return true;
+}
+
+bool NextSceneCommand::ExecuteOnDown()
+{
+	return true;
+}
+
+bool NextSceneCommand::ExecuteOnUp()
+{
+	SceneManager::GetInstance().NextScene();
+	return true;
 }

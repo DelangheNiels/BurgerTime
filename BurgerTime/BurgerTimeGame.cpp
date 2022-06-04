@@ -24,12 +24,14 @@
 #include "BurgerComponent.h"
 #include "EnemyComponent.h"
 
+#include "MainMenuScene.h"
 #include "GameScene.h"
 
 
 
 void BurgerTimeGame::LoadGame() const
 {
+	SceneManager::GetInstance().AddScene(std::make_shared<MainMenuScene>("MainMenu"));
 	SceneManager::GetInstance().AddScene(std::make_unique<GameScene>("GameScene"));
 
 }

@@ -15,6 +15,7 @@ void dae::Scene::LoadScene()
 
 Scene::Scene(const std::string& name) : m_Name(name)
 {
+	m_IsActive = false;
 }
 
 Scene::~Scene() = default;
@@ -26,31 +27,58 @@ void Scene::Add(const std::shared_ptr<GameObject>& object)
 
 void Scene::Update(float deltaTime)
 {
-	for(auto& object : m_Objects)
+	if (m_IsActive)
 	{
-		object.get()->Update(deltaTime);
+		for (auto& object : m_Objects)
+		{
+			object.get()->Update(deltaTime);
+		}
 	}
+	
 }
 
 void dae::Scene::FixedUpdate(float fixedTime)
 {
-	HandleCollisions();
-
-	for (auto& object : m_Objects)
+	if (m_IsActive)
 	{
-		object.get()->FixedUpdate(fixedTime);
+		HandleCollisions();
+
+		for (auto& object : m_Objects)
+		{
+			object.get()->FixedUpdate(fixedTime);
+		}
 	}
+	
 }
 
 void Scene::Render() const
 {
-	for (const auto& object : m_Objects)
+	if (m_IsActive)
 	{
-		auto renderComp = object.get()->GetComponent<RenderComponent>();
-		if(renderComp)
-			renderComp->Render();
-		
+		for (const auto& object : m_Objects)
+		{
+			auto renderComp = object.get()->GetComponent<RenderComponent>();
+			if (renderComp)
+				renderComp->Render();
+
+		}
 	}
+	
+}
+
+void dae::Scene::SetActive()
+{
+	m_IsActive = true;
+}
+
+void dae::Scene::SetInActive()
+{
+	m_IsActive = false;
+}
+
+bool dae::Scene::GetIsActive()
+{
+	return m_IsActive;
 }
 
 void dae::Scene::HandleCollisions()
