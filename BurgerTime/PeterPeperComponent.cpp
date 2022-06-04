@@ -7,6 +7,7 @@
 #include "RenderComponent.h"
 
 #include "ResourceManager.h"
+#include "MrHotdogComponent.h"
 
 void dae::PeterPeperComponent::IsDamaged()
 {
@@ -33,9 +34,18 @@ void dae::PeterPeperComponent::IsDamaged()
 
 void dae::PeterPeperComponent::Update(float deltaTime)
 {
-	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
+	//std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
 	SetIdle();
 	UpdateAnimation(deltaTime);
+
+	if (m_CurrentState == PlayerStates::Dying)
+	{
+		m_RespawnTimer += deltaTime;
+		if (m_RespawnTimer >= m_RespawnTime)
+		{
+			Respawn();
+		}
+	}
 }
 
 void dae::PeterPeperComponent::FixedUpdate(float fixedTime)
@@ -50,7 +60,7 @@ int dae::PeterPeperComponent::GetLives() const
 
 void dae::PeterPeperComponent::MoveLeft()
 {
-	if (m_OnGround)
+	if (m_OnGround && m_CurrentState != PlayerStates::Dying)
 	{
 		m_MoveLeft = true;
 		SwitchAnimation(PlayerStates::WalkingLeft);
@@ -60,7 +70,7 @@ void dae::PeterPeperComponent::MoveLeft()
 
 void dae::PeterPeperComponent::MoveRight()
 {
-	if (m_OnGround)
+	if (m_OnGround && m_CurrentState != PlayerStates::Dying)
 	{
 		m_MoveRight = true;
 		SwitchAnimation(PlayerStates::WalkingRight);
@@ -69,7 +79,7 @@ void dae::PeterPeperComponent::MoveRight()
 
 void dae::PeterPeperComponent::MoveUp()
 {
-	if (m_CanMoveUp)
+	if (m_CanMoveUp && m_CurrentState != PlayerStates::Dying)
 	{
 		m_MoveUp = true;
 		SwitchAnimation(PlayerStates::ClimbingUp);
@@ -79,7 +89,7 @@ void dae::PeterPeperComponent::MoveUp()
 
 void dae::PeterPeperComponent::MoveDown()
 {
-	if (m_CanMoveDown)
+	if (m_CanMoveDown && m_CurrentState != PlayerStates::Dying)
 	{
 		m_MoveDown = true;
 		SwitchAnimation(PlayerStates::ClimbingDown);
@@ -130,21 +140,31 @@ void dae::PeterPeperComponent::SetOnGround(bool onGround)
 }
 
 
-dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health, RenderComponent* renderComp, std::map<PlayerStates, AnimatedSpriteComponent*> animations)
-	:Component(gameObject), m_Health(health), m_Animations(animations), m_pRenderComponent(renderComp)
+dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health, RenderComponent* renderComp, std::map<PlayerStates, AnimatedSpriteComponent*> animations, float startX, float startY)
+	:Component(gameObject), m_Health(health), m_Animations(animations), m_pRenderComponent(renderComp), m_Startx{ startX }, m_StartY{ startY }
 {
+	m_pGameObject->SetPosition(startX, startY);
 	if (m_Health <= 0)
 	{
 		m_Health = 1;
 	}
 
+	m_RespawnTime = ((animations.find(PlayerStates::Dying)->second->GetAmountOfAnimations()-1) * (animations.find(PlayerStates::Dying)->second->GetChangeImageTime()))/2;
+
 	m_CurrentState = PlayerStates::Idle;
 	m_pCurrentAnimation = m_Animations.find(m_CurrentState)->second;
+	
 }
 
 void dae::PeterPeperComponent::OnCollision(GameObject* object)
 {
 	const std::string tag = object->GetTag();
+
+	if (tag == "Enemy" && m_CurrentState != PlayerStates::Dying && object->GetComponent<MrHotdogComponent>()->GetState() != EnemyState::Dying)
+	{
+		SwitchAnimation(PlayerStates::Dying);
+		IsDamaged();
+	}
 
 	if (tag.find("Ladder") != std::string ::npos )
 	{
@@ -190,39 +210,42 @@ void dae::PeterPeperComponent::OnEndCollision(GameObject* object)
 
 void dae::PeterPeperComponent::UpdatePosition(float deltaTime)
 {
-	auto pos = m_pGameObject->GetTransform().GetPosition();
-	if (m_OnGround)
+	if (m_CurrentState != PlayerStates::Dying)
 	{
-		if (m_MoveLeft)
+		auto pos = m_pGameObject->GetTransform().GetPosition();
+		if (m_OnGround)
 		{
-			pos.x -= m_MovementSpeed * deltaTime;
-			m_pGameObject->SetPosition(pos.x, pos.y);
+			if (m_MoveLeft)
+			{
+				pos.x -= m_MovementSpeed * deltaTime;
+				m_pGameObject->SetPosition(pos.x, pos.y);
+			}
+
+			if (m_MoveRight)
+			{
+				pos.x += deltaTime * m_MovementSpeed;
+				m_pGameObject->SetPosition(pos.x, pos.y);
+			}
+
 		}
 
-		if (m_MoveRight)
+		if (m_OnLadder)
 		{
-			pos.x += deltaTime * m_MovementSpeed;
-			m_pGameObject->SetPosition(pos.x, pos.y);
+			if (m_MoveDown)
+			{
+				pos.y += m_MovementSpeed * deltaTime;
+				m_pGameObject->SetPosition(pos.x, pos.y);
+			}
+
+			if (m_MoveUp)
+			{
+				pos.y -= m_MovementSpeed * deltaTime;
+				m_pGameObject->SetPosition(pos.x, pos.y);
+			}
 		}
 
+		m_OnLadder = false;
 	}
-
-	if (m_OnLadder)
-	{
-		if (m_MoveDown)
-		{
-			pos.y += m_MovementSpeed * deltaTime;
-			m_pGameObject->SetPosition(pos.x, pos.y);
-		}
-
-		if (m_MoveUp)
-		{
-			pos.y -= m_MovementSpeed * deltaTime;
-			m_pGameObject->SetPosition(pos.x, pos.y);
-		}
-	}
-
-	m_OnLadder = false;
 	
 }
 
@@ -233,7 +256,7 @@ void dae::PeterPeperComponent::UpdateAnimation(float deltaTime)
 
 void dae::PeterPeperComponent::SetIdle()
 {
-	if (!m_MoveDown && !m_MoveLeft && !m_MoveUp && !m_MoveRight)
+	if (!m_MoveDown && !m_MoveLeft && !m_MoveUp && !m_MoveRight && m_CurrentState != PlayerStates::Dying)
 	{
 		SwitchAnimation(PlayerStates::Idle);
 	}
@@ -251,4 +274,11 @@ void dae::PeterPeperComponent::SwitchAnimation(PlayerStates state)
 		m_pRenderComponent->SetTexture(ResourceManager::GetInstance().LoadTexture(m_pCurrentAnimation->GetSpriteSheet()));
 
 	}
+}
+
+void dae::PeterPeperComponent::Respawn()
+{
+	m_pGameObject->SetPosition(m_Startx, m_StartY);
+	SwitchAnimation(PlayerStates::Idle);
+	m_RespawnTimer = 0.0f;
 }

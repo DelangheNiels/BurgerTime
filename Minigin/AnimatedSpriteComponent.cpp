@@ -50,6 +50,16 @@ void dae::AnimatedSpriteComponent::Activate()
 	m_isActive = true;
 }
 
+float dae::AnimatedSpriteComponent::GetChangeImageTime() const
+{
+	return m_ChangeImageTime;
+}
+
+int dae::AnimatedSpriteComponent::GetAmountOfAnimations() const
+{
+	return m_AmountOfAnimations;
+}
+
 std::string dae::AnimatedSpriteComponent::GetSpriteSheet() const
 {
 	return m_SpriteSheet;

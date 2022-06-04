@@ -41,7 +41,7 @@ namespace dae
 
 		void SetOnGround(bool onGround);
 
-		explicit PeterPeperComponent(GameObject* gameObject, int health,RenderComponent* renderComp ,std::map<PlayerStates, AnimatedSpriteComponent*> animations);
+		explicit PeterPeperComponent(GameObject* gameObject, int health,RenderComponent* renderComp ,std::map<PlayerStates, AnimatedSpriteComponent*> animations, float startX, float startY);
 		virtual ~PeterPeperComponent() = default;
 		PeterPeperComponent(const PeterPeperComponent& other) = default;
 		PeterPeperComponent(PeterPeperComponent&& other) = default;
@@ -67,6 +67,11 @@ namespace dae
 
 		float m_MovementSpeed{ 80.0f };
 
+		float m_RespawnTimer = 0.0f;
+		float m_RespawnTime = 0.0f;
+
+		float m_Startx, m_StartY;
+
 		std::map<PlayerStates, AnimatedSpriteComponent*> m_Animations;
 		
 		PlayerStates m_CurrentState;
@@ -79,6 +84,8 @@ namespace dae
 		void SetIdle();
 
 		void SwitchAnimation(PlayerStates state);
+
+		void Respawn();
 	};
 
 }

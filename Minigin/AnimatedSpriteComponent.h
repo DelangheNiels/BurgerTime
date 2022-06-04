@@ -21,14 +21,17 @@ namespace dae
 		void Reset();
 		void Activate();
 
+		float GetChangeImageTime() const;
+		int GetAmountOfAnimations() const;
 		std::string GetSpriteSheet() const;
+		
 
 	private:
 		int m_AmountOfAnimations;
 		RenderComponent* m_pRenderComponent;
 		float m_ChangeImageTime = 0.4f;
 		float m_ChangeImageTimer = m_ChangeImageTime;
-		int m_CurrentSpriteIndex = 1;
+		int m_CurrentSpriteIndex = 0;
 		float m_SrRectWidth, m_SrcRectHeight;
 
 		std::string m_SpriteSheet;

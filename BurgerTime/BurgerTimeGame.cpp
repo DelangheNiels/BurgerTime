@@ -22,6 +22,7 @@
 #include "AnimatedSpriteComponent.h"
 #include "BurgerPartComponent.h"
 #include "BurgerComponent.h"
+#include "MrHotdogComponent.h"
 
 
 
@@ -61,6 +62,7 @@ void BurgerTimeGame::LoadGame() const
 	auto walkRightAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingRight.png"));
 	auto walkUpAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingUp.png"));
 	auto walkDownAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 3, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerWalkingDown.png"));
+	auto dyingAnimation = std::make_shared<AnimatedSpriteComponent>(peterPeperGameObject.get(), spriteRenderComp.get(), 6, ResourceManager::GetInstance().LoadSpriteSheet("PlayerSprites/PlayerDying.png"));
 	std::map<PlayerStates, AnimatedSpriteComponent*> animations;
 	
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Idle, idleAnimation.get()));
@@ -68,8 +70,9 @@ void BurgerTimeGame::LoadGame() const
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::WalkingRight, walkRightAnimation.get()));
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingUp, walkUpAnimation.get()));
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation.get()));
+	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, dyingAnimation.get()));
 
-	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations);
+	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375, 545);
 
 	peterPeperGameObject.get()->AddComponent(playerOne);
 	peterPeperGameObject.get()->AddComponent(spriteRenderComp);
@@ -79,8 +82,9 @@ void BurgerTimeGame::LoadGame() const
 	peterPeperGameObject.get()->AddComponent(walkRightAnimation);
 	peterPeperGameObject.get()->AddComponent(walkUpAnimation);
 	peterPeperGameObject.get()->AddComponent(walkDownAnimation);
+	peterPeperGameObject.get()->AddComponent(dyingAnimation);
 	
-	peterPeperGameObject.get()->SetPosition(55, 61);
+	//peterPeperGameObject.get()->SetPosition(55, 61);
 	//peterPeperGameObject.get()->SetPosition(375, 545);
 	scene.Add(peterPeperGameObject);
 
@@ -144,7 +148,7 @@ void BurgerTimeGame::LoadGame() const
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingUp, walkUpAnimation2.get()));
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation2.get()));
 
-		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2);
+		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 415, 545);
 		peterPeperGameObject2.get()->AddComponent(player2);
 		peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
 		peterPeperGameObject2.get()->AddComponent(collisionComponent2);
@@ -154,7 +158,7 @@ void BurgerTimeGame::LoadGame() const
 		peterPeperGameObject2.get()->AddComponent(walkUpAnimation2);
 		peterPeperGameObject2.get()->AddComponent(walkDownAnimation2);
 		scene.Add(peterPeperGameObject2);
-		peterPeperGameObject2.get()->SetPosition(95, 61);
+		//peterPeperGameObject2.get()->SetPosition(95, 61);
 
 		//player 2 lives display
 		auto player2HealthDisplayObject = std::make_shared<GameObject>();
@@ -226,6 +230,47 @@ void BurgerTimeGame::LoadGame() const
 	std::cout << "Damage: X" << "\n";
 	std::cout << "Points: Y" << "\n";
 	std::cout << "======================" << "\n";
+
+
+
+
+
+
+
+
+
+	//Enemies
+	auto hotdog = std::make_shared<GameObject>();
+	hotdog.get()->SetTag("Enemy");
+	auto hotdogSpriteRenderComp = std::make_shared<RenderComponent>(hotdog.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/PlayerSprites/Player2Idle.png"));
+	BoundingBox hotdogCollisionBox{ hotdogSpriteRenderComp.get()->GetWidth(), hotdogSpriteRenderComp.get()->GetHeight() };
+	auto hotdogCollisionComponent = std::make_shared<CollisionComponent>(hotdog.get(), hotdogCollisionBox);
+
+	auto hotdogWalkLeft = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingLeft.png"));
+	auto hotdogWalkRight = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingRight.png"));
+	auto hotdogWalkUp = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingUp.png"));
+	auto hotdogWalkDown = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingDown.png"));
+	std::map<EnemyState, AnimatedSpriteComponent*> hotdogAnimations;
+
+	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingLeft, hotdogWalkLeft.get()));
+	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingRight, hotdogWalkRight.get()));
+	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingUp, hotdogWalkUp.get()));
+	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingDown, hotdogWalkDown.get()));
+
+	auto hotdogComp = std::make_shared<MrHotdogComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations);
+	hotdog.get()->AddComponent(hotdogComp);
+	hotdog.get()->AddComponent(hotdogSpriteRenderComp);
+	hotdog.get()->AddComponent(hotdogCollisionComponent);
+	hotdog.get()->AddComponent(hotdogWalkLeft);
+	hotdog.get()->AddComponent(hotdogWalkDown);
+	hotdog.get()->AddComponent(hotdogWalkRight);
+	hotdog.get()->AddComponent(hotdogWalkUp);
+	scene.Add(hotdog);
+	hotdog.get()->SetPosition(115, 555);
+
+
+
+
 
 
 	//burgerPart
