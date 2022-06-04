@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
 #include "Scene.h"
+#include "InputManager.h"
 
 void dae::SceneManager::Update(float deltaTime)
 {
@@ -56,7 +57,22 @@ void dae::SceneManager::NextScene()
 			m_ActiveScene = m_Scenes[0];
 		}
 
+		
 		m_ActiveScene.get()->SetActive();
+	}
+}
+
+void dae::SceneManager::LoadScene(const std::string& name)
+{
+	for (size_t i = 0; i < m_Scenes.size(); ++i)
+	{
+		if (m_Scenes[i].get()->GetSceneName() == name)
+		{
+			m_ActiveScene.get()->SetInActive();
+			m_ActiveScene = m_Scenes[i];
+			m_ActiveScene.get()->SetActive();
+			
+		}
 	}
 }
 

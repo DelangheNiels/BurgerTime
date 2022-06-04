@@ -26,13 +26,15 @@
 
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "GameSceneMultiplayer.h"
 
 
 
 void BurgerTimeGame::LoadGame() const
 {
 	SceneManager::GetInstance().AddScene(std::make_shared<MainMenuScene>("MainMenu"));
-	SceneManager::GetInstance().AddScene(std::make_unique<GameScene>("GameScene"));
+	SceneManager::GetInstance().AddScene(std::make_unique<GameScene>("SinglePlayerGame"));
+	SceneManager::GetInstance().AddScene(std::make_unique<GameSceneMultiplayer>("MultiPlayerGame"));
 
 }
 

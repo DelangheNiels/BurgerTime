@@ -221,3 +221,45 @@ bool NextSceneCommand::ExecuteOnUp()
 	SceneManager::GetInstance().NextScene();
 	return true;
 }
+
+LoadSinglePlayerScene::LoadSinglePlayerScene(GameObject* gameObject)
+	:Command(gameObject)
+{
+}
+
+bool LoadSinglePlayerScene::ExecuteOnHold()
+{
+	return true;
+}
+
+bool LoadSinglePlayerScene::ExecuteOnDown()
+{
+	SceneManager::GetInstance().LoadScene("SinglePlayerGame");
+	return true;
+}
+
+bool LoadSinglePlayerScene::ExecuteOnUp()
+{
+	return true;
+}
+
+LoadMultiPlayerScene::LoadMultiPlayerScene(GameObject* gameObject)
+	:Command(gameObject)
+{
+}
+
+bool LoadMultiPlayerScene::ExecuteOnHold()
+{
+	return true;
+}
+
+bool LoadMultiPlayerScene::ExecuteOnDown()
+{
+	SceneManager::GetInstance().LoadScene("MultiPlayerGame");
+	return true;
+}
+
+bool LoadMultiPlayerScene::ExecuteOnUp()
+{
+	return true;
+}

@@ -19,6 +19,8 @@ namespace dae
 		void SetInActive();
 		bool GetIsActive();
 
+		std::string GetSceneName() const;
+
 		explicit Scene(const std::string& name);
 		~Scene();
 		Scene(const Scene& other) = delete;

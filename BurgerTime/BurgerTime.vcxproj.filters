@@ -75,6 +75,9 @@
     <ClCompile Include="MainMenuScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="GameSceneMultiplayer.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -120,6 +123,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSceneMultiplayer.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>

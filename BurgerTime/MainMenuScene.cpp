@@ -41,7 +41,8 @@ void dae::MainMenuScene::LoadScene()
 	Add(fpsGameObject);
 
 	//input commands
-	//InputManager::GetInstance().AddController(new XBox360Controller{ 0 });
+	InputManager::GetInstance().AddKeyboardBinding<LoadSinglePlayerScene>(KeyboardButton::F1, nullptr);
+	InputManager::GetInstance().AddKeyboardBinding<LoadMultiPlayerScene>(KeyboardButton::F2, nullptr);
 
-	InputManager::GetInstance().AddKeyboardBinding<NextSceneCommand>(KeyboardButton::SPACE, nullptr);
 }
+

@@ -23,13 +23,13 @@ dae::Keyboard::~Keyboard()
 void dae::Keyboard::Update()
 {
 	std::memcpy(m_pPreviousState, m_pCurrentState, *m_pNumberOfKeys);
+	m_FirstFrameDone = true;
 }
 
 bool dae::Keyboard::IsPressed(unsigned int key)
 {
-	if (m_pCurrentState[key])
+	if (m_pCurrentState[key] && m_FirstFrameDone)
 	{
-		std::cout << "pp" << "\n";
 		return true;
 	}
 	
@@ -38,9 +38,8 @@ bool dae::Keyboard::IsPressed(unsigned int key)
 
 bool dae::Keyboard::IsDowThisFrame(unsigned int key)
 {
-	if (m_pCurrentState[key] && !m_pPreviousState[key])
+	if (m_pCurrentState[key] && !m_pPreviousState[key] && m_FirstFrameDone)
 	{
-		std::cout << "dd" << "\n";
 		return true;
 	}
 	return false;
@@ -49,9 +48,8 @@ bool dae::Keyboard::IsDowThisFrame(unsigned int key)
 bool dae::Keyboard::IsUpThisFrame(unsigned int key)
 {
 
-	if (!m_pCurrentState[key] && m_pPreviousState[key])
+	if (!m_pCurrentState[key] && m_pPreviousState[key] && m_FirstFrameDone)
 	{
-		std::cout << "uu" << "\n";
 		return true;
 	}
 

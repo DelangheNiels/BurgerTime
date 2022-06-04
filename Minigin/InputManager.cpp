@@ -137,6 +137,12 @@ void InputManager::AddController(XBox360Controller* controller)
 	m_Controllers.push_back(controller);
 }
 
+void InputManager::ClearAllBindings()
+{
+	m_ControllerCommandsMap.clear();
+	m_KeyboardCommandsMap.clear();
+}
+
 void InputManager::RemoveControllerBinding(ControllerButton button, int controllerIndex)
 {
 	auto it = m_ControllerCommandsMap.find(button);

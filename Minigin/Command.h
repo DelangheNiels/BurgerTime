@@ -110,3 +110,21 @@ public:
 	bool ExecuteOnUp() override;
 };
 
+class LoadSinglePlayerScene final : public Command
+{
+public:
+	LoadSinglePlayerScene(GameObject* gameObject);
+	bool ExecuteOnHold() override;
+	bool ExecuteOnDown() override;
+	bool ExecuteOnUp() override;
+};
+
+class LoadMultiPlayerScene final : public Command
+{
+public:
+	LoadMultiPlayerScene(GameObject* gameObject);
+	bool ExecuteOnHold() override;
+	bool ExecuteOnDown() override;
+	bool ExecuteOnUp() override;
+};
+

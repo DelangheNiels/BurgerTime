@@ -14,6 +14,7 @@ namespace dae
 		void Render();
 		void AddScene(std::shared_ptr<Scene> scene);
 		void NextScene();
+		void LoadScene(const std::string& name);
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;

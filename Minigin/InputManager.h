@@ -43,6 +43,8 @@
 
 		void AddController(XBox360Controller* controller);
 
+		void ClearAllBindings();
+
 		template<class MyCommand>
 		void AddControllerCommandBinding(ControllerButton button, GameObject* gameObject, int controllerIndex)
 		{

@@ -81,6 +81,11 @@ bool dae::Scene::GetIsActive()
 	return m_IsActive;
 }
 
+std::string dae::Scene::GetSceneName() const
+{
+	return m_Name;
+}
+
 void dae::Scene::HandleCollisions()
 {
 	std::vector<CollisionComponent*> collisionComponents;

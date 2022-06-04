@@ -87,6 +87,8 @@ namespace dae
 		bool IsDowThisFrame(unsigned int key);
 		bool IsUpThisFrame(unsigned int key);
 
+		bool m_FirstFrameDone{ false };
+
 	private:
 		int* m_pNumberOfKeys{};
 		const Uint8* m_pCurrentState{};
