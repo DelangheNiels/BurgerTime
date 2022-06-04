@@ -5,7 +5,7 @@ namespace dae
 	{
 	public:
 		virtual ~PointsObserver() = default;
-		virtual void AddPoints(int ) = 0;
+		virtual void BurgerPartDropped() = 0;
 	};
 
 }

@@ -11,8 +11,10 @@ void dae::PointsDisplayComponent::Update(float)
 {
 }
 
-void dae::PointsDisplayComponent::AddPoints(int points)
+void dae::PointsDisplayComponent::BurgerPartDropped()
 {
-	m_TotalPoints += points;
+	m_TotalPoints += m_PointsDropPart;
 	m_pTextComponent.get()->SetText("Points: " + std::to_string(m_TotalPoints));
 }
+
+

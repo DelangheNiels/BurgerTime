@@ -5,11 +5,12 @@
 namespace dae
 {
 	class BurgerPartComponent;
+	class PointsComponent;
 
 	class BurgerComponent : public Component
 	{
 	public:
-		explicit BurgerComponent(GameObject* gameObject);
+		explicit BurgerComponent(GameObject* gameObject, PointsComponent* pointsComp);
 		virtual ~BurgerComponent() = default;
 		BurgerComponent(const BurgerComponent & other) = default;
 		BurgerComponent(BurgerComponent && other) = default;
@@ -27,6 +28,7 @@ namespace dae
 
 	private:
 		std::vector<BurgerPartComponent*> m_Parts;
+		PointsComponent* m_pPointsComponent;
 
 		int m_AmountOfHitparts{};
 	};

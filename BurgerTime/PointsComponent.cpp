@@ -1,8 +1,8 @@
 #include "BurgerTimePCH.h"
 #include "PointsComponent.h"
 
-dae::PointsComponent::PointsComponent(GameObject* gameObject, int points /*PointsAchievementObserver* pPointsAchievementObserver*/)
-    :Component(gameObject), m_Points{points} //m_pPointsAchievementObserver{pPointsAchievementObserver}
+dae::PointsComponent::PointsComponent(GameObject* gameObject)
+    :Component(gameObject)
 {
 }
 
@@ -15,14 +15,12 @@ int dae::PointsComponent::GetPoints() const
     return m_Points;
 }
 
-void dae::PointsComponent::IncreasePoints()
+void dae::PointsComponent::PartDropped()
 {
     for (size_t i = 0; i < m_PointsObservers.size(); i++)
     {
-        m_PointsObservers.at(i)->AddPoints(m_Points);
+        m_PointsObservers.at(i)->BurgerPartDropped();
     }
-
-    //m_pPointsAchievementObserver->AddScore(m_Points);
 }
 
 void dae::PointsComponent::AddPointsObserver(PointsObserver* pointsObserver)

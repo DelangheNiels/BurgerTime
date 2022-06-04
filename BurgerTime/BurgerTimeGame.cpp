@@ -104,13 +104,17 @@ void BurgerTimeGame::LoadGame() const
 	auto renderCompPointsP1 = std::make_shared<RenderComponent>(pointsDisplayPlayerOneGameObject.get(), nullptr);
 	auto textCompPointsP1 = std::make_shared<TextComponent>(pointsDisplayPlayerOneGameObject.get(), "", font, renderCompPointsP1, colorP1);
 
-	auto pointsComponent = std::make_shared<PointsComponent>(pointsDisplayPlayerOneGameObject.get(), 50/*, pointsAchievementObserver.get()*/);
+	auto pointsComponent = std::make_shared<PointsComponent>(pointsDisplayPlayerOneGameObject.get());
 	auto pointsDisplayComponent = std::make_shared<PointsDisplayComponent>(pointsDisplayPlayerOneGameObject.get(), textCompPointsP1);
 	pointsComponent.get()->AddPointsObserver(pointsDisplayComponent.get());
+
+	auto pointsComponent2 = std::make_shared<PointsComponent>(pointsDisplayPlayerOneGameObject.get());
+	pointsComponent2.get()->AddPointsObserver(pointsDisplayComponent.get());
 
 	pointsDisplayPlayerOneGameObject.get()->AddComponent(renderCompPointsP1);
 	pointsDisplayPlayerOneGameObject.get()->AddComponent(textCompPointsP1);
 	pointsDisplayPlayerOneGameObject.get()->AddComponent(pointsComponent);
+	pointsDisplayPlayerOneGameObject.get()->AddComponent(pointsComponent2);
 	pointsDisplayPlayerOneGameObject.get()->AddComponent(pointsDisplayComponent);
 	pointsDisplayPlayerOneGameObject.get()->SetPosition(225, 10);
 	scene.Add(pointsDisplayPlayerOneGameObject);
@@ -172,7 +176,7 @@ void BurgerTimeGame::LoadGame() const
 		auto renderCompPointsP2 = std::make_shared<RenderComponent>(pointsDisplayPlayer2GameObject.get(), nullptr);
 		auto textCompPointsP2 = std::make_shared<TextComponent>(pointsDisplayPlayer2GameObject.get(), "", font, renderCompPointsP2, colorP2);
 
-		auto pointsComponent2 = std::make_shared<PointsComponent>(pointsDisplayPlayer2GameObject.get(), 50 /*pointsAchievementObserver.get()*/);
+		auto pointsComponent2 = std::make_shared<PointsComponent>(pointsDisplayPlayer2GameObject.get());
 		auto pointsDisplayComponent2 = std::make_shared<PointsDisplayComponent>(pointsDisplayPlayer2GameObject.get(), textCompPointsP2);
 		pointsComponent2.get()->AddPointsObserver(pointsDisplayComponent2.get());
 
@@ -276,7 +280,7 @@ void BurgerTimeGame::LoadGame() const
 
 	//comp
 	auto burgerObject = std::make_shared<GameObject>();
-	auto burgerComp = std::make_shared<BurgerComponent>(burgerObject.get());
+	auto burgerComp = std::make_shared<BurgerComponent>(burgerObject.get(), pointsComponent.get());
 
 	burgerComp.get()->AddPart(burgerPartComp.get());
 	burgerComp.get()->AddPart(burgerPartComp2.get());
@@ -291,7 +295,7 @@ void BurgerTimeGame::LoadGame() const
 
 	auto burgerpartObject5 = std::make_shared<GameObject>();
 	burgerpartObject5.get()->SetTag("BurgerPart");
-	auto burgerspriteRenderComp5 = std::make_shared<RenderComponent>(burgerpartObject5.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP1.png"));
+	auto burgerspriteRenderComp5 = std::make_shared<RenderComponent>(burgerpartObject5.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BurgerP1.png"));
 	BoundingBox burgercollisionBox5{ burgerspriteRenderComp5.get()->GetWidth(), burgerspriteRenderComp5.get()->GetHeight() };
 	auto burgercollisionComponent5 = std::make_shared<CollisionComponent>(burgerpartObject5.get(), burgercollisionBox5);
 	auto burgerPartComp5 = std::make_shared<BurgerPartComponent>(burgerpartObject5.get());
@@ -303,7 +307,7 @@ void BurgerTimeGame::LoadGame() const
 
 	auto burgerpartObject6 = std::make_shared<GameObject>();
 	burgerpartObject6.get()->SetTag("BurgerPart");
-	auto burgerspriteRenderComp6 = std::make_shared<RenderComponent>(burgerpartObject6.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP2.png"));
+	auto burgerspriteRenderComp6 = std::make_shared<RenderComponent>(burgerpartObject6.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BurgerP2.png"));
 	BoundingBox burgercollisionBox6{ burgerspriteRenderComp6.get()->GetWidth(), burgerspriteRenderComp6.get()->GetHeight() };
 	auto burgercollisionComponent6 = std::make_shared<CollisionComponent>(burgerpartObject6.get(), burgercollisionBox6);
 	auto burgerPartComp6 = std::make_shared<BurgerPartComponent>(burgerpartObject6.get());
@@ -315,7 +319,7 @@ void BurgerTimeGame::LoadGame() const
 
 	auto burgerpartObject7 = std::make_shared<GameObject>();
 	burgerpartObject7.get()->SetTag("BurgerPart");
-	auto burgerspriteRenderComp7 = std::make_shared<RenderComponent>(burgerpartObject7.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP3.png"));
+	auto burgerspriteRenderComp7 = std::make_shared<RenderComponent>(burgerpartObject7.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BurgerP3.png"));
 	BoundingBox burgercollisionBox7{ burgerspriteRenderComp7.get()->GetWidth(), burgerspriteRenderComp7.get()->GetHeight() };
 	auto burgercollisionComponent7 = std::make_shared<CollisionComponent>(burgerpartObject7.get(), burgercollisionBox7);
 	auto burgerPartComp7 = std::make_shared<BurgerPartComponent>(burgerpartObject7.get());
@@ -327,7 +331,7 @@ void BurgerTimeGame::LoadGame() const
 
 	auto burgerpartObject8 = std::make_shared<GameObject>();
 	burgerpartObject8.get()->SetTag("BurgerPart");
-	auto burgerspriteRenderComp8 = std::make_shared<RenderComponent>(burgerpartObject8.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP4.png"));
+	auto burgerspriteRenderComp8 = std::make_shared<RenderComponent>(burgerpartObject8.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BurgerP4.png"));
 	BoundingBox burgercollisionBox8{ burgerspriteRenderComp8.get()->GetWidth(), burgerspriteRenderComp8.get()->GetHeight() };
 	auto burgercollisionComponent8 = std::make_shared<CollisionComponent>(burgerpartObject8.get(), burgercollisionBox8);
 	auto burgerPartComp8 = std::make_shared<BurgerPartComponent>(burgerpartObject8.get());
@@ -340,7 +344,7 @@ void BurgerTimeGame::LoadGame() const
 
 	//comp
 	auto burgerObject2 = std::make_shared<GameObject>();
-	auto burgerComp2 = std::make_shared<BurgerComponent>(burgerObject2.get());
+	auto burgerComp2 = std::make_shared<BurgerComponent>(burgerObject2.get(), pointsComponent2.get());
 
 	burgerComp2.get()->AddPart(burgerPartComp5.get());
 	burgerComp2.get()->AddPart(burgerPartComp6.get());
@@ -349,6 +353,68 @@ void BurgerTimeGame::LoadGame() const
 	burgerObject2.get()->AddComponent(burgerComp2);
 
 	scene.Add(burgerObject2);
+
+	//3th part
+	auto burgerpartObject9 = std::make_shared<GameObject>();
+	burgerpartObject9.get()->SetTag("BurgerPart");
+	auto burgerspriteRenderComp9 = std::make_shared<RenderComponent>(burgerpartObject9.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP1.png"));
+	BoundingBox burgercollisionBox9{ burgerspriteRenderComp9.get()->GetWidth(), burgerspriteRenderComp9.get()->GetHeight() };
+	auto burgercollisionComponent9 = std::make_shared<CollisionComponent>(burgerpartObject9.get(), burgercollisionBox9);
+	auto burgerPartComp9 = std::make_shared<BurgerPartComponent>(burgerpartObject9.get());
+	burgerpartObject9.get()->AddComponent(burgerspriteRenderComp9);
+	burgerpartObject9.get()->AddComponent(burgercollisionComponent9);
+	burgerpartObject9.get()->AddComponent(burgerPartComp9);
+	burgerpartObject9.get()->SetPosition(110, 290);
+	scene.Add(burgerpartObject9);
+
+	auto burgerpartObject10 = std::make_shared<GameObject>();
+	burgerpartObject10.get()->SetTag("BurgerPart");
+	auto burgerspriteRenderComp10 = std::make_shared<RenderComponent>(burgerpartObject10.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP2.png"));
+	BoundingBox burgercollisionBox10{ burgerspriteRenderComp10.get()->GetWidth(), burgerspriteRenderComp10.get()->GetHeight() };
+	auto burgercollisionComponent10 = std::make_shared<CollisionComponent>(burgerpartObject10.get(), burgercollisionBox10);
+	auto burgerPartComp10 = std::make_shared<BurgerPartComponent>(burgerpartObject10.get());
+	burgerpartObject10.get()->AddComponent(burgerspriteRenderComp10);
+	burgerpartObject10.get()->AddComponent(burgercollisionComponent10);
+	burgerpartObject10.get()->AddComponent(burgerPartComp10);
+	burgerpartObject10.get()->SetPosition(133, 290);
+	scene.Add(burgerpartObject10);
+
+	auto burgerpartObject11 = std::make_shared<GameObject>();
+	burgerpartObject11.get()->SetTag("BurgerPart");
+	auto burgerspriteRenderComp11 = std::make_shared<RenderComponent>(burgerpartObject11.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP3.png"));
+	BoundingBox burgercollisionBox11{ burgerspriteRenderComp11.get()->GetWidth(), burgerspriteRenderComp11.get()->GetHeight() };
+	auto burgercollisionComponent11 = std::make_shared<CollisionComponent>(burgerpartObject11.get(), burgercollisionBox11);
+	auto burgerPartComp11 = std::make_shared<BurgerPartComponent>(burgerpartObject11.get());
+	burgerpartObject11.get()->AddComponent(burgerspriteRenderComp11);
+	burgerpartObject11.get()->AddComponent(burgercollisionComponent11);
+	burgerpartObject11.get()->AddComponent(burgerPartComp11);
+	burgerpartObject11.get()->SetPosition(156, 290);
+	scene.Add(burgerpartObject11);
+
+	auto burgerpartObject12 = std::make_shared<GameObject>();
+	burgerpartObject12.get()->SetTag("BurgerPart");
+	auto burgerspriteRenderComp12 = std::make_shared<RenderComponent>(burgerpartObject12.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/BunBottomP4.png"));
+	BoundingBox burgercollisionBox12{ burgerspriteRenderComp12.get()->GetWidth(), burgerspriteRenderComp12.get()->GetHeight() };
+	auto burgercollisionComponent12 = std::make_shared<CollisionComponent>(burgerpartObject12.get(), burgercollisionBox12);
+	auto burgerPartComp12 = std::make_shared<BurgerPartComponent>(burgerpartObject12.get());
+	burgerpartObject12.get()->AddComponent(burgerspriteRenderComp12);
+	burgerpartObject12.get()->AddComponent(burgercollisionComponent12);
+	burgerpartObject12.get()->AddComponent(burgerPartComp12);
+	burgerpartObject12.get()->SetPosition(179, 290);
+	scene.Add(burgerpartObject12);
+
+
+	//comp
+	auto burgerObject3 = std::make_shared<GameObject>();
+	auto burgerComp3 = std::make_shared<BurgerComponent>(burgerObject3.get(), pointsComponent2.get());
+
+	burgerComp3.get()->AddPart(burgerPartComp9.get());
+	burgerComp3.get()->AddPart(burgerPartComp10.get());
+	burgerComp3.get()->AddPart(burgerPartComp11.get());
+	burgerComp3.get()->AddPart(burgerPartComp12.get());
+	burgerObject3.get()->AddComponent(burgerComp3);
+
+	scene.Add(burgerObject3);
 
 
 	//Catcher

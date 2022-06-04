@@ -2,9 +2,10 @@
 #include "BurgerComponent.h"
 
 #include "BurgerPartComponent.h"
+#include "PointsComponent.h"
 
-dae::BurgerComponent::BurgerComponent(GameObject* gameObject)
-	:Component(gameObject), m_AmountOfHitparts{0}
+dae::BurgerComponent::BurgerComponent(GameObject* gameObject, PointsComponent* pointsComp)
+	:Component(gameObject), m_AmountOfHitparts{0}, m_pPointsComponent{pointsComp}
 {
 }
 
@@ -26,6 +27,7 @@ void dae::BurgerComponent::NotifyHit()
 		m_AmountOfHitparts = 0;
 
 		std::for_each(m_Parts.begin(), m_Parts.end(), [](BurgerPartComponent* part) {part->Drop(); });
+		m_pPointsComponent->PartDropped();
 	}
 }
 

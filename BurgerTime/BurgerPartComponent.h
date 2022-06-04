@@ -39,8 +39,6 @@ namespace dae
 
 		float m_FallingSpeed = 110.0f;
 		float m_DropAmount = 28.0f;
-		float m_HitDropAmount = 15.0f;
-
 
 		BurgerComponent* m_pBurger{};
 

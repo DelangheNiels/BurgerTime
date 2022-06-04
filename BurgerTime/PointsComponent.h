@@ -1,19 +1,19 @@
 #pragma once
 #include "Component.h"
 #include "PointsObserver.h"
-//#include "PointsAchievementObserver.h"
+
 namespace dae
 {
 	class PointsComponent final : public Component
 	{
 	public:
-		explicit PointsComponent(GameObject* gameObject, int points /*PointsAchievementObserver* ppPointsAchievementObserver*/);
+		explicit PointsComponent(GameObject* gameObject);
 		~PointsComponent() = default;
 
 		void Update(float deltaTime) override;
 
 		int GetPoints() const;
-		void IncreasePoints();
+		void PartDropped();
 
 		void AddPointsObserver(PointsObserver* pointsObserver);
 		void RemovePointsObserver(PointsObserver* pointsObserver);
@@ -27,7 +27,6 @@ namespace dae
 
 		int m_Points;
 		std::vector<PointsObserver*> m_PointsObservers{};
-		//PointsAchievementObserver* m_pPointsAchievementObserver{};
 	};
 }
 

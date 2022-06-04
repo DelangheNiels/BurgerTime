@@ -45,7 +45,7 @@ void dae::BurgerPartComponent::OnCollision(GameObject* other)
 		if (other->GetTag() == "BurgerPart" && other->GetComponent<BurgerPartComponent>()->GetState() != BurgerState::OnCatcher)
 		{
 			m_State = BurgerState::Hit;
-			m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, m_pGameObject->GetTransform().GetPosition().y + m_HitDropAmount);
+			m_pGameObject->SetPosition(m_pGameObject->GetTransform().GetPosition().x, m_pGameObject->GetTransform().GetPosition().y + m_DropAmount);
 			if (m_pBurger)
 			{
 				m_pBurger->NotifyHit();

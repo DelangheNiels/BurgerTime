@@ -10,7 +10,7 @@ namespace dae
 		~PointsDisplayComponent() = default;
 
 		void Update(float deltaTime) override;
-		void AddPoints(int points) override;
+		void BurgerPartDropped() override;
 
 
 		PointsDisplayComponent(const PointsDisplayComponent& other) = delete;
@@ -21,6 +21,8 @@ namespace dae
 	private:
 		int m_TotalPoints;
 		std::shared_ptr<TextComponent> m_pTextComponent{};
+
+		int m_PointsDropPart = 50;
 	};
 }
 

@@ -73,12 +73,12 @@ bool PointsCommand::ExecuteOnHold()
 
 bool PointsCommand::ExecuteOnDown()
 {
+	m_pGameObject->GetComponent<PointsComponent>()->PartDropped();
 	return true;
 }
 
 bool PointsCommand::ExecuteOnUp()
 {
-	m_pGameObject->GetComponent<PointsComponent>()->IncreasePoints();
 	return true;
 }
 
