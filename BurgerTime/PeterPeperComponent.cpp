@@ -149,6 +149,7 @@ dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health
 		m_Health = 1;
 	}
 
+	m_OnGround = true;
 	m_RespawnTime = ((animations.find(PlayerStates::Dying)->second->GetAmountOfAnimations()-1) * (animations.find(PlayerStates::Dying)->second->GetChangeImageTime()))/2;
 
 	m_CurrentState = PlayerStates::Idle;

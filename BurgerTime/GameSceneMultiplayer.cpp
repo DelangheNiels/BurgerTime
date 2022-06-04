@@ -73,7 +73,7 @@ void dae::GameSceneMultiplayer::LoadScene()
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation.get()));
 	animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, dyingAnimation.get()));
 
-	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 545.0f);
+	auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 557.0f);
 
 	peterPeperGameObject.get()->AddComponent(playerOne);
 	peterPeperGameObject.get()->AddComponent(spriteRenderComp);
@@ -150,7 +150,7 @@ void dae::GameSceneMultiplayer::LoadScene()
 	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation2.get()));
 	animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, deadAnimation2.get()));
 
-	auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 415.0f, 545.0f);
+	auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 375.0f, 557.0f);
 	peterPeperGameObject2.get()->AddComponent(player2);
 	peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
 	peterPeperGameObject2.get()->AddComponent(collisionComponent2);
@@ -180,15 +180,14 @@ void dae::GameSceneMultiplayer::LoadScene()
 
 	//input commands
 	InputManager::GetInstance().AddController(new XBox360Controller{ 0 });
+	InputManager::GetInstance().AddController(new XBox360Controller{ 1 });
 
 	//player 1 inputs
 	InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject.get(), 0);
-	InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonB, pointsDisplayPlayerOneGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject.get(), 0);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject.get(), 0);
-	InputManager::GetInstance().AddKeyboardBinding<HitCommand>(KeyboardButton::Q, peterPeperGameObject.get());
 
 	////player2 inputs
 	InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject2.get(), 1);
@@ -197,7 +196,6 @@ void dae::GameSceneMultiplayer::LoadScene()
 	InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject2.get(), 1);
 	InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject2.get(), 1);
 
-	InputManager::GetInstance().AddController(new XBox360Controller{ 1 });
 
 
 	std::cout << "Used controlls:" << "\n";
