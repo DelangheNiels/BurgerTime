@@ -1,15 +1,14 @@
 #include "BurgerTimePCH.h"
-#include "MrHotdogComponent.h"
+#include "EnemyComponent.h"
 
 #include "RenderComponent.h"
 #include "CollisionComponent.h"
 #include "AnimatedSpriteComponent.h"
 #include "PeterPeperComponent.h"
 #include "ResourceManager.h"
-#include "BurgerPartComponent.h"
 
-dae::MrHotdogComponent::MrHotdogComponent(GameObject* gameObject,RenderComponent* renderComp, std::map<EnemyState, AnimatedSpriteComponent*> animations, float startPosX, float startPosY)
-	:Component(gameObject), m_pRenderComponent{renderComp}, m_Animations{animations}, m_StartX{startPosX}, m_StartY{startPosY}
+dae::EnemyComponent::EnemyComponent(GameObject* gameObject, RenderComponent* renderComp, std::map<EnemyState, AnimatedSpriteComponent*> animations, float startPosX, float startPosY)
+	:Component(gameObject), m_pRenderComponent{ renderComp }, m_Animations{ animations }, m_StartX{ startPosX }, m_StartY{ startPosY }
 {
 	m_pGameObject->SetPosition(m_StartX, m_StartY);
 	m_CurrentState = EnemyState::WalkingLeft;
@@ -19,7 +18,7 @@ dae::MrHotdogComponent::MrHotdogComponent(GameObject* gameObject,RenderComponent
 	m_PlayDeadTime = ((animations.find(EnemyState::Dying)->second->GetAmountOfAnimations() - 1) * (animations.find(EnemyState::Dying)->second->GetChangeImageTime())) / 2;
 }
 
-void dae::MrHotdogComponent::Update(float deltaTime)
+void dae::EnemyComponent::Update(float deltaTime)
 {
 	m_pCurrentAnimation->Update(deltaTime);
 
@@ -45,42 +44,35 @@ void dae::MrHotdogComponent::Update(float deltaTime)
 	}
 }
 
-void dae::MrHotdogComponent::FixedUpdate(float)
+void dae::EnemyComponent::FixedUpdate(float)
 {
 }
 
-void dae::MrHotdogComponent::OnCollision(GameObject* pOther)
-{
-	std::string tag = pOther->GetTag();
-	if (tag == "BurgerPart" && pOther->GetComponent<BurgerPartComponent>()->GetState() == BurgerState::Falling && m_CurrentState != EnemyState::Dying)
-	{
-		std::cout << "dead" << "\n";
-		SwitchAnimation(EnemyState::Dying);
-		
-	}
-}
-
-void dae::MrHotdogComponent::OnEndCollision(GameObject*)
+void dae::EnemyComponent::OnCollision(GameObject* pOther)
 {
 }
 
-float dae::MrHotdogComponent::GetPoints() const
+void dae::EnemyComponent::OnEndCollision(GameObject*)
 {
-	return m_Points;
 }
 
-dae::EnemyState dae::MrHotdogComponent::GetState() const
+dae::EnemyState dae::EnemyComponent::GetState() const
 {
 	return m_CurrentState;
 }
 
-void dae::MrHotdogComponent::Respawn()
+void dae::EnemyComponent::HitByBurger()
+{
+	SwitchAnimation(EnemyState::Dying);
+}
+
+void dae::EnemyComponent::Respawn()
 {
 	m_pGameObject->SetPosition(m_StartX, m_StartY);
 	SwitchAnimation(EnemyState::WalkingLeft);
 }
 
-void dae::MrHotdogComponent::SwitchAnimation(EnemyState state)
+void dae::EnemyComponent::SwitchAnimation(EnemyState state)
 {
 	if (state != m_CurrentState)
 	{

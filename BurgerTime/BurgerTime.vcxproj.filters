@@ -60,7 +60,10 @@
     <ClCompile Include="BurgerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="MrHotdogComponent.cpp">
+    <ClCompile Include="PeperComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,7 +101,10 @@
     <ClInclude Include="BurgerComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="MrHotdogComponent.h">
+    <ClInclude Include="PeperComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

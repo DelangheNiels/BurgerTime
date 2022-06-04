@@ -23,6 +23,14 @@ void dae::PointsComponent::PartDropped()
     }
 }
 
+void dae::PointsComponent::MrHotdogHit()
+{
+    for (size_t i = 0; i < m_PointsObservers.size(); i++)
+    {
+        m_PointsObservers.at(i)->MrHotdogHit();
+    }
+}
+
 void dae::PointsComponent::AddPointsObserver(PointsObserver* pointsObserver)
 {
     if (std::find(m_PointsObservers.begin(), m_PointsObservers.end(), pointsObserver) == m_PointsObservers.end())

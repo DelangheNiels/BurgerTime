@@ -34,11 +34,22 @@ void dae::BurgerComponent::NotifyHit()
 void dae::BurgerComponent::NotifyOnGround()
 {
 	std::for_each(m_Parts.begin(), m_Parts.end(), [](BurgerPartComponent* part) {part->StopDropping(); });
+	m_EnemiesHit.clear();
 }
 
 void dae::BurgerComponent::NotifyOnCatcher()
 {
 	std::for_each(m_Parts.begin(), m_Parts.end(), [](BurgerPartComponent* part) {part->OnCatcher(); });
+	m_EnemiesHit.clear();
+}
+
+void dae::BurgerComponent::NotifyHitEnemy(GameObject* enemy)
+{
+	if (std::find(m_EnemiesHit.begin(), m_EnemiesHit.end(), enemy) == m_EnemiesHit.end())
+	{
+		m_EnemiesHit.emplace_back(enemy);
+		m_pPointsComponent->MrHotdogHit();
+	}
 }
 
 std::vector<dae::BurgerPartComponent*> dae::BurgerComponent::Getparts() const

@@ -17,4 +17,10 @@ void dae::PointsDisplayComponent::BurgerPartDropped()
 	m_pTextComponent.get()->SetText("Points: " + std::to_string(m_TotalPoints));
 }
 
+void dae::PointsDisplayComponent::MrHotdogHit()
+{
+	m_TotalPoints += m_PointsMrHotdog;
+	m_pTextComponent.get()->SetText("Points: " + std::to_string(m_TotalPoints));
+}
+
 

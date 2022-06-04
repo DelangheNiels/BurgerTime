@@ -2,7 +2,7 @@
 #include "BurgerPartComponent.h"
 
 #include "BurgerComponent.h"
-
+#include "EnemyComponent.h"
 
 dae::BurgerPartComponent::BurgerPartComponent(GameObject* gameObject)
 	:Component(gameObject), m_State{BurgerState::OnGround}
@@ -23,6 +23,8 @@ void dae::BurgerPartComponent::FixedUpdate(float fixedTime)
 
 void dae::BurgerPartComponent::OnCollision(GameObject* other)
 {
+	const std::string tag = other->GetTag();
+
 	switch (m_State)
 	{
 	case dae::BurgerState::Hit:
@@ -55,6 +57,12 @@ void dae::BurgerPartComponent::OnCollision(GameObject* other)
 	}
 	case dae::BurgerState::Falling:
 	{
+		if ((tag == "MrHotdog" || tag == "MrEgg" || tag == "MrPickle") && other->GetComponent<EnemyComponent>()->GetState() != EnemyState::Dying)
+		{
+			other->GetComponent<EnemyComponent>()->HitByBurger();
+			m_pBurger->NotifyHitEnemy(other);
+		}
+
 		if (other->GetTag() == "BottomBorder")
 		{
 			m_State = BurgerState::OnGround;

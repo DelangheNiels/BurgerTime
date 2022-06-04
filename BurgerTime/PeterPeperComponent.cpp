@@ -7,7 +7,7 @@
 #include "RenderComponent.h"
 
 #include "ResourceManager.h"
-#include "MrHotdogComponent.h"
+#include "EnemyComponent.h"
 
 void dae::PeterPeperComponent::IsDamaged()
 {
@@ -160,7 +160,7 @@ void dae::PeterPeperComponent::OnCollision(GameObject* object)
 {
 	const std::string tag = object->GetTag();
 
-	if (tag == "Enemy" && m_CurrentState != PlayerStates::Dying && object->GetComponent<MrHotdogComponent>()->GetState() != EnemyState::Dying)
+	if ( (tag == "MrHotdog" || tag == "MrEgg" || tag =="MrPickle") && m_CurrentState != PlayerStates::Dying && object->GetComponent<EnemyComponent>()->GetState() != EnemyState::Dying)
 	{
 		SwitchAnimation(PlayerStates::Dying);
 		IsDamaged();

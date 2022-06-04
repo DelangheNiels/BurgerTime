@@ -23,12 +23,14 @@ namespace dae
 		void NotifyHit();
 		void NotifyOnGround();
 		void NotifyOnCatcher();
+		void NotifyHitEnemy(GameObject* enemy);
 
 		std::vector<BurgerPartComponent*> Getparts() const;
 
 	private:
-		std::vector<BurgerPartComponent*> m_Parts;
-		PointsComponent* m_pPointsComponent;
+		std::vector<BurgerPartComponent*> m_Parts{};
+		std::vector<GameObject*> m_EnemiesHit{};
+		PointsComponent* m_pPointsComponent{};
 
 		int m_AmountOfHitparts{};
 	};

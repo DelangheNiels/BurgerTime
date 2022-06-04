@@ -22,7 +22,7 @@
 #include "AnimatedSpriteComponent.h"
 #include "BurgerPartComponent.h"
 #include "BurgerComponent.h"
-#include "MrHotdogComponent.h"
+#include "EnemyComponent.h"
 
 
 
@@ -241,7 +241,7 @@ void BurgerTimeGame::LoadGame() const
 
 	//Enemies
 	auto hotdog = std::make_shared<GameObject>();
-	hotdog.get()->SetTag("Enemy");
+	hotdog.get()->SetTag("MrHotdog");
 	auto hotdogSpriteRenderComp = std::make_shared<RenderComponent>(hotdog.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/PlayerSprites/Player2Idle.png"));
 	BoundingBox hotdogCollisionBox{ hotdogSpriteRenderComp.get()->GetWidth(), hotdogSpriteRenderComp.get()->GetHeight() };
 	auto hotdogCollisionComponent = std::make_shared<CollisionComponent>(hotdog.get(), hotdogCollisionBox);
@@ -259,7 +259,7 @@ void BurgerTimeGame::LoadGame() const
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingDown, hotdogWalkDown.get()));
 	hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::Dying, hotdogDead.get()));
 
-	auto hotdogComp = std::make_shared<MrHotdogComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations, 115.0f, 555.0f);
+	auto hotdogComp = std::make_shared<EnemyComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations, 115.0f, 555.0f);
 	hotdog.get()->AddComponent(hotdogComp);
 	hotdog.get()->AddComponent(hotdogSpriteRenderComp);
 	hotdog.get()->AddComponent(hotdogCollisionComponent);

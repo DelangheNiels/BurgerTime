@@ -14,6 +14,7 @@ namespace dae
 
 		int GetPoints() const;
 		void PartDropped();
+		void MrHotdogHit();
 
 		void AddPointsObserver(PointsObserver* pointsObserver);
 		void RemovePointsObserver(PointsObserver* pointsObserver);
