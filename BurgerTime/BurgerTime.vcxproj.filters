@@ -22,6 +22,9 @@
     <Filter Include="FileReading">
       <UniqueIdentifier>{e8035d6f-6bf5-46b6-8c14-f035be8ed29a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{d13ec418-ff64-46fd-a757-74e37071c128}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -66,6 +69,9 @@
     <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="EnemyComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

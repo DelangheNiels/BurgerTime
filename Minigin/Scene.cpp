@@ -9,7 +9,13 @@ using namespace dae;
 
 unsigned int Scene::m_IdCounter = 0;
 
-Scene::Scene(const std::string& name) : m_Name(name) {}
+void dae::Scene::LoadScene()
+{
+}
+
+Scene::Scene(const std::string& name) : m_Name(name)
+{
+}
 
 Scene::~Scene() = default;
 
@@ -71,4 +77,3 @@ void dae::Scene::HandleCollisions()
 		}
 	}
 }
-
