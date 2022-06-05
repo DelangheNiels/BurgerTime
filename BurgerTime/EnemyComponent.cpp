@@ -44,24 +44,17 @@ void dae::EnemyComponent::Update(float deltaTime)
 	}
 }
 
-void dae::EnemyComponent::FixedUpdate(float)
-{
-}
-
-void dae::EnemyComponent::OnCollision(GameObject*)
-{
-}
-
-void dae::EnemyComponent::OnEndCollision(GameObject*)
-{
-}
-
 dae::EnemyState dae::EnemyComponent::GetState() const
 {
 	return m_CurrentState;
 }
 
 void dae::EnemyComponent::HitByBurger()
+{
+	SwitchAnimation(EnemyState::Dying);
+}
+
+void dae::EnemyComponent::Stun()
 {
 	SwitchAnimation(EnemyState::Dying);
 }

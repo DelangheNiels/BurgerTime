@@ -10,6 +10,7 @@
 #include "ResourceManager.h"
 #include "EnemyComponent.h"
 
+
 void dae::PeterPeperComponent::IsDamaged()
 {
 	if (m_Health != 0 && !m_FirsFrame)
@@ -38,7 +39,6 @@ void dae::PeterPeperComponent::IsDamaged()
 
 void dae::PeterPeperComponent::Update(float deltaTime)
 {
-	std::cout << m_pGameObject->GetTransform().GetPosition().x << " " << m_pGameObject->GetTransform().GetPosition().y << "\n";
 	SetIdle();
 	UpdateAnimation(deltaTime);
 
@@ -155,6 +155,7 @@ dae::PeterPeperComponent::PeterPeperComponent(GameObject* gameObject, int health
 		m_Health = 1;
 	}
 
+	m_AmountOfPepers = 5;
 	m_OnGround = true;
 	m_RespawnTime = ((animations.find(PlayerStates::Dying)->second->GetAmountOfAnimations()-1) * (animations.find(PlayerStates::Dying)->second->GetChangeImageTime()))/2;
 
@@ -288,3 +289,4 @@ void dae::PeterPeperComponent::Respawn()
 	SwitchAnimation(PlayerStates::Idle);
 	m_RespawnTimer = 0.0f;
 }
+

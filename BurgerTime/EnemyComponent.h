@@ -24,14 +24,11 @@ namespace dae
 		EnemyComponent& operator=(EnemyComponent&& other) = default;
 
 		void Update(float) override;
-		void FixedUpdate(float) override;
-
-		void OnCollision(GameObject*) override;
-		void OnEndCollision(GameObject*) override;
 
 		EnemyState GetState() const;
 
 		void HitByBurger();
+		void Stun();
 
 		void Respawn();
 

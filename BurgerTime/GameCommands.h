@@ -74,4 +74,13 @@ public:
 	bool ExecuteOnDown() override;
 };
 
+class ThrowPeperCommand final : public Command
+{
+public:
+	ThrowPeperCommand(GameObject* gameObject);
+	virtual ~ThrowPeperCommand() = default;
+	bool ExecuteOnHold() override;
+	bool ExecuteOnUp() override;
+	bool ExecuteOnDown() override;
+};
 

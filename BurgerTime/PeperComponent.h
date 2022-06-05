@@ -17,14 +17,24 @@ namespace dae
 		PeperComponent& operator=(PeperComponent && other) = default;
 
 		void Update(float)override;
-		void OnCollision(GameObject* pOther) override;
+
+		void OnCollision(GameObject* pOther);
+
+		void Spawn(PlayerStates playerState);
 
 	private:
 		float m_StartX{}, m_StartY{};
 
 		RenderComponent* m_pRenderComponent{};
 
-		std::map<PlayerStates, AnimatedSpriteComponent*> m_Animations;
+		std::map<PlayerStates, AnimatedSpriteComponent*> m_Animations{};
+
+		AnimatedSpriteComponent* m_pCurrentAnimation{};
+
+		float m_AnitmationTime{};
+		float m_AnimationTimer{};
+
+		bool m_Spawned{};
 	};
 }
 

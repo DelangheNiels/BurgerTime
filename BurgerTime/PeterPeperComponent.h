@@ -80,6 +80,9 @@ namespace dae
 		AnimatedSpriteComponent* m_pCurrentAnimation;
 		RenderComponent* m_pRenderComponent;
 
+		int m_AmountOfPepers{};
+
+
 		void UpdatePosition(float deltaTime);
 		void UpdateAnimation(float deltaTime);
 

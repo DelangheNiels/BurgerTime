@@ -208,18 +208,6 @@ void dae::GameSceneMultiplayer::LoadScene()
 		InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject2.get(), 1);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject2.get(), 1);
 
-		std::cout << "Used controlls:" << "\n";
-		std::cout << "======================" << "\n";
-		std::cout << "Player1:" << "\n";
-		std::cout << "Damage: A" << "\n";
-		std::cout << "Points: B" << "\n";
-		std::cout << "Horizontal Movement: left/right D-Pad" << "\n";
-		std::cout << "Play sound: D-Pad up" << "\n";
-		std::cout << "======================" << "\n";
-		std::cout << "Player2:" << "\n";
-		std::cout << "Damage: X" << "\n";
-		std::cout << "Points: Y" << "\n";
-		std::cout << "======================" << "\n";
 
 		//burgerPart
 		auto burgerpartObject = std::make_shared<GameObject>();
