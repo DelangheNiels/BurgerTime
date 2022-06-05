@@ -102,7 +102,8 @@ void dae::GameObject::OnCollision(GameObject* pOther)
 {
 	for (auto& component : m_Components)
 	{
-		component.get()->OnCollision(pOther);
+		if(component.get()->IsActive())
+			component.get()->OnCollision(pOther);
 	}
 }
 
@@ -110,7 +111,8 @@ void dae::GameObject::OnEndCollision(GameObject* pOther)
 {
 	for (auto& component : m_Components)
 	{
-		component.get()->OnEndCollision(pOther);
+		if (component.get()->IsActive())
+			component.get()->OnEndCollision(pOther);
 	}
 }
 
@@ -157,7 +159,8 @@ void dae::GameObject::Update(float deltaTime)
 {
 	for (size_t i = 0; i < m_Components.size(); i++)
 	{
-		m_Components[i].get()->Update(deltaTime);
+		if(m_Components[i].get()->IsActive())
+			m_Components[i].get()->Update(deltaTime);
 	}
 
 	for (size_t i = 0; i < m_Children.size(); i++)
@@ -170,7 +173,8 @@ void dae::GameObject::FixedUpdate(float fixedTime)
 {
 	for (size_t i = 0; i < m_Components.size(); i++)
 	{
-		m_Components[i].get()->FixedUpdate(fixedTime);
+		if (m_Components[i].get()->IsActive())
+			m_Components[i].get()->FixedUpdate(fixedTime);
 	}
 
 	for (size_t i = 0; i < m_Children.size(); i++)

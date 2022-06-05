@@ -56,7 +56,7 @@ void Scene::Render() const
 		for (const auto& object : m_Objects)
 		{
 			auto renderComp = object.get()->GetComponent<RenderComponent>();
-			if (renderComp)
+			if (renderComp && renderComp->IsActive())
 				renderComp->Render();
 
 		}

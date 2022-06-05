@@ -22,9 +22,14 @@ namespace dae
 		virtual void OnCollision(GameObject* gameObject);
 		virtual void OnEndCollision(GameObject* gameObject);
 
+		bool IsActive() const;
+		void SetInActive();
+		void SetActive();
+
 	protected:
 		GameObject* m_pGameObject{};
 
+		bool m_IsActive{};
 
 
 	};
