@@ -15,9 +15,30 @@ int dae::HighscoreManager::GetHighScore()
     return m_HighScore;
 }
 
-std::vector<int> dae::HighscoreManager::GetTop10() const
+std::vector<int> dae::HighscoreManager::GetTop10()
 {
-    return m_Scores;
+
+    if (!m_Loaded)
+    {
+        LoadScores();
+        m_Loaded = true;
+    }
+
+    if (m_Scores.size() <= 10)
+    {
+        return m_Scores;
+    }
+
+    else
+    {
+        std::vector<int> scores{};
+        for (int i = 0; i < 10; i++)
+        {
+            scores.push_back(m_Scores[i]);
+        }
+        return scores;
+    }
+    
 }
 
 void dae::HighscoreManager::SaveScore(int)

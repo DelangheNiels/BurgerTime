@@ -8,7 +8,7 @@ namespace dae
 	{
 	public:
 		int GetHighScore();
-		std::vector<int> GetTop10()const;
+		std::vector<int> GetTop10();
 		void SaveScore(int score);
 	private:
 		friend class Singleton<HighscoreManager>;

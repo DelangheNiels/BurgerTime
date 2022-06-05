@@ -225,12 +225,6 @@ void dae::GameSceneMultiplayer::LoadScene()
 
 
 
-
-
-
-
-
-
 	//Enemies
 	auto hotdog = std::make_shared<GameObject>();
 	hotdog.get()->SetTag("MrHotdog");
