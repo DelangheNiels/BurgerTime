@@ -3,7 +3,7 @@
 class AudioClip final
 {
 public:
-	AudioClip(const std::string& path);
+	AudioClip(const std::string& path, bool loop = false);
 	~AudioClip();
 
 	AudioClip(const AudioClip & other) = default;

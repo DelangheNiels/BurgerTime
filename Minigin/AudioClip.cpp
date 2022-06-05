@@ -6,11 +6,12 @@
 class AudioClip::AudioClipImpl
 {
 	Mix_Chunk* m_pChunk{};
-	std::string m_Path;
+	std::string m_Path{};
+	bool m_Loop{};
 
 public:
-	AudioClipImpl(const std::string& path)
-		:m_Path(path)
+	AudioClipImpl(const std::string& path, bool loop = false)
+		:m_Path(path), m_Loop{loop}
 	{}
 
 	~AudioClipImpl()
@@ -42,8 +43,17 @@ public:
 		if (!IsLoaded())
 			return false;
 
-		int channel = Mix_PlayChannel(-1, m_pChunk, 0);
-		std::cout << "play sound" << "\n";
+		int channel{};
+		if (m_Loop)
+		{
+			channel = Mix_PlayChannel(-1, m_pChunk, -1);
+		}
+		
+		else
+		{
+			channel = Mix_PlayChannel(-1, m_pChunk, 0);
+		}
+
 		return channel == -1 ? false : true;
 	}
 
@@ -65,9 +75,9 @@ public:
 	}
 };
 
-AudioClip::AudioClip(const std::string& path)
+AudioClip::AudioClip(const std::string& path, bool loop)
 {
-	pImpl = new AudioClipImpl(path);
+	pImpl = new AudioClipImpl(path, loop);
 }
 
 AudioClip::~AudioClip()
