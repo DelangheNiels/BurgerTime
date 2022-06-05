@@ -37,6 +37,7 @@ void dae::GameScene::LoadScene()
 	if (!m_IsLoaded)
 	{
 		ServiceLocator::GetSoundService().QueueAudioClip(ResourceManager::GetInstance().LoadSound("backgroundMusic.mp3"), 0.3f, true);
+
 		//Load level
 		LevelLoader loader = LevelLoader("Level.txt");
 		loader.LoadLevel(*this);
@@ -99,20 +100,14 @@ void dae::GameScene::LoadScene()
 		peterPeperGameObject.get()->AddComponent(walkUpAnimation);
 		peterPeperGameObject.get()->AddComponent(walkDownAnimation);
 		peterPeperGameObject.get()->AddComponent(dyingAnimation);
-
-		//peterPeperGameObject.get()->SetPosition(55, 61);
-		//peterPeperGameObject.get()->SetPosition(375, 545);
 		Add(peterPeperGameObject);
 
 		//player One lives display
 		auto playerOneHealthDisplayObject = std::make_shared<GameObject>();
-
 		const SDL_Color colorP1 = { 255,255,0 };
 		auto renderCompHealthP1 = std::make_shared<RenderComponent>(playerOneHealthDisplayObject.get(), nullptr);
 		auto textCompHealthP1 = std::make_shared<TextComponent>(playerOneHealthDisplayObject.get(), "", font, renderCompHealthP1, colorP1);
-
 		auto playerOneHealthDisplayComponent = std::make_shared<PlayerHealthDisplayComponent>(playerOneHealthDisplayObject.get(), playerOne.get(), textCompHealthP1);
-
 		playerOneHealthDisplayObject.get()->AddComponent(playerOneHealthDisplayComponent);
 		playerOneHealthDisplayObject.get()->AddComponent(renderCompHealthP1);
 		playerOneHealthDisplayObject.get()->AddComponent(textCompHealthP1);
@@ -139,8 +134,6 @@ void dae::GameScene::LoadScene()
 		pointsDisplayPlayerOneGameObject.get()->SetPosition(225, 10);
 		Add(pointsDisplayPlayerOneGameObject);
 
-
-		
 		//input commands
 		InputManager::GetInstance().AddController(new XBox360Controller{ 0 });
 
@@ -166,51 +159,6 @@ void dae::GameScene::LoadScene()
 		std::cout << "Damage: X" << "\n";
 		std::cout << "Points: Y" << "\n";
 		std::cout << "======================" << "\n";
-
-
-
-
-
-
-
-
-
-		//Enemies
-		auto hotdog = std::make_shared<GameObject>();
-		hotdog.get()->SetTag("MrHotdog");
-		auto hotdogSpriteRenderComp = std::make_shared<RenderComponent>(hotdog.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/PlayerSprites/Player2Idle.png"));
-		BoundingBox hotdogCollisionBox{ hotdogSpriteRenderComp.get()->GetWidth(), hotdogSpriteRenderComp.get()->GetHeight() };
-		auto hotdogCollisionComponent = std::make_shared<CollisionComponent>(hotdog.get(), hotdogCollisionBox);
-
-		auto hotdogWalkLeft = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingLeft.png"));
-		auto hotdogWalkRight = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingRight.png"));
-		auto hotdogWalkUp = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingUp.png"));
-		auto hotdogWalkDown = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 2, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/WalkingDown.png"));
-		auto hotdogDead = std::make_shared<AnimatedSpriteComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), 4, ResourceManager::GetInstance().LoadSpriteSheet("MrHotdogSprites/Dying.png"));
-		std::map<EnemyState, AnimatedSpriteComponent*> hotdogAnimations;
-
-		hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingLeft, hotdogWalkLeft.get()));
-		hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingRight, hotdogWalkRight.get()));
-		hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingUp, hotdogWalkUp.get()));
-		hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::WalkingDown, hotdogWalkDown.get()));
-		hotdogAnimations.insert(std::pair<EnemyState, AnimatedSpriteComponent*>(EnemyState::Dying, hotdogDead.get()));
-
-		auto hotdogComp = std::make_shared<EnemyComponent>(hotdog.get(), hotdogSpriteRenderComp.get(), hotdogAnimations, 115.0f, 555.0f);
-		auto AIMovementComp = std::make_shared<AIMovementComponent>(hotdog.get(), hotdogComp.get());
-		hotdog.get()->AddComponent(hotdogComp);
-		hotdog.get()->AddComponent(AIMovementComp);
-		hotdog.get()->AddComponent(hotdogSpriteRenderComp);
-		hotdog.get()->AddComponent(hotdogCollisionComponent);
-		hotdog.get()->AddComponent(hotdogWalkLeft);
-		hotdog.get()->AddComponent(hotdogWalkDown);
-		hotdog.get()->AddComponent(hotdogWalkRight);
-		hotdog.get()->AddComponent(hotdogWalkUp);
-		hotdog.get()->AddComponent(hotdogDead);
-		Add(hotdog);
-
-
-
-
 
 		//burgerPart
 		auto burgerpartObject = std::make_shared<GameObject>();
@@ -273,7 +221,6 @@ void dae::GameScene::LoadScene()
 		burgerObject.get()->AddComponent(burgerComp);
 
 		Add(burgerObject);
-
 
 		//secondpart
 
@@ -399,21 +346,6 @@ void dae::GameScene::LoadScene()
 		burgerObject3.get()->AddComponent(burgerComp3);
 
 		Add(burgerObject3);
-
-
-		//Catcher
-		auto catcherObj = std::make_shared<GameObject>();
-		auto renderCompCatcher = std::make_shared<RenderComponent>(catcherObj.get(), ResourceManager::GetInstance().LoadTexture("SpriteSheets/BurgerSprites/Catcher.png"));
-		catcherObj.get()->AddComponent(renderCompCatcher);
-		catcherObj.get()->SetPosition(98, 700);
-		Add(catcherObj);
-
-		auto catcherObjBorder = std::make_shared<GameObject>();
-		catcherObjBorder.get()->SetTag("Catcher");
-		BoundingBox collisionBoxCatcher{ 126, 1.0f };
-		catcherObjBorder.get()->AddComponent(std::make_unique<CollisionComponent>(catcherObjBorder.get(), collisionBoxCatcher));
-		catcherObjBorder.get()->SetPosition(98, 720);
-		Add(catcherObjBorder);
 
 		m_IsLoaded = true;
 	}
