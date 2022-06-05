@@ -67,14 +67,14 @@ void dae::LevelLoader::LoadLevel(Scene& scene)
 
 		else if (indicator == "B")
 		{
-			float x, y, width;
+			float x, y, width, height;
 			std::string tag;
 
-			file >> x >> y >> width >> tag;
+			file >> x >> y >> width >> height >>tag;
 
 			auto border = std::make_shared<GameObject>();
 			border.get()->SetTag(tag);
-			BoundingBox collisionBox{ width, 1.0f };
+			BoundingBox collisionBox{ width, height };
 			border.get()->AddComponent(std::make_unique<CollisionComponent>(border.get(), collisionBox));
 			border.get()->SetPosition(x, y);
 			scene.Add(border);

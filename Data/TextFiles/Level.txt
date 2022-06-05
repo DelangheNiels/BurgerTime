@@ -162,46 +162,58 @@ P 615 585 BluePlatform.png
 P 655 585 BluePlatform.png
 P 695 585 LightBluePlatform.png
 #
-B 97  92.5 104 BottomBorder
-B 100 92.5 25 BottomBorder
-B 190 92.5 15 BottomBorder
-B 256 92.5 24 BottomBorder
-B 340 92.5 18 BottomBorder
-B 425 92.5 95 BottomBorder
-B 500 92.5 15 BottomBorder
-B 580 92.5 105 BottomBorder
+B 97  92.5 104 1 BottomBorder
+B 100 92.5 25 1 BottomBorder
+B 190 92.5 15 1 BottomBorder
+B 256 92.5 24 1 BottomBorder
+B 340 92.5 18 1 BottomBorder
+B 425 92.5 95 1 BottomBorder
+B 500 92.5 15 1 BottomBorder
+B 580 92.5 105 1 BottomBorder
 #
-B 55 202 75 BottomBorder
-B 190 202 15 BottomBorder
-B 425 202 25 BottomBorder
-B 500 202 25 BottomBorder
-B 580 202 105 BottomBorder
+B 55 202 75 1 BottomBorder
+B 190 202 15 1 BottomBorder
+B 425 202 25 1 BottomBorder
+B 500 202 25 1 BottomBorder
+B 580 202 105 1 BottomBorder
 #
-B 256 257 110 BottomBorder
+B 256 257 110 1 BottomBorder
 #
-B 100 315 25 BottomBorder
-B 190 315 15 BottomBorder
-B 500 315 25 BottomBorder
-B 580 315 25 BottomBorder
-B 670 315 60 BottomBorder
+B 100 315 25 1 BottomBorder
+B 190 315 15 1 BottomBorder
+B 500 315 25 1 BottomBorder
+B 580 315 25 1 BottomBorder
+B 670 315 60 1 BottomBorder
 #
-B 270 368 82 BottomBorder
-B 425 368 97 BottomBorder
+B 270 368 82 1 BottomBorder
+B 425 368 97 1 BottomBorder
 #
-B 580 422 15 BottomBorder
-B 670 422 23 BottomBorder
+B 580 422 15 1 BottomBorder
+B 670 422 23 1 BottomBorder
 #
-B 99 475 46 BottomBorder
-B 190 475 23 BottomBorder
-B 260 475 103 BottomBorder
-B 425 475 100 BottomBorder
+B 99 475 46 1 BottomBorder
+B 190 475 23 1 BottomBorder
+B 260 475 103 1 BottomBorder
+B 425 475 100 1 BottomBorder
 #
-B 55 588 667 BottomBorder
+B 55 588 667 1 BottomBorder
 #
-B 55 62 651.5 TopBorder
-B 125 168 42 TopBorder
-B 605 281 42 TopBorder
-B 55 279 40 TopBorder
-B 680 389 40 TopBorder
-
-
+B 55 62 651.5 1 TopBorder
+B 125 168 42 1 TopBorder
+B 605 281 42 1 TopBorder
+B 55 279 40 1 TopBorder
+B 680 389 40 1 TopBorder
+#
+B 738.5 61 1 590 RightBorder
+B 248.2 99 1 70 RightBorder
+B 413.4 212.7 1 20 RightBorder
+B 253.4 271.5 1 20 RightBorder
+B 572.1 322 1 20 RightBorder
+B 527.1 436.5 1 20 RightBorder
+#
+B 47 61 1 590 LeftBorder
+B 369.9 96.8 1 70 LeftBorder
+B 202 212.7 1 20 LeftBorder
+B 528.6 213.1 1 70 LeftBorder
+B 211 322 1 20 LeftBorder
+B 529.8 376 1 20 LeftBorder

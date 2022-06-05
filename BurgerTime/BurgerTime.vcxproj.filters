@@ -90,6 +90,9 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="AIMovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AIMovementComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

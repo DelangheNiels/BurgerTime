@@ -49,8 +49,6 @@ namespace dae
 		AnimatedSpriteComponent* m_pCurrentAnimation;
 		RenderComponent* m_pRenderComponent;
 
-		float m_MovementSpeed = { 90.0f };
-
 		void SwitchAnimation(EnemyState state);
 
 

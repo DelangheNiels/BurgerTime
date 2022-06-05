@@ -171,6 +171,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIMovementComponent.cpp" />
     <ClCompile Include="BurgerComponent.cpp" />
     <ClCompile Include="BurgerPartComponent.cpp" />
     <ClCompile Include="BurgerTimeGame.cpp" />
@@ -198,6 +199,7 @@
     <ClCompile Include="PointsObserver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIMovementComponent.h" />
     <ClInclude Include="BurgerComponent.h" />
     <ClInclude Include="BurgerPartComponent.h" />
     <ClInclude Include="BurgerTimeGame.h" />
