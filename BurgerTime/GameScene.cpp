@@ -36,6 +36,7 @@ void dae::GameScene::LoadScene()
 {
 	if (!m_IsLoaded)
 	{
+		ServiceLocator::GetSoundService().QueueAudioClip(ResourceManager::GetInstance().LoadSound("backgroundMusic.mp3"), 0.3f, true);
 		//Load level
 		LevelLoader loader = LevelLoader("Level.txt");
 		loader.LoadLevel(*this);

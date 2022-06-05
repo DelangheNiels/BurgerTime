@@ -62,13 +62,18 @@ public:
 			
 			delete m_ClipsToDelete[i];
 		}
+
+		for (size_t i = 0; i < m_AudioQueue.size(); i++)
+		{
+			m_AudioQueue.pop();
+		}
 		Mix_CloseAudio();
 	}
 
-	void QueueAudioClip(const std::string& path)
+	void QueueAudioClip(const std::string& path, float volume ,bool loop)
 	{
 		mutex.lock();
-		m_AudioQueue.emplace(new AudioClip(path));
+		m_AudioQueue.emplace(new AudioClip(path, volume,loop));
 		mutex.unlock();
 		m_WaitingCondition.notify_all();
 	}
@@ -87,7 +92,7 @@ SoundManager::~SoundManager()
 	delete pImpl;
 }
 
-void SoundManager::QueueAudioClip(const std::string& path)
+void SoundManager::QueueAudioClip(const std::string& path, float volume ,bool loop)
 {
-	pImpl->QueueAudioClip(path);
+	pImpl->QueueAudioClip(path, volume,loop);
 }

@@ -8,6 +8,7 @@
 #include "GameObject.h"
 #include "Command.h"
 #include "ServiceLocator.h"
+#include "ServiceLocator.h"
 
 #include "RenderComponent.h"
 #include "TextComponent.h"
@@ -24,6 +25,8 @@ void dae::MainMenuScene::LoadScene()
 {
 	if (!m_IsLoaded)
 	{
+		ServiceLocator::GetSoundService().QueueAudioClip(ResourceManager::GetInstance().LoadSound("StartMusic.mp3"), 0.3f,false);
+
 		//backgroundImage
 		auto backgroundImageObject = std::make_shared<GameObject>();
 		backgroundImageObject.get()->AddComponent(std::make_shared<RenderComponent>(backgroundImageObject.get(), ResourceManager::GetInstance().LoadTexture("StartScreen.png")));

@@ -47,7 +47,7 @@ std::shared_ptr<dae::Font> dae::ResourceManager::LoadFont(const std::string& fil
 
 std::string dae::ResourceManager::LoadSound(const std::string& file) const
 {
-	const auto fullPath = m_DataPath + file;
+	const auto fullPath = m_DataPath + "Sound/" + file;
 	return fullPath;
 }
 

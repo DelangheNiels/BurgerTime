@@ -5,6 +5,7 @@
 #include "CollisionComponent.h"
 #include "AnimatedSpriteComponent.h"
 #include "RenderComponent.h"
+#include "ServiceLocator.h"
 
 #include "ResourceManager.h"
 #include "EnemyComponent.h"
@@ -13,6 +14,9 @@ void dae::PeterPeperComponent::IsDamaged()
 {
 	if (m_Health != 0 && !m_FirsFrame)
 	{
+		if(m_Health > 1)
+			ServiceLocator::GetSoundService().QueueAudioClip(ResourceManager::GetInstance().LoadSound("PlayerHit.mp3"), 0.3f, false);
+
 		--m_Health;
 
 		for (size_t i = 0; i < m_Observers.size(); i++)
