@@ -51,9 +51,10 @@ void dae::HighScoreScene::LoadScene()
 		scoreObject.get()->SetPosition(30, 650);
 		Add(scoreObject);
 
+		auto quitFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 40);
 		auto quitObject = std::make_shared<GameObject>();
 		auto quitRenderComp = std::make_shared<RenderComponent>(quitObject.get(), nullptr);
-		auto quitTextComp = std::make_shared<TextComponent>(quitObject.get(), "Escape: Quit", titleFont, quitRenderComp, SDL_Color{ 255,255,0 });
+		auto quitTextComp = std::make_shared<TextComponent>(quitObject.get(), "Escape: Quit", quitFont, quitRenderComp, SDL_Color{ 255,255,255 });
 		quitObject.get()->AddComponent(quitRenderComp);
 		quitObject.get()->AddComponent(quitTextComp);
 		quitObject.get()->SetPosition(500, 650);
