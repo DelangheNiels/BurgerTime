@@ -6,7 +6,7 @@ namespace dae
 	class PointsDisplayComponent final : public PointsObserver, public Component
 	{
 	public:
-		explicit PointsDisplayComponent(GameObject* gameObject, std::shared_ptr<TextComponent> textComponent);
+		PointsDisplayComponent(GameObject* gameObject, std::shared_ptr<TextComponent> textComponent);
 		~PointsDisplayComponent() = default;
 
 		void Update(float deltaTime) override;

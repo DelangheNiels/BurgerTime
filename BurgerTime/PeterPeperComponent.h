@@ -41,7 +41,7 @@ namespace dae
 
 		void SetOnGround(bool onGround);
 
-		explicit PeterPeperComponent(GameObject* gameObject, int health,RenderComponent* renderComp ,std::map<PlayerStates, AnimatedSpriteComponent*> animations, float startX, float startY);
+		PeterPeperComponent(GameObject* gameObject, int health,RenderComponent* renderComp ,std::map<PlayerStates, AnimatedSpriteComponent*> animations, float startX, float startY);
 		virtual ~PeterPeperComponent() = default;
 		PeterPeperComponent(const PeterPeperComponent& other) = default;
 		PeterPeperComponent(PeterPeperComponent&& other) = default;

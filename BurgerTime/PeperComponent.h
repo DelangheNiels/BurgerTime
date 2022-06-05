@@ -9,7 +9,7 @@ namespace dae
 	class PeperComponent final : public Component
 	{
 	public: 
-		explicit PeperComponent(GameObject* gameObject, RenderComponent* renderComp, std::map<PlayerStates, AnimatedSpriteComponent*> animations);
+		PeperComponent(GameObject* gameObject, RenderComponent* renderComp, std::map<PlayerStates, AnimatedSpriteComponent*> animations);
 		virtual ~PeperComponent() = default;
 		PeperComponent(const PeperComponent & other) = default;
 		PeperComponent(PeperComponent && other) = default;

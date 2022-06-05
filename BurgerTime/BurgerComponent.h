@@ -10,7 +10,7 @@ namespace dae
 	class BurgerComponent : public Component
 	{
 	public:
-		explicit BurgerComponent(GameObject* gameObject, PointsComponent* pointsComp);
+		BurgerComponent(GameObject* gameObject, PointsComponent* pointsComp);
 		virtual ~BurgerComponent() = default;
 		BurgerComponent(const BurgerComponent & other) = default;
 		BurgerComponent(BurgerComponent && other) = default;

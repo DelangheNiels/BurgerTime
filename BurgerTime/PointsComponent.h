@@ -7,7 +7,7 @@ namespace dae
 	class PointsComponent final : public Component
 	{
 	public:
-		explicit PointsComponent(GameObject* gameObject);
+		PointsComponent(GameObject* gameObject);
 		~PointsComponent() = default;
 
 		void Update(float deltaTime) override;

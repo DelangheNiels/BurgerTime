@@ -16,7 +16,7 @@ namespace dae
 	class EnemyComponent final : public Component
 	{
 	public:
-		explicit EnemyComponent(GameObject* gameObject, RenderComponent* renderComp, std::map<EnemyState, AnimatedSpriteComponent*> animations, float startPosX, float startPosY);
+		EnemyComponent(GameObject* gameObject, RenderComponent* renderComp, std::map<EnemyState, AnimatedSpriteComponent*> animations, float startPosX, float startPosY);
 		virtual ~EnemyComponent() = default;
 		EnemyComponent(const EnemyComponent& other) = default;
 		EnemyComponent(EnemyComponent&& other) = default;

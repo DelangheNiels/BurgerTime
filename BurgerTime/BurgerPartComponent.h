@@ -14,7 +14,7 @@ namespace dae
 	class BurgerPartComponent final : public Component
 	{
 	public:
-		explicit BurgerPartComponent(GameObject* gameObject);
+		BurgerPartComponent(GameObject* gameObject);
 		virtual ~BurgerPartComponent() = default;
 		BurgerPartComponent(const BurgerPartComponent & other) = default;
 		BurgerPartComponent(BurgerPartComponent && other) = default;
