@@ -8,7 +8,7 @@ namespace dae
 	class LevelLoader final
 	{
 	public:
-		explicit LevelLoader(const std::string& filename);
+		LevelLoader(const std::string& filename);
 		virtual ~LevelLoader() = default;
 		LevelLoader(const LevelLoader& other) = default;
 		LevelLoader(LevelLoader&& other) = default;

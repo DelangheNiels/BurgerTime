@@ -26,7 +26,7 @@ namespace dae
 
 	private:
 
-		int m_Points;
+		int m_Points{};
 		std::vector<PointsObserver*> m_PointsObservers{};
 	};
 }

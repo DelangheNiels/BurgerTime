@@ -12,7 +12,7 @@ namespace dae
 	class CollisionComponent final : public Component
 	{
 	public:
-		explicit CollisionComponent(GameObject* gameObject, BoundingBox boundingBox);
+		CollisionComponent(GameObject* gameObject, BoundingBox boundingBox);
 		virtual ~CollisionComponent() = default;
 		CollisionComponent(const CollisionComponent& other) = delete;
 		CollisionComponent(CollisionComponent&& other) = delete;

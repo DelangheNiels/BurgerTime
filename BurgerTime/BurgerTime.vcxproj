@@ -191,7 +191,6 @@
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
-    <ClCompile Include="PeperComponent.cpp" />
     <ClCompile Include="PeterPeperComponent.cpp" />
     <ClCompile Include="PlayerHealthDisplayComponent.cpp" />
     <ClCompile Include="PlayerObserver.cpp" />
@@ -214,7 +213,6 @@
     <ClInclude Include="HighScoreScene.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MainMenuScene.h" />
-    <ClInclude Include="PeperComponent.h" />
     <ClInclude Include="PeterPeperComponent.h" />
     <ClInclude Include="PlayerHealthDisplayComponent.h" />
     <ClInclude Include="PlayerObserver.h" />

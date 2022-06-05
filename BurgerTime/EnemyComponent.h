@@ -38,6 +38,7 @@ namespace dae
 		float m_RespawnTime = 5.0f;
 
 		float m_StartX{}, m_StartY{};
+		float m_DeadX{ -100 }, m_DeadY{0};
 
 	private:
 		std::map<EnemyState, AnimatedSpriteComponent*> m_Animations;

@@ -11,7 +11,7 @@ namespace dae
 
 		void Update(float deltaTime) override;
 
-		explicit FPSComponent(GameObject* gameObject,const std::shared_ptr<TextComponent>& textComponent);
+		FPSComponent(GameObject* gameObject,const std::shared_ptr<TextComponent>& textComponent);
 		virtual ~FPSComponent() = default;
 		FPSComponent(const FPSComponent & other) = delete;
 		FPSComponent(FPSComponent && other) = delete;

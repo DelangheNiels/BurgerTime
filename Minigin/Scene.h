@@ -21,7 +21,7 @@ namespace dae
 
 		std::string GetSceneName() const;
 
-		explicit Scene(const std::string& name);
+		Scene(const std::string& name);
 		~Scene();
 		Scene(const Scene& other) = delete;
 		Scene(Scene&& other) = delete;

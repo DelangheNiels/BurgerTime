@@ -69,9 +69,6 @@
     <ClCompile Include="BurgerComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="PeperComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="BurgerComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="PeperComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="EnemyComponent.h">

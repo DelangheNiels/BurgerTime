@@ -12,7 +12,7 @@ namespace dae
 
 		GameObject* GetGameObject() const;
 
-		explicit Component(GameObject* gameObject);
+		Component(GameObject* gameObject);
 		virtual ~Component() = default;
 		Component(const Component & other) = delete;
 		Component(Component && other) = delete;

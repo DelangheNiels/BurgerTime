@@ -12,8 +12,12 @@
 		bool IsUp(unsigned int button) const;
 		bool IsPressed(unsigned int button) const;
 
-		explicit XBox360Controller(int controllerIndex);
+		XBox360Controller(int controllerIndex);
 		~XBox360Controller();
+		XBox360Controller(const XBox360Controller& other) = default;
+		XBox360Controller(XBox360Controller && other) = default;
+		XBox360Controller& operator=(const XBox360Controller & other) = default;
+		XBox360Controller& operator=(XBox360Controller && other) = default;
 
 	private:
 		class XBox360ControllerImpl;

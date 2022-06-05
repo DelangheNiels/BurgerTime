@@ -163,23 +163,3 @@ bool SelectMultiPlayerCommand::ExecuteOnDown()
 	SceneManager::GetInstance().LoadScene("MultiPlayerGame");
 	return true;
 }
-
-ThrowPeperCommand::ThrowPeperCommand(GameObject* gameObject)
-	:Command(gameObject)
-{
-}
-
-bool ThrowPeperCommand::ExecuteOnHold()
-{
-	return true;
-}
-
-bool ThrowPeperCommand::ExecuteOnUp()
-{
-	return true;
-}
-
-bool ThrowPeperCommand::ExecuteOnDown()
-{
-	return true;
-}

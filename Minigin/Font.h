@@ -10,7 +10,7 @@ namespace dae
 	{
 	public:
 		_TTF_Font* GetFont() const;
-		explicit Font(const std::string& fullPath, unsigned int size);
+		Font(const std::string& fullPath, unsigned int size);
 		~Font();
 
 		Font(const Font &) = delete;

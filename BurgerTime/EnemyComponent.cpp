@@ -39,7 +39,7 @@ void dae::EnemyComponent::Update(float deltaTime)
 		{
 			m_CurrentState = EnemyState::Respawning;
 			m_PlayDeadTimer = 0.0f;
-			m_pGameObject->SetPosition(-100, 0);
+			m_pGameObject->SetPosition(m_DeadX, m_DeadY);
 		}
 	}
 }

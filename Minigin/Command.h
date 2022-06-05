@@ -9,6 +9,10 @@ class Command
 public:
 	Command(GameObject* gameObject);
 	virtual ~Command() = default;
+	Command(const Command& other) = default;
+	Command(Command && other) = default;
+	Command& operator=(const Command & other) = default;
+	Command& operator=(Command && other) = default;
 	virtual bool ExecuteOnHold() = 0;
 	virtual bool ExecuteOnUp() = 0;
 	virtual bool ExecuteOnDown() = 0;

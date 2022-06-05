@@ -17,7 +17,7 @@ namespace dae
 
 		void SetSrcRect(const SDL_Rect& srcRect);
 
-		explicit RenderComponent(GameObject* gameObject, std::shared_ptr<Texture2D> texture);
+		RenderComponent(GameObject* gameObject, std::shared_ptr<Texture2D> texture);
 		virtual ~RenderComponent() = default;
 		RenderComponent(const RenderComponent & other) = delete;
 		RenderComponent(RenderComponent && other) = delete;

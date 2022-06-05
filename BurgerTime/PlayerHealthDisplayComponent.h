@@ -11,8 +11,12 @@ namespace dae
 	{
 	public:
 
-		explicit PlayerHealthDisplayComponent(GameObject* gameObject,PeterPeperComponent* player ,const std::shared_ptr<TextComponent>& textComponent);
+		PlayerHealthDisplayComponent(GameObject* gameObject,PeterPeperComponent* player ,const std::shared_ptr<TextComponent>& textComponent);
 		virtual ~PlayerHealthDisplayComponent() = default;
+		PlayerHealthDisplayComponent(const PlayerHealthDisplayComponent& other) = default;
+		PlayerHealthDisplayComponent(PlayerHealthDisplayComponent && other) = default;
+		PlayerHealthDisplayComponent& operator=(const PlayerHealthDisplayComponent & other) = default;
+		PlayerHealthDisplayComponent& operator=(PlayerHealthDisplayComponent && other) = default;
 
 		void IsDead() override;
 		void TookDamage() override;

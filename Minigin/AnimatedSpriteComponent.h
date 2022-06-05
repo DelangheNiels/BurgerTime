@@ -10,7 +10,7 @@ namespace dae
 	class AnimatedSpriteComponent final : public Component
 	{
 	public:
-		explicit AnimatedSpriteComponent(GameObject* gameObject, RenderComponent* renderComp, int amountOfAnimations, const std::string& spriteSheet);
+		AnimatedSpriteComponent(GameObject* gameObject, RenderComponent* renderComp, int amountOfAnimations, const std::string& spriteSheet);
 		virtual ~AnimatedSpriteComponent() = default;
 		AnimatedSpriteComponent(const AnimatedSpriteComponent& other) = delete;
 		AnimatedSpriteComponent(AnimatedSpriteComponent&& other) = delete;
