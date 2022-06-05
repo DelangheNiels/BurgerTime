@@ -5,6 +5,7 @@
 #include "TextComponent.h"
 #include "ResourceManager.h"
 #include "Command.h"
+#include "GameCommands.h"
 
 #include "HighscoreManager.h"
 #include "InputManager.h"

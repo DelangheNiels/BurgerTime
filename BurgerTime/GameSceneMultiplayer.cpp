@@ -9,6 +9,7 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
 #include "Command.h"
+#include "GameCommands.h"
 #include "ServiceLocator.h"
 #include "HighscoreManager.h"
 #include "GameManager.h"
@@ -196,14 +197,12 @@ void dae::GameSceneMultiplayer::LoadScene()
 		InputManager::GetInstance().AddController(new XBox360Controller{ 1 });
 
 		//player 1 inputs
-		InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject.get(), 0);
 
 		////player2 inputs
-		InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject2.get(), 1);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject2.get(), 1);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject2.get(), 1);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject2.get(), 1);

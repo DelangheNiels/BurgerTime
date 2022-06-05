@@ -7,6 +7,7 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
 #include "Command.h"
+#include "GameCommands.h"
 #include "ServiceLocator.h"
 #include "ServiceLocator.h"
 
@@ -63,8 +64,8 @@ void dae::MainMenuScene::LoadScene()
 		Add(multiPlayerObject);
 
 		//input commands
-		InputManager::GetInstance().AddKeyboardBinding<LoadSinglePlayerScene>(KeyboardButton::F1, nullptr);
-		InputManager::GetInstance().AddKeyboardBinding<LoadMultiPlayerScene>(KeyboardButton::F2, nullptr);
+		InputManager::GetInstance().AddKeyboardBinding<SelectSinglePlayerCommand>(KeyboardButton::F1, nullptr);
+		InputManager::GetInstance().AddKeyboardBinding<SelectMultiPlayerCommand>(KeyboardButton::F2, nullptr);
 
 		m_IsLoaded = true;
 	}

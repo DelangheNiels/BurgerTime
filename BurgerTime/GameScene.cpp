@@ -9,6 +9,7 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
 #include "Command.h"
+#include "GameCommands.h"
 #include "ServiceLocator.h"
 #include "HighscoreManager.h"
 #include "GameManager.h"
@@ -138,13 +139,10 @@ void dae::GameScene::LoadScene()
 		InputManager::GetInstance().AddController(new XBox360Controller{ 0 });
 
 		//player 1 inputs
-		InputManager::GetInstance().AddControllerCommandBinding<HitCommand>(ControllerButton::ButtonA, peterPeperGameObject.get(), 0);
-		InputManager::GetInstance().AddControllerCommandBinding<PointsCommand>(ControllerButton::ButtonB, pointsDisplayPlayerOneGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveLeftCommand>(ControllerButton::ButtonLeft, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveRightCommand>(ControllerButton::ButtonRight, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveUpCommand>(ControllerButton::ButtonUp, peterPeperGameObject.get(), 0);
 		InputManager::GetInstance().AddControllerCommandBinding<MoveDownCommand>(ControllerButton::ButtonDown, peterPeperGameObject.get(), 0);
-		InputManager::GetInstance().AddKeyboardBinding<HitCommand>(KeyboardButton::Q, peterPeperGameObject.get());
 
 
 		std::cout << "Used controlls:" << "\n";

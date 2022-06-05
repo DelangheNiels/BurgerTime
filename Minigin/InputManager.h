@@ -1,5 +1,4 @@
 #pragma once
-#include <XInput.h>
 #include "Singleton.h"
 #include "Command.h"
 #include <map>
@@ -68,7 +67,6 @@
 
 	private:
 
-		//using ControllerCommandMap = std::map<ControllerButton, std::unique_ptr<Command>>;
 		using ControllerCommandMap = std::multimap<ControllerButton, std::pair<std::unique_ptr<Command>,int>>;
 		ControllerCommandMap m_ControllerCommandsMap{};
 
