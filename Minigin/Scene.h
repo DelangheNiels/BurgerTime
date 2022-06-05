@@ -28,7 +28,10 @@ namespace dae
 		Scene& operator=(const Scene& other) = delete;
 		Scene& operator=(Scene&& other) = delete;
 
-		virtual void LoadScene();
+		virtual void LoadScene() = 0;
+
+	protected:
+		bool m_IsLoaded{false};
 
 	private: 
 		

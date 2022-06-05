@@ -59,6 +59,7 @@ void dae::SceneManager::NextScene()
 
 		
 		m_ActiveScene.get()->SetActive();
+		m_ActiveScene.get()->LoadScene();
 	}
 }
 
@@ -71,19 +72,9 @@ void dae::SceneManager::LoadScene(const std::string& name)
 			m_ActiveScene.get()->SetInActive();
 			m_ActiveScene = m_Scenes[i];
 			m_ActiveScene.get()->SetActive();
+			m_ActiveScene.get()->LoadScene();
 			
 		}
 	}
 }
 
-//dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
-//{
-//	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
-//	m_Scenes.push_back(scene);
-//
-//	if (m_Scenes.size() == 1)
-//	{
-//		m_ActiveScene = scene;
-//	}
-//	return *scene;
-//}
