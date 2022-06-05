@@ -179,6 +179,8 @@
     <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneMultiplayer.cpp" />
+    <ClCompile Include="HighscoreManager.cpp" />
+    <ClCompile Include="HighScoreScene.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
@@ -198,6 +200,8 @@
     <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneMultiplayer.h" />
+    <ClInclude Include="HighscoreManager.h" />
+    <ClInclude Include="HighScoreScene.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="PeperComponent.h" />

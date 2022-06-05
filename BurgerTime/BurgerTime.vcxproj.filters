@@ -25,6 +25,9 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{d13ec418-ff64-46fd-a757-74e37071c128}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{3594d5a5-0a45-4204-a0e0-525da0143464}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -78,6 +81,12 @@
     <ClCompile Include="GameSceneMultiplayer.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="HighScoreScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -127,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="GameSceneMultiplayer.h">
       <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="HighScoreScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

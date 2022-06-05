@@ -10,6 +10,7 @@
 #include "GameObject.h"
 #include "Command.h"
 #include "ServiceLocator.h"
+#include "HighscoreManager.h"
 
 #include "RenderComponent.h"
 #include "TextComponent.h"
@@ -48,6 +49,17 @@ void dae::GameSceneMultiplayer::LoadScene()
 	fpsGameObject.get()->AddComponent(std::make_shared<FPSComponent>(fpsGameObject.get(), textComp));
 	fpsGameObject.get()->SetPosition(2, 10);
 	Add(fpsGameObject);
+
+	//HighScore
+	auto highScoreObject = std::make_shared<GameObject>();
+	auto highscoreFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 26);
+	auto highscoreRenderComp = std::make_shared<RenderComponent>(highScoreObject.get(), nullptr);
+	std::string highscoreText = "Highscore: " + std::to_string(HighscoreManager::GetInstance().GetHighScore());
+	auto highscoreTextComp = std::make_shared<TextComponent>(highScoreObject.get(), highscoreText, highscoreFont, highscoreRenderComp, SDL_Color{ 255,255,255 });
+	highScoreObject.get()->AddComponent(highscoreRenderComp);
+	highScoreObject.get()->AddComponent(highscoreTextComp);
+	highScoreObject.get()->SetPosition(550, 20);
+	Add(highScoreObject);
 
 
 	//PeterPeper GameObject
