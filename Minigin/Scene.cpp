@@ -29,7 +29,8 @@ void Scene::Update(float deltaTime)
 	{
 		for (auto& object : m_Objects)
 		{
-			object.get()->Update(deltaTime);
+			if(object.get()->GetActive())
+				object.get()->Update(deltaTime);
 		}
 	}
 	
@@ -43,7 +44,8 @@ void dae::Scene::FixedUpdate(float fixedTime)
 
 		for (auto& object : m_Objects)
 		{
-			object.get()->FixedUpdate(fixedTime);
+			if (object.get()->GetActive())
+				object.get()->FixedUpdate(fixedTime);
 		}
 	}
 	
@@ -55,10 +57,12 @@ void Scene::Render() const
 	{
 		for (const auto& object : m_Objects)
 		{
-			auto renderComp = object.get()->GetComponent<RenderComponent>();
-			if (renderComp && renderComp->IsActive())
-				renderComp->Render();
-
+			if (object.get()->GetActive())
+			{
+				auto renderComp = object.get()->GetComponent<RenderComponent>();
+				if (renderComp && renderComp->IsActive())
+					renderComp->Render();
+			}
 		}
 	}
 	
@@ -89,11 +93,15 @@ void dae::Scene::HandleCollisions()
 	std::vector<CollisionComponent*> collisionComponents;
 	for (const auto& gameObject : m_Objects)
 	{
-		auto collisionComp = gameObject.get()->GetComponent<CollisionComponent>();
-		if (collisionComp)
+		if (gameObject.get()->GetActive())
 		{
-			collisionComponents.push_back(collisionComp);
+			auto collisionComp = gameObject.get()->GetComponent<CollisionComponent>();
+			if (collisionComp)
+			{
+				collisionComponents.push_back(collisionComp);
+			}
 		}
+		
 	}
 
 	for (size_t i=0; i< collisionComponents.size(); ++i)

@@ -21,7 +21,7 @@ namespace dae
 		void Update(float deltaTime);
 		void FixedUpdate(float fixedTime);
 
-		GameObject() = default;
+		GameObject();
 		~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
@@ -48,6 +48,10 @@ namespace dae
 		void SetTag(const std::string& tag);
 		std::string GetTag() const;
 
+		bool GetActive() const;
+		void SetActive();
+		void SetInActive();
+
 	private:
 		Transform m_Transform{};
 		Transform m_LocalTransform{};
@@ -58,6 +62,8 @@ namespace dae
 		std::vector<GameObject* > m_Children{};
 
 		std::string m_Tag;
+
+		bool m_Active{};
 
 	};
 

@@ -31,6 +31,7 @@ void dae::PeterPeperComponent::IsDamaged()
 			for (size_t i = 0; i < m_Observers.size(); i++)
 			{
 				m_Observers.at(i)->IsDead();
+				m_pGameObject->SetInActive();
 			}
 		}
 	}

@@ -5,6 +5,11 @@
 #include <algorithm>
 #include "..\BurgerTime\PeterPeperComponent.h"
 
+dae::GameObject::GameObject()
+	:m_Active{true}
+{
+}
+
 dae::GameObject::~GameObject()
 {
 	delete m_pParent;
@@ -124,6 +129,21 @@ void dae::GameObject::SetTag(const std::string& tag)
 std::string dae::GameObject::GetTag() const
 {
 	return m_Tag;
+}
+
+bool dae::GameObject::GetActive() const
+{
+	return m_Active;
+}
+
+void dae::GameObject::SetActive()
+{
+	m_Active = true;
+}
+
+void dae::GameObject::SetInActive()
+{
+	m_Active = false;
 }
 
 void dae::GameObject::SetPosition(float x, float y)
