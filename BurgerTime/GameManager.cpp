@@ -17,7 +17,7 @@ void dae::GameManager::NotifyPlayerDied(PeterPeperComponent* player)
 	{
 		++m_AmountOfDeadPlayers;
 
-		if (m_AmountOfDeadPlayers == m_Players.size())
+		if (static_cast<size_t>(m_AmountOfDeadPlayers) == m_Players.size())
 		{
 			SceneManager::GetInstance().LoadScene("HighScoreScene");
 		}

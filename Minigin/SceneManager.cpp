@@ -47,7 +47,7 @@ void dae::SceneManager::NextScene()
 
 		auto itr = std::find(m_Scenes.begin(), m_Scenes.end(), m_ActiveScene);
 		int index = int(itr - m_Scenes.begin());
-		if (index < m_Scenes.size() - 1)
+		if (static_cast<size_t>(index) < m_Scenes.size() - 1)
 		{
 			m_ActiveScene = m_Scenes[index+1];
 		}

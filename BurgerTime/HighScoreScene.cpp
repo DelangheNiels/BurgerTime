@@ -30,7 +30,7 @@ void dae::HighScoreScene::LoadScene()
 
 		auto highscoreFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 
-		for (int i = 0; i < HighscoreManager::GetInstance().GetTop10().size(); ++i)
+		for (size_t i = 0; i < HighscoreManager::GetInstance().GetTop10().size(); ++i)
 		{
 			auto scoreObject = std::make_shared<GameObject>();
 			auto scoreRenderComp = std::make_shared<RenderComponent>(scoreObject.get(), nullptr);

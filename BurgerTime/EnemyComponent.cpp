@@ -48,7 +48,7 @@ void dae::EnemyComponent::FixedUpdate(float)
 {
 }
 
-void dae::EnemyComponent::OnCollision(GameObject* pOther)
+void dae::EnemyComponent::OnCollision(GameObject*)
 {
 }
 
