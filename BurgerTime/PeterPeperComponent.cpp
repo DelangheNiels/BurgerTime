@@ -11,7 +11,7 @@
 
 void dae::PeterPeperComponent::IsDamaged()
 {
-	if (m_Health != 0)
+	if (m_Health != 0 && !m_FirsFrame)
 	{
 		--m_Health;
 
@@ -46,6 +46,8 @@ void dae::PeterPeperComponent::Update(float deltaTime)
 			Respawn();
 		}
 	}
+
+	m_FirsFrame = false;
 }
 
 void dae::PeterPeperComponent::FixedUpdate(float fixedTime)

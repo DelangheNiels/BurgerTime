@@ -11,6 +11,7 @@
 #include "Command.h"
 #include "ServiceLocator.h"
 #include "HighscoreManager.h"
+#include "GameManager.h"
 
 #include "RenderComponent.h"
 #include "TextComponent.h"
@@ -87,8 +88,8 @@ void dae::GameSceneMultiplayer::LoadScene()
 		animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation.get()));
 		animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, dyingAnimation.get()));
 
-		auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 557.0f);
-
+		auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 563.0f);
+		GameManager::GetInstance().AddPlayer(playerOne.get());
 		peterPeperGameObject.get()->AddComponent(playerOne);
 		peterPeperGameObject.get()->AddComponent(spriteRenderComp);
 		peterPeperGameObject.get()->AddComponent(collisionComponent);
@@ -164,7 +165,8 @@ void dae::GameSceneMultiplayer::LoadScene()
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation2.get()));
 		animations2.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, deadAnimation2.get()));
 
-		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 375.0f, 557.0f);
+		auto player2 = std::make_shared<PeterPeperComponent>(peterPeperGameObject2.get(), 3, spriteRenderComp2.get(), animations2, 425.0f, 563.0f);
+		GameManager::GetInstance().AddPlayer(player2.get());
 		peterPeperGameObject2.get()->AddComponent(player2);
 		peterPeperGameObject2.get()->AddComponent(spriteRenderComp2);
 		peterPeperGameObject2.get()->AddComponent(collisionComponent2);

@@ -4,8 +4,10 @@
 #include "RenderComponent.h"
 #include "TextComponent.h"
 #include "ResourceManager.h"
+#include "Command.h"
 
 #include "HighscoreManager.h"
+#include "InputManager.h"
 
 dae::HighScoreScene::HighScoreScene(const std::string& name)
 	:Scene(name)
@@ -36,9 +38,28 @@ void dae::HighScoreScene::LoadScene()
 			auto scoreTextComp = std::make_shared<TextComponent>(scoreObject.get(), highscoreText, highscoreFont, scoreRenderComp, SDL_Color{ 255,255,0 });
 			scoreObject.get()->AddComponent(scoreRenderComp);
 			scoreObject.get()->AddComponent(scoreTextComp);
-			scoreObject.get()->SetPosition(330, 140 + (40 * i));
+			scoreObject.get()->SetPosition(330.0f, 140.0f + (40.0f * i));
 			Add(scoreObject);
 		}
+
+		auto scoreObject = std::make_shared<GameObject>();
+		auto scoreRenderComp = std::make_shared<RenderComponent>(scoreObject.get(), nullptr);
+		std::string currentScoreText = "Score: " + std::to_string(HighscoreManager::GetInstance().GetCurrentScore());
+		auto scoreTextComp = std::make_shared<TextComponent>(scoreObject.get(), currentScoreText, highscoreFont, scoreRenderComp, SDL_Color{ 255,255,0 });
+		scoreObject.get()->AddComponent(scoreRenderComp);
+		scoreObject.get()->AddComponent(scoreTextComp);
+		scoreObject.get()->SetPosition(30, 650);
+		Add(scoreObject);
+
+		auto quitObject = std::make_shared<GameObject>();
+		auto quitRenderComp = std::make_shared<RenderComponent>(quitObject.get(), nullptr);
+		auto quitTextComp = std::make_shared<TextComponent>(quitObject.get(), "Escape: Quit", titleFont, quitRenderComp, SDL_Color{ 255,255,0 });
+		quitObject.get()->AddComponent(quitRenderComp);
+		quitObject.get()->AddComponent(quitTextComp);
+		quitObject.get()->SetPosition(500, 650);
+		Add(quitObject);
+
+		InputManager::GetInstance().AddKeyboardBinding<QuitCommand>(KeyboardButton::ESCAPE, nullptr);
 
 		m_IsLoaded = true;
 	}

@@ -16,6 +16,8 @@ InputManager::~InputManager()
 
 bool InputManager::ProcessInput()
 {
+	bool process = true;
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
@@ -39,25 +41,25 @@ bool InputManager::ProcessInput()
 		
 		if (IsPressed(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonHold())
 		{
-			iter->second.get()->ExecuteOnHold();
+			process = iter->second.get()->ExecuteOnHold();
 		}
 
 		if (IsUpThisFrame(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonUp())
 		{
-			iter->second.get()->ExecuteOnUp();
+			process = iter->second.get()->ExecuteOnUp();
 		}
 
 		if (IsDownThisFrame(iter->first) && iter->second.get()->GetCanBeExecutedOnButtonDown())
 		{
-			iter->second.get()->ExecuteOnDown();
+			process = iter->second.get()->ExecuteOnDown();
 		}
 	}
 
 	m_pKeyboard->Update();
-	
+
 	for (size_t i = 0; i < m_Controllers.size(); i++)
 	{
-		for (std::multimap<ControllerButton, std::pair<std::unique_ptr<Command>,int>>::iterator iter = m_ControllerCommandsMap.begin(); iter != m_ControllerCommandsMap.end(); ++iter)
+		for (std::multimap<ControllerButton, std::pair<std::unique_ptr<Command>, int>>::iterator iter = m_ControllerCommandsMap.begin(); iter != m_ControllerCommandsMap.end(); ++iter)
 		{
 
 			if (IsPressed(iter->first, m_Controllers[i]))
@@ -66,7 +68,7 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						iter->second.first.get()->ExecuteOnHold();
+						process = iter->second.first.get()->ExecuteOnHold();
 					}
 
 				}
@@ -78,9 +80,9 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						iter->second.first.get()->ExecuteOnDown();
+						process = iter->second.first.get()->ExecuteOnDown();
 					}
-					
+
 				}
 
 			}
@@ -91,7 +93,7 @@ bool InputManager::ProcessInput()
 				{
 					if (i == unsigned(iter->second.second))
 					{
-						iter->second.first.get()->ExecuteOnUp();
+						process = iter->second.first.get()->ExecuteOnUp();
 					}
 				}
 			}
@@ -99,7 +101,7 @@ bool InputManager::ProcessInput()
 	}
 	
 
-	return true;
+	return process;
 }
 
 bool InputManager::IsPressed(ControllerButton button, XBox360Controller* controller) const

@@ -87,6 +87,9 @@
     <ClCompile Include="HighscoreManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -141,6 +144,9 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="HighscoreManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>

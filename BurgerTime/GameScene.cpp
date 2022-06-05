@@ -11,6 +11,7 @@
 #include "Command.h"
 #include "ServiceLocator.h"
 #include "HighscoreManager.h"
+#include "GameManager.h"
 
 #include "RenderComponent.h"
 #include "TextComponent.h"
@@ -87,8 +88,8 @@ void dae::GameScene::LoadScene()
 		animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::ClimbingDown, walkDownAnimation.get()));
 		animations.insert(std::pair<PlayerStates, AnimatedSpriteComponent*>(PlayerStates::Dying, dyingAnimation.get()));
 
-		auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 545.0f);
-
+		auto playerOne = std::make_shared<PeterPeperComponent>(peterPeperGameObject.get(), 3, spriteRenderComp.get(), animations, 375.0f, 563.0f);
+		GameManager::GetInstance().AddPlayer(playerOne.get());
 		peterPeperGameObject.get()->AddComponent(playerOne);
 		peterPeperGameObject.get()->AddComponent(spriteRenderComp);
 		peterPeperGameObject.get()->AddComponent(collisionComponent);

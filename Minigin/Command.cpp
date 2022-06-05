@@ -4,6 +4,7 @@
 #include "ServiceLocator.h"
 
 #include "SceneManager.h"
+#include "..\BurgerTime\HighscoreManager.h"
 
 
 HitCommand::HitCommand(GameObject* gameObject)
@@ -184,6 +185,11 @@ bool MoveDownCommand::ExecuteOnUp()
 }
 
 
+QuitCommand::QuitCommand(GameObject* gameObject)
+	:Command(gameObject)
+{
+}
+
 bool QuitCommand::ExecuteOnHold()
 {
 	return false;
@@ -192,6 +198,7 @@ bool QuitCommand::ExecuteOnHold()
 bool QuitCommand::ExecuteOnDown()
 {
 	std::cout << "Quit" << "\n";
+	HighscoreManager::GetInstance().SaveScore();
 	return false;
 }
 

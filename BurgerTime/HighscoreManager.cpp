@@ -41,8 +41,33 @@ std::vector<int> dae::HighscoreManager::GetTop10()
     
 }
 
-void dae::HighscoreManager::SaveScore(int)
+void dae::HighscoreManager::SaveScore() const
 {
+    std::ofstream file("../Data/TextFiles/HighScores.txt");
+
+    if (file.is_open())
+    {
+        for (size_t i = 0; i < m_Scores.size(); i++)
+        {
+            std::string line = std::to_string(m_Scores[i]) + "\n";
+            file << line;
+        }
+
+        std::string line = std::to_string(m_CurrentScore) + "\n";
+        file << line;
+
+        file.close();
+    }
+}
+
+void dae::HighscoreManager::SetCurrentScore(int score)
+{
+    m_CurrentScore = score;
+}
+
+int dae::HighscoreManager::GetCurrentScore() const
+{
+    return m_CurrentScore;
 }
 
 void dae::HighscoreManager::LoadScores()

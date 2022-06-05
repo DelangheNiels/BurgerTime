@@ -60,6 +60,7 @@ private:
 class QuitCommand final :public Command
 {
 public:
+	QuitCommand(GameObject* gameObject);
 	bool ExecuteOnHold() override;
 	bool ExecuteOnDown() override;
 	bool ExecuteOnUp() override;

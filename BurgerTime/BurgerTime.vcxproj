@@ -177,6 +177,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="EnemyComponent.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="GameSceneMultiplayer.cpp" />
     <ClCompile Include="HighscoreManager.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="BurgerTimeGame.h" />
     <ClInclude Include="BurgerTimePCH.h" />
     <ClInclude Include="EnemyComponent.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSceneMultiplayer.h" />
     <ClInclude Include="HighscoreManager.h" />

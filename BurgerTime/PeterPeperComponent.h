@@ -72,6 +72,8 @@ namespace dae
 
 		float m_Startx, m_StartY;
 
+		bool m_FirsFrame{ true };
+
 		std::map<PlayerStates, AnimatedSpriteComponent*> m_Animations;
 		
 		PlayerStates m_CurrentState;

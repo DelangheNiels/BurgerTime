@@ -1,6 +1,8 @@
 #include "BurgerTimePCH.h"
 #include "PlayerHealthDisplayComponent.h"
 
+#include "GameManager.h"
+
 dae::PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(GameObject* gameObject,PeterPeperComponent* player,const std::shared_ptr<TextComponent>& textComponent)
 	:Component(gameObject),m_pObservedPlayer(player), m_pTextComponent(textComponent)
 {
@@ -17,7 +19,8 @@ dae::PlayerHealthDisplayComponent::PlayerHealthDisplayComponent(GameObject* game
 
 void dae::PlayerHealthDisplayComponent::IsDead()
 {
-		std::cout << "Player is dead" << "\n";	
+		std::cout << "Player is dead" << "\n";
+		GameManager::GetInstance().NotifyPlayerDied(m_pObservedPlayer);
 }
 
 void dae::PlayerHealthDisplayComponent::TookDamage()
